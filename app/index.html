@@ -1,43 +1,141 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>XY Workbench</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-  <link rel="stylesheet" href="app.css">
-  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-</head>
-<body>
-  <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/view2">view2</a></li>
-  </ul>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="XYWorkbench">
+    <head>
+        <title>XY Workbench</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div ng-controller="IndexCtrl as ic">
+            <!-- Navigation start -->
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+            <nav class="navbar navbar-inverse navbar-fixed-top navbar-inner" role="navigation">
+                <!-- navbar-fixed-top -->
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">XY Workbench</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling >
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"-->
+                    <nav class="hidden-xs">
+                        <ul class="nav navbar-nav"> <!--  navbar-right-->
+                            <li>
+                                <a href="#!/view1">View1</a>
+                            </li>
+                            <li>
+                                <a href="#!/view2">View2</a>
+                            </li>          
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="blog-home-1.html">Blog Home 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="blog-home-2.html">Blog Home 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="blog-post.html">Blog Post</a>
+                                    </li>
+                                </ul>
+                            </li> 
+                            <li uib-dropdown class="dropdown">
+                                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Portfolio <b class="caret"></b></a>-->
+                                <a class="dropdown-toggle" uib-dropdown-toggle>
+                                    Raw Data 
+                                    <b class="caret"></b>
+                                </a>
+                                <ul  uib-dropdown-menu class="dropdown-menu">
+                                    <li>
+                                        <a href="portfolio-1-col.html">1 Column Portfolio</a>
+                                    </li>
+                                    <li>
+                                        <a href="portfolio-2-col.html">2 Column Portfolio</a>
+                                    </li>
+                                    <li>
+                                        <a href="portfolio-3-col.html">3 Column Portfolio</a>
+                                    </li>
+                                    <li>
+                                        <a href="portfolio-4-col.html">4 Column Portfolio</a>
+                                    </li>
+                                    <li>
+                                        <a href="portfolio-item.html">Single Portfolio Item</a>
+                                    </li>
+                                </ul>
+                            </li>
 
-  <div ng-view></div>
+                        </ul>
+                    </nav>
+                    <!--/div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>       
 
-  <div>XY Workbench: v<span app-version></span></div>
+            <!-- Page Content -->
+            <div class="container">
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
-</body>
+                <!-- ng-view -->
+                <div ng-view></div>
+
+                <!-- Footer -->
+                <footer>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p>Nebulagene Copyright &copy; XY-Workbench 2016 {{ic.qq}}</p>
+
+                        </div>
+                    </div>
+                </footer>
+
+            </div>            
+            <!-- end ng-controller -->
+        </div>
+
+        <!-- Navigation end -->
+
+        <!--Included files-->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="app.css" rel="stylesheet" type="text/css"/>
+
+        <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" type="text/css"/>
+        <link href="bower_components/angucomplete-alt/angucomplete-alt.css" rel="stylesheet" type="text/css"/>
+        <link href="css/modern-business.css" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+        <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>
+        <script src="bower_components/angular-resource/angular-resource.js" type="text/javascript"></script>
+        <script src="bower_components/angular-route/angular-route.js" type="text/javascript"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js" type="text/javascript"></script>
+        <script src="bower_components/angucomplete-alt/angucomplete-alt.js" type="text/javascript"></script>
+
+        <script src="app.js" type="text/javascript"></script> 
+
+
+        <script src="Index/Index.js" type="text/javascript"></script>
+        <script src="Index/controllers/IndexCtrl.js" type="text/javascript"></script>
+
+        <!-- Basic Test for Angular -->
+        <script src="view1/view1.js" type="text/javascript"></script>
+        <script src="view2/view2.js" type="text/javascript"></script>        
+
+        <script src="components/version/version.js"></script>
+        <script src="components/version/version-directive.js"></script>
+        <script src="components/version/interpolate-filter.js"></script>
+
+    </body>
 </html>

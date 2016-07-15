@@ -1,8 +1,11 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('XYWorkbench', [
   'ngRoute',
+  'ngAnimate',
+  'ui.bootstrap',
+  'XYWorkbench.Index',
   'myApp.view1',
   'myApp.view2',
   'myApp.version'
