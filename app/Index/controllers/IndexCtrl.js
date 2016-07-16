@@ -20,7 +20,7 @@ IndexModule.controller('IndexCtrl',
             $scope.qqff = "Under Construction";
             var IndexCtrl = this;
             IndexCtrl.outputtxt = "Under Construction";
-            IndexCtrl.qq = "fff";
+            IndexCtrl.qq = "panglong@nebulagene.com";
 
             $scope.items = [
                 'The first choice!',

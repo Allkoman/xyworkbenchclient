@@ -33,7 +33,7 @@ and open the template in the editor.
                         <ul class="nav navbar-nav"> <!--  navbar-right-->
                             <li>
                                 <a href="#/Home">Home</a>
-                            </li>
+                            </li>                            
                             <li>
                                 <a href="#/view1">View1</a>
                             </li>
@@ -41,10 +41,10 @@ and open the template in the editor.
                                 <a href="#/view2">View2</a>
                             </li>          
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Storage <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="blog-home-1.html">Blog Home 1</a>
+                                        <a href="#/SearchStudy">Studies</a>
                                     </li>
                                     <li>
                                         <a href="blog-home-2.html">Blog Home 2</a>
@@ -57,12 +57,12 @@ and open the template in the editor.
                             <li uib-dropdown class="dropdown">
                                 <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Portfolio <b class="caret"></b></a>-->
                                 <a class="dropdown-toggle" uib-dropdown-toggle>
-                                    Raw Data 
+                                    Health Raw Data Archive 
                                     <b class="caret"></b>
                                 </a>
                                 <ul  uib-dropdown-menu class="dropdown-menu">
                                     <li>
-                                        <a href="portfolio-1-col.html">1 Column Portfolio</a>
+                                        <a href="#/SearchStudy">Studies</a>
                                     </li>
                                     <li>
                                         <a href="portfolio-2-col.html">2 Column Portfolio</a>
@@ -97,7 +97,7 @@ and open the template in the editor.
                 <footer>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p>Nebulagene Copyright &copy; XY-Workbench 2016 {{ic.qq}}</p>
+                            <p>Nebulagene Copyright &copy; XY-Workbench 2016 ({{ic.qq}})</p>
 
                         </div>
                     </div>
@@ -127,12 +127,15 @@ and open the template in the editor.
         <script src="bower_components/angucomplete-alt/angucomplete-alt.js" type="text/javascript"></script>
 
         <script src="app.js" type="text/javascript"></script> 
-
+        <script src="Common/Common.js" type="text/javascript"></script>
+        <script src="Common/services/services.js" type="text/javascript"></script>
         <!-- Pages List -->
         <script src="Index/Index.js" type="text/javascript"></script>
         <script src="Index/controllers/IndexCtrl.js" type="text/javascript"></script>
         <script src="Home/Home.js" type="text/javascript"></script>
         <script src="Home/controllers/HomeCtrl.js" type="text/javascript"></script>
+        <script src="Search/Search.js" type="text/javascript"></script>
+        <script src="Search/controllers/SearchStudyCtrl.js" type="text/javascript"></script>
         
         <!-- Basic Test for Angular -->
         <script src="view1/view1.js" type="text/javascript"></script>

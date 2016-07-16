@@ -5,8 +5,11 @@ angular.module('XYWorkbench', [
   'ngRoute',
   'ngAnimate',
   'ui.bootstrap',
+  'ngResource',
+  'XYWorkbench.Common',
   'XYWorkbench.Index',
   'XYWorkbench.Home',
+  'XYWorkbench.Search',
   'myApp.view1',
   'myApp.view2',
   'myApp.version'
@@ -17,6 +20,9 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         $routeProvider.
                 when('/Home',{
                     templateUrl:'Home/tmpl/Home.html'
+                }).
+                when('/SearchStudy',{
+                    templateUrl:'Search/tmpl/SearchStudy.html'
                 }).
                 otherwise({redirectTo: '/view1'});
 }]);
