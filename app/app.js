@@ -24,5 +24,5 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
                 when('/SearchStudy',{
                     templateUrl:'Search/tmpl/SearchStudy.html'
                 }).
-                otherwise({redirectTo: '/view1'});
+                otherwise({redirectTo: '/Home'});
 }]);

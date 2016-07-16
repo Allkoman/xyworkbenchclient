@@ -62,9 +62,3 @@ commonModule.factory('HRDACountWS',function($resource,BackendAddr){
         count:{method:'GET'}
     });
 });
-
-commonModule.factory('HRDACountWS2',function($resource,BackendAddr){
-    return $resource(BackendAddr+'/study/count',{},{
-        count:{method:'GET'}
-    });
-});
