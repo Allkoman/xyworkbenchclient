@@ -6,6 +6,7 @@ angular.module('XYWorkbench', [
   'ngAnimate',
   'ui.bootstrap',
   'ngResource',
+  'angucomplete-alt',
   'XYWorkbench.Common',
   'XYWorkbench.Index',
   'XYWorkbench.Home',

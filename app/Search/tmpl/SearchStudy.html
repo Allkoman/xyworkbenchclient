@@ -1,38 +1,102 @@
 <div ng-controller="SearchStudyCtrl as sstudyCtrl">
     <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <table id="sstudyCtrl_tbl" class="table table-striped">
-                    <tfoot>
-                        <tr>
-                            <td colspan="4" >
-                                <uib-pagination total-items="sstudyCtrl.count" ng-model="sstudyCtrl.currentPage" 
-                                        ng-change="sstudyCtrl.pageChanged()" boundary-links="true"
-                                        boundary-link-numbers="true" max-size="5" 
-                                        items-per-page="sstudyCtrl.pageSize"></uib-pagination>
-                            </td>
-                            <td colspan="1" style="text-align:center;vertical-align:middle;">
-                            
-                            Total:<span class="badge">{{sstudyCtrl.count}}</span>
-                                <ul class="nav nav-pills">
-                                    <li role="presentation" class="active">
-                                    </li>
-                                </ul>
-                                <span class="label label-primary"></span>
-                            </td> 
-                        </tr>
+        <div class="col-lg-12 page-header">
+            <h2>
+                Studies
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <!--div class="col-lg-4">
+            <span class="label label-primary">Search</span>
+        </div-->
+        <div class="col-lg-12">            
+            <!-- remote url:http://localhost:8080/XYHRDAServer/webresources/words/bywildcard/diabe -->
+            <div angucomplete-alt id="ex7" placeholder="Search Studies via title, description and so on"                  
+                 pause="100"  
+                 remote-url="{{sstudyCtrl.BackendAddr}}/words/bywildcard/"
+                 search-fields="wordscol" title-field="wordscol" description-field="idwords" minlength="1" 
+                 input-class="form-control form-control-small"
+                 selected-object="sstudyCtrl.onSearch"
+                 match-class="highlight">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        Search Result and Filter
+                      
+                      <!--<a data-toggle="collapse" data-parent="#accordion"
+                        href="#collapseOne">
+                      </a>-->
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <b>Classification</b>
                     <!--
-                    <div class="col-sm-10">                        
-                            
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="vertical-align:middle">
-                            
-                        </div>
-                    </div>
+                    
                     -->
-                    </tfoot>
+                    <ul id="category" class="list-group">
+                      <li class="list-group-item">
+                        <span class="badge">{{srlCtrl.diseaseCount}}</span>
+                        Disease
+                      </li>
+                      <li class="list-group-item">
+                        <span class="badge">{{srlCtrl.pathwayCount}}</span>
+                        Pathway
+                      </li>
+                      <li class="list-group-item">
+                        <span class="badge">{{srlCtrl.geneCount}}</span>
+                        Gene
+                      </li>
+                      <li class="list-group-item">
+                        <span class="badge">{{srlCtrl.snpCount}}</span>
+                        SNP
+                      </li>
+                    </ul>
+                   
+                    <b>Filter Criterion</b>
+                </div>
+            </div>
+        </div>        
+    
+        <div class="col-lg-8 col-md-8">
+            <table id="sstudyCtrl_tbl" class="table table-striped">
+                <tfoot>
+                    <tr>
+                        <td colspan="4" >
+                <uib-pagination total-items="sstudyCtrl.count" ng-model="sstudyCtrl.currentPage" 
+                                ng-change="sstudyCtrl.pageChanged()" boundary-links="true"
+                                boundary-link-numbers="true" max-size="5" 
+                                items-per-page="sstudyCtrl.pageSize"></uib-pagination>
+                </td>
+                <td colspan="1" style="text-align:center;vertical-align:middle;">
 
-                    <thead>
+                    Total:<span class="badge">{{sstudyCtrl.count}}</span>
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active">
+                        </li>
+                    </ul>
+                    <span class="label label-primary"></span>
+                </td> 
+                </tr>
+                <!--
+                <div class="col-sm-10">                        
+                        
+                </div>
+                <div class="col-sm-2">
+                    <div class="vertical-align:middle">
+                        
+                    </div>
+                </div>
+                -->
+                </tfoot>
+
+                <thead>
                     <tr>
                         <th>Accession</th>
                         <th>Title</th>
@@ -40,24 +104,24 @@
                         <th>Description</th>
                         <th>Submission</th>                    
                     </tr>
-                    </thead>
+                </thead>
 
-                    <tbody>
-                    <tr ng-repeat="strl_el in sstudyCtrl.curPageItems | filter:searchText">
+                <tbody>
+                    <tr ng-repeat="strl_el in sstudyCtrl.curPageItems| filter:searchText">
                         <td>
-                            {{ strl_el.studyAccession }}
+                            {{ strl_el.studyAccession}}
                         </td>
                         <td>
-                            {{ strl_el.studyTitle }}
+                            {{ strl_el.studyTitle}}
                         </td>
                         <td>
-                            {{ strl_el.studyType }}
+                            {{ strl_el.studyType}}
                         </td>
                         <td>
-                            {{ strl_el.studyDescription }}
+                            {{ strl_el.studyDescription}}
                         </td>
                         <td>
-                            {{ strl_el.submissionAccession }}
+                            {{ strl_el.submissionAccession}}
                         </td>
                     </tr>
                     <tr ng-hide="sstudyCtrl.curPageItems.length">
@@ -65,13 +129,13 @@
                             <p class="text-center">No Search Result Found</p>
                         </td>
                     </tr>
-                    </tbody>
-                                    </table>
-                <!-- <h3>Total: {{sstudyCtrl.count}}</h3> -->
-            </div>
+                </tbody>
+            </table>
+            <!-- <h3>Total: {{sstudyCtrl.count}}</h3> -->
         </div>
+    </div>
     <div class="row">
-            <div ng-if="sstudyCtrl.is_debug">
+        <div ng-if="sstudyCtrl.is_debug">
             <!--
             <div class="form-group">
                 <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Orders...">
@@ -83,7 +147,7 @@
                 <hr>
             </div>
             -->
-            
+
             <h3>
                 Debug
             </h3>
@@ -96,10 +160,10 @@
                     </accordion-heading>
                     <pre>{{ sstudyCtrl.curPageItems | json }}</pre>
                     <pre>{{ sstudyCtrl.count| json }}</pre>
-                    
+
                 </accordion-group>
             </accordion>
         </div>
-        
+
     </div>
 </div>

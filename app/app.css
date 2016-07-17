@@ -30,8 +30,8 @@ body{
   padding-top: 70px;
 }
 ul {margin: 10px;}
-li {list-style-type: square;}
-ul.disc {list-style-type: disc;}
+/*li {list-style-type: square;}*/
+/*ul.disc {list-style-type: disc;}*/
 
 footer {
     text-align: center;

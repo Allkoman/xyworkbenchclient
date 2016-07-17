@@ -8,9 +8,10 @@
 
 var entitySearchModule = angular.module('XYWorkbench.Search');
 entitySearchModule.controller('SearchStudyCtrl',
-        function ($log, GetHRDADataByPageWS, HRDACountWS,
+        function ($log, GetHRDADataByPageWS, HRDACountWS,BackendAddr,
                 ISDEBUG) {
             var SearchStudyCtrl = this;
+            SearchStudyCtrl.BackendAddr = BackendAddr;
             SearchStudyCtrl.pageSize = 20;
             SearchStudyCtrl.is_debug = ISDEBUG;
             SearchStudyCtrl.count = 0;
@@ -36,6 +37,10 @@ entitySearchModule.controller('SearchStudyCtrl',
             };
 
             LoadFirstPage();
+            
+            SearchStudyCtrl.onSearch = function(searchVal){
+                
+            };
 
             SearchStudyCtrl.pageChanged = function () {
                 /*
