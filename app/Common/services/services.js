@@ -48,7 +48,7 @@ commonModule.factory('BackendAddr',function(ISDEBUG){
   'delete': {method:'DELETE'} };
  */
 
-/*-------filter:compose sql by params---------*/
+/*-------filter:get full list by page---------*/
 
 //:entity = {study,experiment,sample,run,submission,fastq ??sra}
 commonModule.factory('GetHRDADataByPageWS',function($resource,BackendAddr){
@@ -60,5 +60,19 @@ commonModule.factory('GetHRDADataByPageWS',function($resource,BackendAddr){
 commonModule.factory('HRDACountWS',function($resource,BackendAddr){
     return $resource(BackendAddr+'/:entity/count',{},{
         count:{method:'GET'}
+    });
+});
+
+/*-------filter:compose sql by params---------*/
+
+commonModule.factory('GetHRDADataByFilterWS',function($resource,BackendAddr){
+    return $resource(BackendAddr+'/:entity/byfilter',{},{
+        list:{method:'PUT',isArray:true}
+    });
+});
+
+commonModule.factory('HRDACountByFilterWS',function($resource,BackendAddr){
+    return $resource(BackendAddr+'/:entity/countbyfilter',{},{
+        count:{method:'PUT'}
     });
 });
