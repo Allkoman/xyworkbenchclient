@@ -60,6 +60,16 @@
                     </ul>
                    
                     <b>Filter Criterion</b>
+                    
+                    <uib-accordion>
+                        <div uib-accordion-group class="panel-default">
+                            <ul class="list-group" ng-repeat="item in sstudyCtrl.taxonsList">
+                                <li class="list-group-item">
+                                    {{item.taxonid}}-{{item.taxonname}}
+                                </li>                                
+                            </ul>
+                        </div>
+                    </uib-accordion>
                 </div>
             </div>
         </div>        
@@ -160,6 +170,7 @@
                     </accordion-heading>
                     <pre>{{ sstudyCtrl.curPageItems | json }}</pre>
                     <pre>{{ sstudyCtrl.count| json }}</pre>
+                    <pre>{{ sstudyCtrl.searchInputObj|json}}</pre>
 
                 </accordion-group>
             </accordion>

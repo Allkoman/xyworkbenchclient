@@ -360,7 +360,7 @@
           } else {
             handleOverrideSuggestions(event);
             //PLM
-            callOrAssign({originalObject:{sacwords:scope.searchStr}});
+            callOrAssign({originalObject:{"wordscol":scope.searchStr}});
             clearResults();
           }
           scope.$apply();
