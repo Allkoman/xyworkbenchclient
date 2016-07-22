@@ -62,9 +62,9 @@
                     <b>Filter Criterion</b>
                     
                     <uib-accordion>
-                        <div uib-accordion-group class="panel-default">
-                            <ul class="list-group" ng-repeat="item in sstudyCtrl.taxonsList">
-                                <li class="list-group-item">
+                        <div uib-accordion-group class="panel-default" heading="Organism">
+                            <ul class="list-group" >
+                                <li class="list-group-item" ng-repeat="item in sstudyCtrl.taxonsList">
                                     {{item.taxonid}}-{{item.taxonname}}
                                 </li>                                
                             </ul>

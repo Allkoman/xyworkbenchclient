@@ -79,6 +79,6 @@ commonModule.factory('HRDACountByFilterWS',function($resource,BackendAddr){
 
 commonModule.factory('GetTaxonsByFilterForStudyWS',function($resource,BackendAddr){
     return $resource(BackendAddr+'/taxons/onePageByFilterForStudyFT',{},{
-        gettaxons:{method:'PUT'}
+        gettaxons:{method:'PUT',isArray:true}
     });
 });
