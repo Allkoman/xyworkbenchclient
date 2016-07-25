@@ -63,6 +63,7 @@ commonModule.factory('HRDACountWS',function($resource,BackendAddr){
     });
 });
 
+
 /*-------filter:compose sql by params---------*/
 
 commonModule.factory('GetHRDADataByFilterWS',function($resource,BackendAddr){
@@ -80,5 +81,11 @@ commonModule.factory('HRDACountByFilterWS',function($resource,BackendAddr){
 commonModule.factory('GetTaxonsByFilterForStudyWS',function($resource,BackendAddr){
     return $resource(BackendAddr+'/taxons/onePageByFilterForStudyFT',{},{
         gettaxons:{method:'PUT',isArray:true}
+    });
+});
+
+commonModule.factory('GetTaxonsCountByFilterForStudyWS',function($resource,BackendAddr){
+    return $resource(BackendAddr+'/taxons/countByFilterForStudyFT',{},{
+        count:{method:'PUT'}
     });
 });

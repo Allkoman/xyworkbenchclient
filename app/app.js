@@ -6,11 +6,12 @@ angular.module('XYWorkbench', [
   'ngAnimate',
   'ui.bootstrap',
   'ngResource',
+  'checklist-model',
   'angucomplete-alt',
   'XYWorkbench.Common',
   'XYWorkbench.Index',
   'XYWorkbench.Home',
-  'XYWorkbench.Search',
+  'XYWorkbench.Search',  
   'myApp.view1',
   'myApp.view2',
   'myApp.version'

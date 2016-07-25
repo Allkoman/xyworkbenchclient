@@ -11,6 +11,7 @@ entitySearchModule.controller('SearchStudyCtrl',
         function ($log, GetHRDADataByPageWS, HRDACountWS,BackendAddr,
                 GetHRDADataByFilterWS,HRDACountByFilterWS,
                 GetTaxonsByFilterForStudyWS,
+                GetTaxonsCountByFilterForStudyWS,
                 ISDEBUG) {
             var SearchStudyCtrl = this;
             SearchStudyCtrl.BackendAddr = BackendAddr;
@@ -19,6 +20,8 @@ entitySearchModule.controller('SearchStudyCtrl',
             SearchStudyCtrl.count = 0;
             SearchStudyCtrl.searchInputStr = "";
             SearchStudyCtrl.searchInputObj = {};
+            SearchStudyCtrl.taxonsCount = 0;
+            SearchStudyCtrl.taxonsChose = [];
             
             var strtrim = function (str_in) {
                 return str_in.replace(/(^\s*)|(\s*$)/g, "");
@@ -41,6 +44,28 @@ entitySearchModule.controller('SearchStudyCtrl',
                         function (responseObj) {
                             $log.log('recieve remote response:' + responseObj);
                         });
+                        
+                SearchStudyCtrl.taxonsList = GetTaxonsByFilterForStudyWS.gettaxons(
+                            {}, //SearchStudyCtrl.filterParams,
+                            {
+                                "wildcard": "",
+                                "pagenum": 1,
+                                "pagesize": 5
+                            },
+                            function (responseObj) {
+                                $log.log('onSearch receive taxons for study filter');
+                            });
+                            
+                GetTaxonsCountByFilterForStudyWS.count({},
+                    {
+                        "wildcard": "",
+                        "pagenum": 1,
+                        "pagesize": 5
+                    },
+                    function(responseObj){
+                        SearchStudyCtrl.taxonsCount = responseObj.value;
+                        $log.log('receive response for taxonsCount:'+responseObj);
+                    });
 
 
                 HRDACountWS.count({entity: "study"}, {},
@@ -73,9 +98,24 @@ entitySearchModule.controller('SearchStudyCtrl',
                             });
                             
                         SearchStudyCtrl.taxonsList = GetTaxonsByFilterForStudyWS.gettaxons(
-                                {},SearchStudyCtrl.filterParams,
-                                function(responseObj){
-                                    $log.log('onSearch receive taxons for study filter');
+                            {}, //SearchStudyCtrl.filterParams,
+                            {
+                                "wildcard": SearchStudyCtrl.searchInputStr,
+                                "pagenum": 1,
+                                "pagesize": 5
+                            },
+                            function (responseObj) {
+                                $log.log('onSearch receive taxons for study filter');
+                            });
+                            
+                        SearchStudyCtrl.taxonsCount = 0;
+                        GetTaxonsCountByFilterForStudyWS.count({},
+                            {
+                                "wildcard": SearchStudyCtrl.searchInputStr
+                            },
+                            function(responseObj){
+                                SearchStudyCtrl.taxonsCount = responseObj.value;
+                                $log.log('receive response for taxonsCount:'+responseObj);
                             });
                             
                         HRDACountByFilterWS.count({entity:'study'},SearchStudyCtrl.filterParams,

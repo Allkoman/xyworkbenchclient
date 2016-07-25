@@ -26,20 +26,18 @@
     <div class="row">
         <div class="col-lg-4 col-md-4">
             <div class="panel panel-default ">
-                <div class="panel-heading">
+                <!--div class="panel-heading">
                     <h4 class="panel-title">
                         Search Result and Filter
                       
-                      <!--<a data-toggle="collapse" data-parent="#accordion"
+                      <a data-toggle="collapse" data-parent="#accordion"
                         href="#collapseOne">
-                      </a>-->
+                      </a>
                     </h4>
-                </div>
+                </div-->
                 <div class="panel-body">
-                    <b>Classification</b>
-                    <!--
+                    <!--b>Classification</b>
                     
-                    -->
                     <ul id="category" class="list-group">
                       <li class="list-group-item">
                         <span class="badge">{{srlCtrl.diseaseCount}}</span>
@@ -59,17 +57,28 @@
                       </li>
                     </ul>
                    
-                    <b>Filter Criterion</b>
+                    <b>Filter Criterion</b-->
                     
                     <uib-accordion>
-                        <div uib-accordion-group class="panel-default" heading="Organism">
+                        <div uib-accordion-group class="panel-default">
+                            <uib-accordion-heading>
+                               Organism <span class="badge pull-right">{{sstudyCtrl.taxonsCount}}</span>
+                                
+                            </uib-accordion-heading>
                             <ul class="list-group" >
                                 <li class="list-group-item" ng-repeat="item in sstudyCtrl.taxonsList">
-                                    {{item.taxonid}}-{{item.taxonname}}
+                                    <input type="checkbox" checklist-model="sstudyCtrl.taxonsChose"
+                                       checklist-value="item.taxonid">{{item.taxonname}}
                                 </li>                                
-                            </ul>
+                            </ul>                           
                         </div>
                     </uib-accordion>
+                    
+                    <div>
+                        <center>
+                            <button class="btn btn-default" ng-click="sstudyCtrl.onFilter">Filter</button>
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>        
