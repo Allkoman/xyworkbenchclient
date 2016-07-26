@@ -22,7 +22,7 @@ entitySearchModule.controller('SearchStudyCtrl',
             SearchStudyCtrl.searchInputStr = "";
             SearchStudyCtrl.searchInputObj = {};
             SearchStudyCtrl.taxonsCount = 0;
-            SearchStudyCtrl.taxonsChose = [{taxonid:20}];
+            SearchStudyCtrl.taxonsChose = [];//[{taxonid:20}];
             SearchStudyCtrl.isOrgOpen = false;
             SearchStudyCtrl.taxonLeftList = {};
             SearchStudyCtrl.taxonChoseIds = [];
@@ -59,6 +59,7 @@ entitySearchModule.controller('SearchStudyCtrl',
                             },
                             function (responseObj) {
                                 $log.log('onSearch receive taxons for study filter');
+                                SearchStudyCtrl.taxonLeftList = {};
                                 if(responseObj!=null && responseObj.length!=null){
                                     for(var i=0;i<responseObj.length ;i++){
                                         SearchStudyCtrl.taxonLeftList[responseObj[i].taxonid]=responseObj[i];
@@ -91,6 +92,10 @@ entitySearchModule.controller('SearchStudyCtrl',
             SearchStudyCtrl.onSearch = function(searchVal){
                 $log.log('onSearch:' + searchVal);
                 SearchStudyCtrl.searchInputObj = searchVal;
+                
+                SearchStudyCtrl.filterParams.taxonlist = [];
+                SearchStudyCtrl.taxonChoseIds = [];
+                SearchStudyCtrl.taxonsChose = [];
                 if (searchVal){
                     $log.log('onSearch:' + searchVal.originalObject.wordscol);
                     var searchStr = strtrim(searchVal.originalObject.wordscol);
@@ -116,6 +121,12 @@ entitySearchModule.controller('SearchStudyCtrl',
                             },
                             function (responseObj) {
                                 $log.log('onSearch receive taxons for study filter');
+                                SearchStudyCtrl.taxonLeftList = {};
+                                if(responseObj!=null && responseObj.length!=null){
+                                    for(var i=0;i<responseObj.length ;i++){
+                                        SearchStudyCtrl.taxonLeftList[responseObj[i].taxonid]=responseObj[i];
+                                    }
+                                }
                             });
                             
                         SearchStudyCtrl.taxonsCount = 0;
@@ -215,11 +226,13 @@ entitySearchModule.controller('SearchStudyCtrl',
             
             SearchStudyCtrl.onFilter = function(){
                 //Generate the list for taxons
+                $log.log("onFilter");
                 var taxonIDList = [];
                 for(var i=0;i<SearchStudyCtrl.taxonsChose.length;i++){
                     taxonIDList.push(SearchStudyCtrl.taxonsChose[i].taxonid);
                 }
                 SearchStudyCtrl.taxonChoseIds = taxonIDList;
+                SearchStudyCtrl.filterParams.taxonlist = SearchStudyCtrl.taxonChoseIds;
                 
                 SearchStudyCtrl.curPageItems = GetHRDADataByFilterWS.list(
                     {entity:'study'},SearchStudyCtrl.filterParams,
