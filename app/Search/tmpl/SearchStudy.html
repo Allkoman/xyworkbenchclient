@@ -67,9 +67,10 @@
                                 <span class="badge pull-right">{{sstudyCtrl.taxonsCount}}</span>
                             </uib-accordion-heading>
                             <ul class="list-group" >
-                                <li class="list-group-item" ng-repeat="item in sstudyCtrl.taxonsList">
+                                <!-- li class="list-group-item" ng-repeat="item in sstudyCtrl.taxonsList"-->
+                                <li class="list-group-item" ng-repeat="(key,item) in sstudyCtrl.taxonLeftList">
                                     <input type="checkbox" checklist-model="sstudyCtrl.taxonsChose"
-                                       checklist-value="item.taxonid">{{item.taxonname}}
+                                       checklist-value="item" checklist-comparator=".taxonid">{{item.taxonname}}
                                 </li>  
                                 <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openTaxonChooser()">See All</button> </li>
                             </ul>                           
@@ -83,6 +84,7 @@
                     </div>
                     <div ng-if="sstudyCtrl.is_debug">
                         <pre>{{ sstudyCtrl.taxonsChose | json }}</pre>
+                        <pre>{{ sstudyCtrl.taxonLeftList | json}}</pre>
                     </div>
                 </div>
             </div>

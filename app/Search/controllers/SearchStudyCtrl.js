@@ -22,8 +22,9 @@ entitySearchModule.controller('SearchStudyCtrl',
             SearchStudyCtrl.searchInputStr = "";
             SearchStudyCtrl.searchInputObj = {};
             SearchStudyCtrl.taxonsCount = 0;
-            SearchStudyCtrl.taxonsChose = [20];
+            SearchStudyCtrl.taxonsChose = [{taxonid:20}];
             SearchStudyCtrl.isOrgOpen = false;
+            SearchStudyCtrl.taxonLeftList = {};
             
             var strtrim = function (str_in) {
                 return str_in.replace(/(^\s*)|(\s*$)/g, "");
@@ -56,6 +57,11 @@ entitySearchModule.controller('SearchStudyCtrl',
                             },
                             function (responseObj) {
                                 $log.log('onSearch receive taxons for study filter');
+                                if(responseObj!=null && responseObj.length!=null){
+                                    for(var i=0;i<responseObj.length ;i++){
+                                        SearchStudyCtrl.taxonLeftList[responseObj[i].taxonid]=responseObj[i];
+                                    }
+                                }
                             });
                             
                 GetTaxonsCountByFilterForStudyWS.count({},
@@ -190,6 +196,9 @@ entitySearchModule.controller('SearchStudyCtrl',
                         },
                         TaxonChoseList:function(){
                             return SearchStudyCtrl.taxonsChose; 
+                        },
+                        TaxonLeftList:function(){
+                            return SearchStudyCtrl.taxonLeftList
                         },
                         StudyWildcard:function(){
                             return SearchStudyCtrl.searchInputStr;

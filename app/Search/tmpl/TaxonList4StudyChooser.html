@@ -11,11 +11,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in taxonsList" ng-click="selectrow(studytype_it)">
+                <tr ng-repeat="item in taxonsList"><!-- ng-click="selectrow(studytype_it)"-->
                     <!-- ng-class="{rowselected:studytype_it.idstudytype == idselected.idstudytype}" -->
                     <td>
                         <input type="checkbox" checklist-model="TaxonChoseList"
-                                       checklist-value="item.taxonid"> [{{item.taxonid}}]{{ item.taxonname }}
+                                       checklist-value="item" checklist-comparator=".taxonid"
+                                       ng-change="checkTaxon(item,checked,item.taxonname)"> [{{item.taxonid}}]{{ item.taxonname }}
                     </td>
                     
                 </tr>
@@ -45,6 +46,9 @@
             </li>
         </ul>
         Selected: <b>{{ selected.item }}</b> -->
+        <div ng-if="is_debug">
+            <pre>{{TaxonChoseList|json}}</pre>
+        </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>

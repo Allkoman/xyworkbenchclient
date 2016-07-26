@@ -10,9 +10,11 @@ entitySearchModule.controller('TaxonList4StudyChooser',
         function ($scope, $uibModalInstance, $log,
                 TaxonWS, //<--GetTaxonsByFilterForStudyWS
                 TaxonCountWS, //<--GetTaxonsCountByFilterForStudyWS
-                TaxonChoseList, StudyWildcard) {
+                TaxonChoseList, TaxonLeftList,
+                StudyWildcard,
+                ISDEBUG) {
             var ModalInstanceCtrl = this;
-
+            $scope.is_debug = ISDEBUG;
             $scope.TaxonChoseList = TaxonChoseList;
             $scope.taxonsList = null;
             $scope.taxonsCount = 0;                        
@@ -64,6 +66,20 @@ entitySearchModule.controller('TaxonList4StudyChooser',
                 );//end taxonsList
             };//end pageChanged
             
+            $scope.checkTaxon=function(item,checked,name){
+                $log.log('checkTaxon');
+                $log.log("id:"+item.taxonid+" value:"+checked+ " name:"+name);
+                if(checked){
+                    $log.log(item+' is set to be true');
+                    if(!(item.taxonid in TaxonLeftList)){
+                        $log.log(item.taxonid+'is NOT in TaxonLeftList');
+                        TaxonLeftList[item.taxonid] = item;//{taxonid:item.ta,taxonname:name};
+                    }else{
+                        $log.log(item.taxonid+'is in TaxonLeftList');
+                    }
+                }
+                
+            };//end check
 
             $scope.ok = function () {
                 //$uibModalInstance.close($scope.selected.item);
