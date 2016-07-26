@@ -12,6 +12,7 @@ entitySearchModule.controller('SearchStudyCtrl',
                 GetHRDADataByFilterWS,HRDACountByFilterWS,
                 GetTaxonsByFilterForStudyWS,
                 GetTaxonsCountByFilterForStudyWS,
+                $uibModal,
                 ISDEBUG) {
             var SearchStudyCtrl = this;
             SearchStudyCtrl.BackendAddr = BackendAddr;
@@ -21,7 +22,8 @@ entitySearchModule.controller('SearchStudyCtrl',
             SearchStudyCtrl.searchInputStr = "";
             SearchStudyCtrl.searchInputObj = {};
             SearchStudyCtrl.taxonsCount = 0;
-            SearchStudyCtrl.taxonsChose = [];
+            SearchStudyCtrl.taxonsChose = [20];
+            SearchStudyCtrl.isOrgOpen = false;
             
             var strtrim = function (str_in) {
                 return str_in.replace(/(^\s*)|(\s*$)/g, "");
@@ -171,7 +173,34 @@ entitySearchModule.controller('SearchStudyCtrl',
                         });
                         
                 HRDACountByFilterWS.count()
-            };
+            };//end pageChanged
+            
+            SearchStudyCtrl.openTaxonChooser = function(){
+                var taxonChooserInst = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'Search/tmpl/TaxonList4StudyChooser.html',
+                    controller: 'TaxonList4StudyChooser',
+                    size:'lg',
+                    resolve:{
+                        TaxonWS:function(){
+                            return GetTaxonsByFilterForStudyWS;
+                        },
+                        TaxonCountWS:function(){
+                            return GetTaxonsCountByFilterForStudyWS;
+                        },
+                        TaxonChoseList:function(){
+                            return SearchStudyCtrl.taxonsChose; 
+                        },
+                        StudyWildcard:function(){
+                            return SearchStudyCtrl.searchInputStr;
+                        }
+                    }//end resolve
+                });//end taxonChooserInst def
+                
+                taxonChooserInst.result.then(function(resultTaxonList){
+                    SearchStudyCtrl.taxonsChose = resultTaxonList; 
+                });//end taxonChooserInst reslt then
+            };//end openTaxonChooser
         }
 );
 

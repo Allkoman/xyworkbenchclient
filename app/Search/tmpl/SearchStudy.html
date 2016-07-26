@@ -60,16 +60,18 @@
                     <b>Filter Criterion</b-->
                     
                     <uib-accordion>
-                        <div uib-accordion-group class="panel-default">
+                        <div uib-accordion-group class="panel-default" is-open="sstudyCtrl.isOrgOpen">
                             <uib-accordion-heading>
-                               Organism <span class="badge pull-right">{{sstudyCtrl.taxonsCount}}</span>
-                                
+                               Organism 
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': sstudyCtrl.isOrgOpen, 'glyphicon-chevron-right': !sstudyCtrl.isOrgOpen}"></i>
+                                <span class="badge pull-right">{{sstudyCtrl.taxonsCount}}</span>
                             </uib-accordion-heading>
                             <ul class="list-group" >
                                 <li class="list-group-item" ng-repeat="item in sstudyCtrl.taxonsList">
                                     <input type="checkbox" checklist-model="sstudyCtrl.taxonsChose"
                                        checklist-value="item.taxonid">{{item.taxonname}}
-                                </li>                                
+                                </li>  
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openTaxonChooser()">See All</button> </li>
                             </ul>                           
                         </div>
                     </uib-accordion>
@@ -78,6 +80,9 @@
                         <center>
                             <button class="btn btn-default" ng-click="sstudyCtrl.onFilter">Filter</button>
                         </center>
+                    </div>
+                    <div ng-if="sstudyCtrl.is_debug">
+                        <pre>{{ sstudyCtrl.taxonsChose | json }}</pre>
                     </div>
                 </div>
             </div>
