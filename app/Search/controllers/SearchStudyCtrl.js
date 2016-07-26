@@ -34,7 +34,8 @@ entitySearchModule.controller('SearchStudyCtrl',
             SearchStudyCtrl.filterParams = {
                     "wildcard":         SearchStudyCtrl.searchInputStr,
                     "pagenum":          1,
-                    "pagesize":         SearchStudyCtrl.pageSize                    
+                    "pagesize":         SearchStudyCtrl.pageSize,
+                    "taxonlist":[]
                 };
 
 
@@ -219,6 +220,20 @@ entitySearchModule.controller('SearchStudyCtrl',
                     taxonIDList.push(SearchStudyCtrl.taxonsChose[i].taxonid);
                 }
                 SearchStudyCtrl.taxonChoseIds = taxonIDList;
+                
+                SearchStudyCtrl.curPageItems = GetHRDADataByFilterWS.list(
+                    {entity:'study'},SearchStudyCtrl.filterParams,
+                    function (responseObj) {
+                        $log.log('onSearch recieve remote response on items:' + responseObj);
+                    }
+                );
+                            
+                HRDACountByFilterWS.count({entity:'study'},SearchStudyCtrl.filterParams,
+                    function(responseObj){
+                        SearchStudyCtrl.count = responseObj.value;
+                        $log.log('onSearch receive remote resposne on count:' + responseObj);
+                    }
+                );
             };//end onFilter
         }
 );

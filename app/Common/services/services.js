@@ -66,6 +66,7 @@ commonModule.factory('HRDACountWS',function($resource,BackendAddr){
 
 /*-------filter:compose sql by params---------*/
 
+/*-------Talbe: Study Result: Study Filter:Wildcard in Fulltext(FT)---------*/
 commonModule.factory('GetHRDADataByFilterWS',function($resource,BackendAddr){
     return $resource(BackendAddr+'/:entity/byfilter',{},{
         list:{method:'PUT',isArray:true}
@@ -78,6 +79,7 @@ commonModule.factory('HRDACountByFilterWS',function($resource,BackendAddr){
     });
 });
 
+/*-------Talbe: SRA,Taxon Result: Taxon Filter:Study's Wildcard in FT---------*/
 commonModule.factory('GetTaxonsByFilterForStudyWS',function($resource,BackendAddr){
     return $resource(BackendAddr+'/taxons/onePageByFilterForStudyFT',{},{
         gettaxons:{method:'PUT',isArray:true}
@@ -89,3 +91,5 @@ commonModule.factory('GetTaxonsCountByFilterForStudyWS',function($resource,Backe
         count:{method:'PUT'}
     });
 });
+
+/*-------Talbe: SRA Result: Study Filter: Taxon's id & Study's Wildcard---------*/
