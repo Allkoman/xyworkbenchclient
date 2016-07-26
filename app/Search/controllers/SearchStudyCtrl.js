@@ -25,6 +25,7 @@ entitySearchModule.controller('SearchStudyCtrl',
             SearchStudyCtrl.taxonsChose = [{taxonid:20}];
             SearchStudyCtrl.isOrgOpen = false;
             SearchStudyCtrl.taxonLeftList = {};
+            SearchStudyCtrl.taxonChoseIds = [];
             
             var strtrim = function (str_in) {
                 return str_in.replace(/(^\s*)|(\s*$)/g, "");
@@ -210,6 +211,15 @@ entitySearchModule.controller('SearchStudyCtrl',
                     SearchStudyCtrl.taxonsChose = resultTaxonList; 
                 });//end taxonChooserInst reslt then
             };//end openTaxonChooser
+            
+            SearchStudyCtrl.onFilter = function(){
+                //Generate the list for taxons
+                var taxonIDList = [];
+                for(var i=0;i<SearchStudyCtrl.taxonsChose.length;i++){
+                    taxonIDList.push(SearchStudyCtrl.taxonsChose[i].taxonid);
+                }
+                SearchStudyCtrl.taxonChoseIds = taxonIDList;
+            };//end onFilter
         }
 );
 

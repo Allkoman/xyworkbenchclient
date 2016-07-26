@@ -79,11 +79,12 @@
                     
                     <div>
                         <center>
-                            <button class="btn btn-default" ng-click="sstudyCtrl.onFilter">Filter</button>
+                            <button class="btn btn-default" ng-click="sstudyCtrl.onFilter()">Filter</button>
                         </center>
                     </div>
                     <div ng-if="sstudyCtrl.is_debug">
-                        <pre>{{ sstudyCtrl.taxonsChose | json }}</pre>
+                        <pre>{{ sstudyCtrl.taxonChoseIds | json}}</pre>
+                        <pre>{{ sstudyCtrl.taxonsChose   | json}}</pre>
                         <pre>{{ sstudyCtrl.taxonLeftList | json}}</pre>
                     </div>
                 </div>
