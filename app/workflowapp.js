@@ -6,10 +6,10 @@ var workflowapp = angular.module('workflowapp', [
   'ngAnimate',
   'ui.bootstrap',
   'angular-storage',
-  'angular-jwt',
-  'XYWorkbench.Home',
-  'XYWorkbench.Common',
+  'angular-jwt',  
   'workflowapp.WorkflowIndex',
+  'XYWorkbench.Common',
+  'XYWorkbench.Home',
   'myApp.version'
 ]);
 /*

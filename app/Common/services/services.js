@@ -8,6 +8,7 @@ var commonModule = angular.module('XYWorkbench.Common');
 
 commonModule.constant('ISDEBUG',true);//!!192.168.153.123//192.168.153.8//localhost
 
+/*-------BackendAddr for XYHRDAServer ----------- */
 commonModule.factory('BackendAddr',function(ISDEBUG){
     var backend_addr = '';
     var backend_config_tar = {};
@@ -35,6 +36,45 @@ commonModule.factory('BackendAddr',function(ISDEBUG){
                             'webresources';
                     
     return backend_addr;    
+});
+
+/*---------BackendAddr for XYWorkflowServer------------*/
+commonModule.factory('WFBackendAddr',function(ISDEBUG){
+    var backend_addr = '';
+    var backend_config_tar = {};
+    
+    var backend_config_debug={
+        backend_host : 'localhost',  //localhost
+        backend_name : 'XYWorkflowServer',
+        backend_port : '8080' //8080
+    };
+    
+    var backend_config_production={
+        backend_host : 'store.test.nebulagene.com',
+        backend_name : 'XYGeneStoreServer',
+        backend_port : '18080'
+    };
+    
+    if(ISDEBUG)
+        backend_config_tar = backend_config_debug;
+    else
+        backend_config_tar = backend_config_production;
+    
+    backend_addr = 'http://'+backend_config_tar.backend_host+':'+
+                             backend_config_tar.backend_port+'/'+
+                             backend_config_tar.backend_name+'/'+
+                            'webresources';
+                    
+    return backend_addr;    
+});
+
+commonModule.factory('FrontHomePageAddr',function(ISDEBUG){
+    var front_homepage = '';
+    if(ISDEBUG)
+        front_homepage = '/XYGeneStoreClient/index.html';
+    else
+        front_homepage = '/';
+    return front_homepage;
 });
 
 /*
@@ -93,3 +133,19 @@ commonModule.factory('GetTaxonsCountByFilterForStudyWS',function($resource,Backe
 });
 
 /*-------Talbe: SRA Result: Study Filter: Taxon's id & Study's Wildcard---------*/
+
+/*-------------------------------
+ *      Workflow Server
+ * -----------------------------*/
+
+commonModule.factory('OpuserAuthen',function($resource,WFBackendAddr){//WSADDRESS,BACKENDNAME,BACKENDPORT){   
+    //return $resource('http://'+WSADDRESS+':'+BACKENDPORT+'/'+BACKENDNAME+'/webresources/opuserlist/token',{},{        
+    return $resource(WFBackendAddr+'/opusers/token',{},{        
+        login:{method:'POST'
+               //Due to Angular-JWT, if it's not required token in OPTIONS request,
+               //the following propety is required. Otherwise, the GET/POST request
+               //will be rejected.
+               ,skipAuthorization:true}
+    });
+});
+

@@ -17,8 +17,9 @@ var WorkflowIndexModule = angular.module('workflowapp.WorkflowIndex');
 */
 WorkflowIndexModule.controller('WorkflowIndexCtrl', 
     function($scope,$uibModal,//UserWS,
-    $log,store,jwtHelper,$rootScope,$window//,
-    //FRONTENDNAME,FrontHomePageAddr
+    $log,store,jwtHelper,$rootScope,$window,
+    //FRONTENDNAME
+    FrontHomePageAddr
             ) {
         $scope.user = "NON-LOGIN";
         
@@ -34,7 +35,7 @@ WorkflowIndexModule.controller('WorkflowIndexCtrl',
             OpuserIndexCtrl.isShowIt = false;
             $log.log('there is no jwt_opuser');
         }
-        return;
+        
         if(!OpuserIndexCtrl.isShowIt){
             //The login is automatically invoked.
         

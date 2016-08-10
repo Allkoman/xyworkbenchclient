@@ -8,11 +8,11 @@
         <h2 class="text-center">Operation User Log in</h2>
         <form method="post" ng-submit="ok()" name="loginForm">
           <div class="form-group has-feedback">
-            <input class="form-control input-lg" type="text" name="email" ng-model="user.opusername" placeholder="Email" required autofocus>
+            <input class="form-control input-lg" type="text" name="email" ng-model="user.username" placeholder="User Name" required autofocus>
             <span class="ion-at form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input class="form-control input-lg" type="password" name="password" ng-model="user.opuserpwd" placeholder="Password" required>
+            <input class="form-control input-lg" type="password" name="password" ng-model="user.userpwd" placeholder="Password" required>
             <span class="ion-key form-control-feedback"></span>
           </div>
           <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-sm  btn-block btn-success">Log in</button>

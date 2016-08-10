@@ -3,7 +3,7 @@
 var workflowIndexModule = angular.module('workflowapp.WorkflowIndex');
 workflowIndexModule.controller('WorkflowLoginCtrl', 
     function ($scope, $uibModalInstance, $log, 
-            //OpuserAuthen,UserName,
+              OpuserAuthen,//UserName,
               store,jwtHelper,$rootScope,$window) {
       var ModalInstanceCtrl = this;
       $scope.idselected = null;
