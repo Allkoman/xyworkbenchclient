@@ -34,7 +34,7 @@ opuserapp.config(function myAppConfig (
 workflowapp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.    
         when('/Home',{
-            templateUrl:'Home/tmpl/Home.html'
+            templateUrl:'Home/tmpl/WorkflowHome.html'
         })
     .otherwise({redirectTo: '/Home'});
 }]);

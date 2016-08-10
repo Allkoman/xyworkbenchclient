@@ -34,7 +34,7 @@ WorkflowIndexModule.controller('WorkflowIndexCtrl',
             OpuserIndexCtrl.isShowIt = false;
             $log.log('there is no jwt_opuser');
         }
-        
+        return;
         if(!OpuserIndexCtrl.isShowIt){
             //The login is automatically invoked.
         
