@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html ng-app="workflowapp" > <!--<![endif]-->
+    <!-- class="no-js"-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Workbench for XY-Workflow</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" type="text/css"/>
+        <link href="css/dashboard.css" rel="stylesheet" type="text/css"/>
+
+        <!-- <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+        <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+        <link rel="stylesheet" href="app.css">-->
+        <!-- Custom styles for this template 
+        <link href="css/blog.css" rel="stylesheet">-->
+        <!-- <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>-->
+    </head>
+    <body>
+        <div ng-controller="WorkflowIndexCtrl as ic">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Operation of Orders</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Help</a></li>
+
+                        </ul>
+                        <form class="navbar-form navbar-right">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <label ng-if="ic.isShowIt" class="btn btn-success" ng-click="ic.logout('sm')">Logout</label>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 sidebar">
+                        <ul class="nav nav-sidebar">
+                            <!-- <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li> -->
+                            <li><a href="#">Overview </a></li>
+                            <li><a href="#/OrderWaitList">Orders in Waiting</a></li>            
+                            <li><a href="#/OplistGroupByOpuserList">Orders in Processing</a></li>
+                        </ul>
+                        <!--
+                        <ul class="nav nav-sidebar">
+                          <li><a href="">Nav item</a></li>
+                          <li><a href="">Nav item again</a></li>
+                          <li><a href="">One more nav</a></li>
+                          <li><a href="">Another nav item</a></li>
+                          <li><a href="">More navigation</a></li>
+                        </ul>
+                        <ul class="nav nav-sidebar">
+                          <li><a href="">Nav item again</a></li>
+                          <li><a href="">One more nav</a></li>
+                          <li><a href="">Another nav item</a></li>
+                        </ul>
+                        -->
+                    </div>
+                    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                        <!--<h1 class="page-header">Dashboard</h1> -->
+
+                        <div ng-view></div>
+
+                        <div>Angular seed app: v<span app-version></span></div>
+
+                        <footer class="blog-footer">
+                            <p>&copy; nebulagene.com 2016 </p>
+                            <p>
+                                <a href="#">Back to top</a>
+
+                            </p>
+                        </footer>
+                    </div>  
+                    <!-- In production use:
+                    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+                    -->
+                </div>
+            </div>
+        </div>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>  
+        <script src="bower_components/angular-resource/angular-resource.js" type="text/javascript"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js" type="text/javascript"></script>
+        <script src="bower_components/angular-jwt/dist/angular-jwt.js" type="text/javascript"></script>
+        <script src="bower_components/a0-angular-storage/dist/angular-storage.js" type="text/javascript"></script>
+        <script src="workflowapp.js" type="text/javascript"></script>
+        <script src="Common/Common.js"></script>
+        <script src="Common/services/service.js"></script> 
+        <script src="WorkflowIndex/WorkflowIndex.js" type="text/javascript"></script>
+        <script src="WorkflowIndex/controllers/WorkflowIndexCtrl.js" type="text/javascript"></script>
+        <script src="WorkflowIndex/controllers/WorkflowLoginCtrl.js" type="text/javascript"></script>
+
+        <script src="Home/Home.js" type="text/javascript"></script>
+        <script src="Home/controllers/HomeCtrl.js" type="text/javascript"></script>
+
+        <script src="components/version/version.js"></script>
+        <script src="components/version/version-directive.js"></script>
+        <script src="components/version/interpolate-filter.js"></script>
+
+    </body>
+</html>
