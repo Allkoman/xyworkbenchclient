@@ -1,0 +1,83 @@
+ <div ng-controller="WFTemplateListCtrl as wftlc">
+        <!--div class="col-lg-12 page-header">
+                <h2>
+                Pipelines
+                </h2>
+        </div-->
+
+        <div>
+            <div class="form-group">
+                <h3>
+                    Pipelines
+                    <a ng-href="#/WFTemplateCreate" class="btn btn-primary pull-right" id="btn_product_create">Add Pipeline</a>
+                    
+                </h3>
+                	
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Products...">
+                <hr>
+            </div>
+
+
+            <table id="Product_list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>File</th>
+                    <th>Creator</th>
+                    <th>Create Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="or_el in wftlc.allWFtemplates | filter:searchText">
+                    <td>
+                        {{ or_el.idwftemplates }}
+                    </td>
+                    <td>
+                        {{ or_el.tmplname }}
+                    </td>
+                    <td>
+                        {{ or_el.description }}
+                    </td>
+                    <td>
+                        {{ or_el.xmlfile }}
+                    </td>
+                    <td>
+                        {{ or_el.opusersIdopusers.username}}
+                    </td>
+                    <td>
+                        {{ or_el.createtime}}
+                    </td>
+                    <td>
+                        <a ng-href="#/WFTemplateUpdate/{{or_el.idproductlist}}" class="btn btn-success pull-right" id="btn_product_update">Edit</a>
+			<button type="button" id="delData" class="btn btn-success" ng-click="wftlc.delProduct(or_el.idproductlist,$index)">Del</button>
+			<span></span>
+                    </td>
+                </tr>
+                <tr ng-hide="wftlc.allWFtemplates.length">
+                    <td colspan="3">
+                        <p class="text-center">No Pipeline Found</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h3>
+                Debug
+            </h3>
+            <hr>
+            <!--PL: TOFIX: Problem, it doesn't work.-->
+            <accordion>
+                <accordion-group is-open="status.open">
+                    <accordion-heading>
+                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+                    <pre>{{ wftlc.allWFtemplates | json }}</pre>
+                </accordion-group>
+            </accordion>
+        </div>
+
+    </div>

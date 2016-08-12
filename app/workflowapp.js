@@ -35,6 +35,12 @@ workflowapp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.    
         when('/Home',{
             templateUrl:'Home/tmpl/WorkflowHome.html'
-        })
-    .otherwise({redirectTo: '/Home'});
+        }).
+        when('/WFTemplateList',{
+            templateUrl:'WorkflowIndex/tmpl/WFTemplateList.html'
+        }).
+        when('/WFTemplateCreate',{
+            templateUrl:'WorkflowIndex/tmpl/WFTemplateCreate.html'
+        }).        
+    otherwise({redirectTo: '/Home'});
 }]);

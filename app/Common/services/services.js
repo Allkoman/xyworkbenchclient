@@ -149,3 +149,19 @@ commonModule.factory('OpuserAuthen',function($resource,WFBackendAddr){//WSADDRES
     });
 });
 
+commonModule.factory('WFTemplateWS',function($resource,WFBackendAddr){
+    return $resource(WFBackendAddr+'/wftemplates/:id',{},{
+        create:{method:'POST'},
+        update:{method:'PUT'},
+        delme:{method:'DELETE'}        
+    });
+});
+
+commonModule.factory('getJWTuseridByStore',function(store,jwtHelper){
+    return function(){
+        var JWToken = store.get('jwt_opuser');
+        var tokenPayload = jwtHelper.decodeToken(JWToken);
+        return tokenPayload.userid;
+    };
+});
+
