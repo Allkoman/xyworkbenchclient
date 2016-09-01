@@ -2,7 +2,9 @@
 
 var workflowIndexModule = angular.module('workflowapp.WorkflowIndex');
 workflowIndexModule.controller('WFCmpntParamsListCtrl', 
-function($scope,$routeParams,WFCmpntParamWS,$log,ISDEBUG){
+function($scope,$routeParams,
+    WFCmpntParamWS,WFComponentWS,
+    $log,ISDEBUG){
     var WFCmpntParamsListCtrl = this;
     var is_debug = ISDEBUG;
     $scope.status = {};
@@ -27,6 +29,9 @@ function($scope,$routeParams,WFCmpntParamWS,$log,ISDEBUG){
     var LoadFirstPage = function(){
         $log.log("WFCmpntParamsList:Load First Page");
         $log.log("WFComponent:"+$routeParams.belongidwfcmpnt);
+        
+        WFCmpntParamsListCtrl.TarWFComponent=WFComponentWS.get({id:$routeParams.belongidwfcmpnt});
+        
         WFCmpntParamsListCtrl.allWFCmpntParams = WFCmpntParamWS.query(
                 {action:'bycmpnt',id:$routeParams.belongidwfcmpnt},
         function(response){
