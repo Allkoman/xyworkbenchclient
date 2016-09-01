@@ -13,7 +13,7 @@
                     <a ng-href="#/WFComponentCreate" class="btn btn-primary" id="btn_product_create">Add Component</a>
                     <a ng-href="#/WFComponentUpdate/{{idselected.idwfcomponent}}" ng-class="{disabled:idselected==null}"
                        class="btn btn-success" id="btn_product_update">Edit</a>                    
-                    <button type="button" id="delData" class="btn btn-success" ng-class="{disabled:idselected==null}"
+                    <button type="button" id="delData" class="btn btn-danger" ng-class="{disabled:idselected==null}"
                             ng-click="wftlc.delComponent(idselected.idwfcomponent,idselected.index)">Del</button>			
                     </span>
                 </h3>
