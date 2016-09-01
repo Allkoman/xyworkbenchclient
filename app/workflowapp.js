@@ -51,6 +51,8 @@ workflowapp.config(['$routeProvider', function($routeProvider) {
         when('/WFComponentUpdate/:idwfcomponent',{
             templateUrl: 'WorkflowIndex/tmpl/WFComponentUpdate.html'
         }).        
-
+        when('/WFCmpntParamsList/:belongidwfcmpnt',{
+            templateUrl: 'WorkflowIndex/tmpl/WFCmpntParamsList.html'
+        }).
     otherwise({redirectTo: '/Home'});
 }]);
