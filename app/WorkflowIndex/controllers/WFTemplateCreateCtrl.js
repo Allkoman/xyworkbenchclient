@@ -2,11 +2,11 @@
 
 var workflowIndexModule = angular.module('workflowapp.WorkflowIndex');
 workflowIndexModule.controller('WFTemplateCreateCtrl',
-   function($location,$log,WFTemplateWS,getJWTuseridByStore){
+   function($location,$log,WFTemplateWS){//,getJWTuseridByStore){
        var WFTemplateCreateCtrl = this;
-       var getUserIdFromStore = function (store_tar){
+       /*var getUserIdFromStore = function (store_tar){
            
-       };
+       };*/
        
        WFTemplateCreateCtrl.WFTemplate={};
        WFTemplateCreateCtrl.WFTemplate.opusersIdopusers = {};

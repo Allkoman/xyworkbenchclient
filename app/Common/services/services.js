@@ -157,6 +157,14 @@ commonModule.factory('WFTemplateWS',function($resource,WFBackendAddr){
     });
 });
 
+commonModule.factory('WFComponentWS',function($resource,WFBackendAddr){
+    return $resource(WFBackendAddr+'/wfcomponents/:id',{},{
+        create:{method:'POST'},
+        update:{method:'PUT'},
+        delme:{method:'DELETE'}        
+    });
+});
+
 commonModule.factory('getJWTuseridByStore',function(store,jwtHelper){
     return function(){
         var JWToken = store.get('jwt_opuser');

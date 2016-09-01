@@ -9,6 +9,7 @@ function(WFTemplateWS,$log,ISDEBUG){
     var LoadFirstPage = function(){
         $log.log("WFTemplateList:Load First Page")
         WFTemplateListCtrl.allWFtemplates = WFTemplateWS.query(function(response){
+            $log.log("Response:"+response);
             $log.log("WFTemplateListCtrl:(Succ)"+JSON.parse(response));
         },function(error){
             $log.log("WFTemplateListCtrl:(Error)"+JSON.parse(error));
