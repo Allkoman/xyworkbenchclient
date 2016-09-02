@@ -8,6 +8,25 @@ var commonModule = angular.module('XYWorkbench.Common');
 
 commonModule.constant('ISDEBUG',true);//!!192.168.153.123//192.168.153.8//localhost
 
+//Usage: WFCmpntParamsCreateCtrl
+commonModule.value('DIRECTIONOPTIONS',
+           [{value:0,name:'Input Direction'},
+            {value:1,name:'Output Direction'}]);
+
+//Usage: WFCmpntParamsCreateCtrl
+commonModule.value('VALUETYPEOPTIONS',
+           [{value:0,name:'EMPTY'},
+            {value:1,name:'String'},
+            {value:2,name:'Integer'},
+            {value:3,name:'Real'}]);
+        
+//Usage: WFCmpntParamsCreateCtrl
+commonModule.value('PARAMTYPEOPTIONS',
+           [{value:0,name:'String'},
+            {value:1,name:'File'},
+            {value:2,name:'Standard Input'},
+            {value:3,name:'Standard Output'}]);
+
 /*-------BackendAddr for XYHRDAServer ----------- */
 commonModule.factory('BackendAddr',function(ISDEBUG){
     var backend_addr = '';

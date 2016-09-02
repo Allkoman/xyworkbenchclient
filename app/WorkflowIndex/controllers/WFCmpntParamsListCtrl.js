@@ -4,7 +4,7 @@ var workflowIndexModule = angular.module('workflowapp.WorkflowIndex');
 workflowIndexModule.controller('WFCmpntParamsListCtrl', 
 function($scope,$routeParams,
     WFCmpntParamWS,WFComponentWS,
-    $log,ISDEBUG){
+    $log,$uibModal,ISDEBUG){
     var WFCmpntParamsListCtrl = this;
     var is_debug = ISDEBUG;
     $scope.status = {};
@@ -15,9 +15,39 @@ function($scope,$routeParams,
         $scope.idselected = tarid;
         $scope.idselected.index = in_num;
         $log.log('selectrow:'+in_num);
+    }    
+    
+    WFCmpntParamsListCtrl.TarWFComponent = {};
+    
+    WFCmpntParamsListCtrl.addCmpntParam = function(){
+        var addModalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'WorkflowIndex/tmpl/WFCmpntParamCreate.html',
+            controller: 'WFCmpntParamCreateCtrl',
+            //keyboard:false,
+            //backdrop: 'static',
+            size: 'lg',
+            resolve: {
+              BelongToCmpnt: function () {
+                return WFCmpntParamsListCtrl.TarWFComponent;
+              }//,
+              //myUserWS: function()
+              //{
+              //    return UserWS;
+              //}
+            }
+        });
+        
+        addModalInstance.result.then(function (selectedItem) {
+            $log.log('After insert new cmpntparams');
+            LoadFirstPage();           
+
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
     }
     
-    WFCmpntParamsListCtrl.delComponent = function(tar_id,tar_index){
+    WFCmpntParamsListCtrl.delCmpntParam = function(tar_id,tar_index){
         WFCmpntParamWS.delme({id:tar_id},function(response){
             $log.log("del success"+response);
             WFCmpntParamsListCtrl.allWFCmpntParams.splice(tar_index,1);
