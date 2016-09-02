@@ -8,10 +8,39 @@ var commonModule = angular.module('XYWorkbench.Common');
 
 commonModule.constant('ISDEBUG',true);//!!192.168.153.123//192.168.153.8//localhost
 
+//Utility for Transforming Options into HashTable
+commonModule.service('BuildHashTable',function(){
+    var _OptionListIn = null;
+    this.getHashTable=function(tarOptionList){
+        _OptionListIn = tarOptionList;
+        var opaction_obj = {};
+        for(var i=0;i<_OptionListIn.length;i++){
+            //$log.log('value:'+ _OptionListIn[i].value +' name:'+ _OptionListIn[i].name);
+            opaction_obj[_OptionListIn[i].value] = _OptionListIn[i].name;
+        }
+        return opaction_obj;
+    }
+});
+
+commonModule.service('MapValue2Txt',function(){
+    var _orderStatusMapTable = null;//VTYPEMAPTABLE;
+    this.getTxt=function(HashTable_in, status_in){
+        _orderStatusMapTable = HashTable_in;
+        if(status_in in _orderStatusMapTable)
+            return _orderStatusMapTable[status_in];
+        else
+            return '状态异常(编号:'+status_in+')';
+    }
+});
+
 //Usage: WFCmpntParamsCreateCtrl
 commonModule.value('DIRECTIONOPTIONS',
            [{value:0,name:'Input Direction'},
             {value:1,name:'Output Direction'}]);
+
+commonModule.factory('DIRMAPTABLE',function(DIRECTIONOPTIONS,BuildHashTable){
+    return BuildHashTable.getHashTable(DIRECTIONOPTIONS);
+});
 
 //Usage: WFCmpntParamsCreateCtrl
 commonModule.value('VALUETYPEOPTIONS',
@@ -19,13 +48,22 @@ commonModule.value('VALUETYPEOPTIONS',
             {value:1,name:'String'},
             {value:2,name:'Integer'},
             {value:3,name:'Real'}]);
-        
+
+commonModule.factory('VTYPEMAPTABLE',function(VALUETYPEOPTIONS,BuildHashTable){
+    return BuildHashTable.getHashTable(VALUETYPEOPTIONS);
+});
+
 //Usage: WFCmpntParamsCreateCtrl
 commonModule.value('PARAMTYPEOPTIONS',
            [{value:0,name:'String'},
             {value:1,name:'File'},
             {value:2,name:'Standard Input'},
             {value:3,name:'Standard Output'}]);
+ 
+commonModule.factory('PTYPEMAPTABLE',function(PARAMTYPEOPTIONS,BuildHashTable){
+    return BuildHashTable.getHashTable(PARAMTYPEOPTIONS);
+});
+
 
 /*-------BackendAddr for XYHRDAServer ----------- */
 commonModule.factory('BackendAddr',function(ISDEBUG){

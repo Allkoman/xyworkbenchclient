@@ -4,11 +4,28 @@ var workflowIndexModule = angular.module('workflowapp.WorkflowIndex');
 workflowIndexModule.controller('WFCmpntParamsListCtrl', 
 function($scope,$routeParams,
     WFCmpntParamWS,WFComponentWS,
-    $log,$uibModal,ISDEBUG){
+    $log,$uibModal,ISDEBUG,
+    MapValue2Txt,VTYPEMAPTABLE,DIRMAPTABLE,PTYPEMAPTABLE){
+        
     var WFCmpntParamsListCtrl = this;
     var is_debug = ISDEBUG;
     $scope.status = {};
     $scope.status.open = false;
+    
+    $scope.mapVType = function(value_in){
+        $log.log('mapVType:'+value_in);
+        return MapValue2Txt.getTxt(VTYPEMAPTABLE,value_in);
+    };
+    
+    $scope.mapDir = function(value_in){
+        $log.log('mapDir:'+value_in);
+        return MapValue2Txt.getTxt(DIRMAPTABLE,value_in);
+    };
+    
+    $scope.mapPType = function(value_in){
+        $log.log('mapPType:'+value_in);
+        return MapValue2Txt.getTxt(PTYPEMAPTABLE,value_in);
+    };
     
     $scope.idselected = null;
     $scope.selectrow = function(tarid,in_num){

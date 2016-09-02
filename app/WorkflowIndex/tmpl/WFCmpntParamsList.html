@@ -51,14 +51,36 @@
                         {{ or_el.paramname }}
                     </td>
                     <td>
-                        {{ or_el.direction }}
-                    </td>                    
+                        {{ mapDir(or_el.direction )}}({{ or_el.direction }})
+                    </td>
+                    <td>
+                        {{ or_el.comment}}
+                    </td>
+                    <td>
+                        {{ mapVType(or_el.valtype)}} ({{ or_el.valtype}})
+                    </td> 
+                    <td>
+                        {{ mapPType(or_el.paramtype)}} 
+                        ({{ or_el.paramtype}})
+                    </td> 
+                    <td>
+                        {{ or_el.prefix}}
+                    </td> 
+                    <td>
+                        {{ or_el.post}}
+                    </td> 
+                    <td>
+                        {{ or_el.defaultval}}
+                    </td> 
+                    <td>
+                        {{ or_el.belongtocmpnt.exec}}({{or_el.belongtocmpnt.workdir}})
+                    </td> 
                     <!--td>
                         <a ng-href="#/WFComponentUpdate/{{or_el.idwfcomponent}}" class="btn btn-success pull-right" id="btn_product_update">Edit</a>
 			<button type="button" id="delData" class="btn btn-success" ng-click="wftlc.delProduct(or_el.idwfcomponent,$index)">Del</button>			
                     </td-->
                 </tr>
-                <tr ng-hide="wftlc.allWFComponents.length">
+                <tr ng-hide="wftlc.allWFCmpntParams.length">
                     <td colspan="10">
                         <p class="text-center">No Parameters Found</p>
                     </td>
