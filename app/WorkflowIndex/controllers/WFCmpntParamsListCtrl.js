@@ -36,6 +36,48 @@ function($scope,$routeParams,
     
     WFCmpntParamsListCtrl.TarWFComponent = {};
     
+    
+    var LoadFirstPage = function(){
+        $log.log("WFCmpntParamsList:Load First Page");
+        $log.log("WFComponent:"+$routeParams.belongidwfcmpnt);
+        
+        WFCmpntParamsListCtrl.TarWFComponent=WFComponentWS.get({id:$routeParams.belongidwfcmpnt});
+        
+        WFCmpntParamsListCtrl.allWFCmpntParams = WFCmpntParamWS.query(
+                {action:'bycmpnt',id:$routeParams.belongidwfcmpnt},
+        function(response){
+            $log.log("Response:"+response);
+            $log.log("WFCmpntParamsListCtrl:(Succ)"+response);//JSON.parse(
+        },function(error){
+            $log.log("WFCmpntParamsListCtrl:(Error)"+error);
+        });
+    };
+    
+    WFCmpntParamsListCtrl.updateCmpntParam = function(tar_id){
+        var updModalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'WorkflowIndex/tmpl/WFCmpntParamUpdate.html',
+            controller: 'WFCmpntParamUpdateCtrl',
+            size:'lg',
+            resolve: {
+                BelongToCmpnt: function () {
+                    return WFCmpntParamsListCtrl.TarWFComponent;
+                },
+                TargetCmpntParam: function(){
+                    return $scope.idselected;
+                }
+            }
+        });
+        
+        updModalInstance.result.then(function (success){
+            $log.log('Update Modal Succ');
+            $log.log('response:'+success);
+            LoadFirstPage();
+        },function(){
+            $log.log('Update Modal Dismissed at '+new Date());
+        });
+    };
+    
     WFCmpntParamsListCtrl.addCmpntParam = function(){
         var addModalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
@@ -69,25 +111,10 @@ function($scope,$routeParams,
             $log.log("del success"+response);
             WFCmpntParamsListCtrl.allWFCmpntParams.splice(tar_index,1);
             $scope.idselected=null;
-            $scope.apply();
+            //$scope.$apply();
         });
     };//end delComponent func
     
-    var LoadFirstPage = function(){
-        $log.log("WFCmpntParamsList:Load First Page");
-        $log.log("WFComponent:"+$routeParams.belongidwfcmpnt);
-        
-        WFCmpntParamsListCtrl.TarWFComponent=WFComponentWS.get({id:$routeParams.belongidwfcmpnt});
-        
-        WFCmpntParamsListCtrl.allWFCmpntParams = WFCmpntParamWS.query(
-                {action:'bycmpnt',id:$routeParams.belongidwfcmpnt},
-        function(response){
-            $log.log("Response:"+response);
-            $log.log("WFCmpntParamsListCtrl:(Succ)"+response);//JSON.parse(
-        },function(error){
-            $log.log("WFCmpntParamsListCtrl:(Error)"+error);
-        });
-    };
     
     LoadFirstPage();
 });

@@ -11,10 +11,12 @@
                     Parameters for Component [Exec:{{wftlc.TarWFComponent.exec}} WorkDir:{{wftlc.TarWFComponent.workdir}}]
                     <span class="pull-right">
                         <button type="button" class="btn btn-primary" id="btn_product_create" ng-click="wftlc.addCmpntParam()">Add Parameter</button>
-                    <a ng-href="#/WFCmpntParamUpdate/{{idselected.idwfcomponent}}" ng-class="{disabled:idselected==null}"
-                       class="btn btn-success" id="btn_product_update">Edit</a>                    
+                    <button type="button" id="updData" class="btn btn-success" ng-class="{disabled:idselected==null}"
+                            ng-click="wftlc.updateCmpntParam(idselected.idwfcmpntparams)">Edit</button>			
+                    
+                                   
                     <button type="button" id="delData" class="btn btn-danger" ng-class="{disabled:idselected==null}"
-                            ng-click="wftlc.delCmpntParam(idselected.idwfcomponent,idselected.index)">Del</button>			
+                            ng-click="wftlc.delCmpntParam(idselected.idwfcmpntparams,idselected.index)">Del</button>			
                     </span>
                 </h3>
                 	
