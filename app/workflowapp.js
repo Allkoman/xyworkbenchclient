@@ -41,7 +41,10 @@ workflowapp.config(['$routeProvider', function($routeProvider) {
         }).
         when('/WFTemplateCreate',{
             templateUrl:'WorkflowIndex/tmpl/WFTemplateCreate.html'
-        }).  
+        }).
+        when('/WFTemplateUpdate/:idwftemplate',{
+            templateUrl:'WorkflowIndex/tmpl/WFTemplateUpdate.html'
+        }). 
         when('/WFComponentList',{
             templateUrl:'WorkflowIndex/tmpl/WFComponentList.html'
         }).

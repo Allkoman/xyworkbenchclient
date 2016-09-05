@@ -9,8 +9,15 @@
             <div class="form-group">
                 <h3>
                     Pipelines
-                    <a ng-href="#/WFTemplateCreate" class="btn btn-primary pull-right" id="btn_product_create">Add Pipeline</a>
-                    
+                    <span class="pull-right">
+                    <a ng-href="#/WFTemplateCreate" class="btn btn-primary " id="btn_product_create">Add Pipeline</a>
+                    <a ng-href="#/WFTemplateUpdate/{{idselected.idwftemplates}}" ng-class="{disabled:idselected==null}"
+                       class="btn btn-success" id="btn_component_update">Edit</a>                    
+                    <button type="button" id="delData" class="btn btn-danger" ng-class="{disabled:idselected==null}"
+                            ng-click="wftlc.delTemplate(idselected.idwftemplates,idselected.index)">Del</button>
+                    <a ng-href="#/WFTemplateDesigner/{{idselected.idwftemplates}}" ng-class="{disabled:idselected==null}"
+                       class="btn btn-success" id="btn_cmpntparam_update">Designer</a>  
+                    </span>
                 </h3>
                 	
             </div>
@@ -20,7 +27,7 @@
             </div>
 
 
-            <table id="Product_list" class="table table-striped">
+            <table id="Product_list" class="table table-hover">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -32,7 +39,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="or_el in wftlc.allWFtemplates | filter:searchText">
+                <tr ng-repeat="or_el in wftlc.allWFtemplates | filter:searchText"
+                    ng-click="selectrow(or_el,$index)"
+                    ng-class="{info: or_el.idwftemplates == idselected.idwftemplates}">
                     <td>
                         {{ or_el.idwftemplates }}
                     </td>
@@ -50,15 +59,10 @@
                     </td>
                     <td>
                         {{ or_el.createtime}}
-                    </td>
-                    <td>
-                        <a ng-href="#/WFTemplateUpdate/{{or_el.idproductlist}}" class="btn btn-success pull-right" id="btn_product_update">Edit</a>
-			<button type="button" id="delData" class="btn btn-success" ng-click="wftlc.delProduct(or_el.idproductlist,$index)">Del</button>
-			<span></span>
-                    </td>
+                    </td>                    
                 </tr>
                 <tr ng-hide="wftlc.allWFtemplates.length">
-                    <td colspan="3">
+                    <td colspan="6">
                         <p class="text-center">No Pipeline Found</p>
                     </td>
                 </tr>
