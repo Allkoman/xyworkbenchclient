@@ -8,6 +8,7 @@ var workflowapp = angular.module('workflowapp', [
   'angular-storage',
   'angular-jwt',  
   'workflowapp.WorkflowIndex',
+  'flowChart',
   'XYWorkbench.Common',
   'XYWorkbench.Home',
   'myApp.version'
@@ -45,6 +46,9 @@ workflowapp.config(['$routeProvider', function($routeProvider) {
         when('/WFTemplateUpdate/:idwftemplate',{
             templateUrl:'WorkflowIndex/tmpl/WFTemplateUpdate.html'
         }). 
+        when('/WFTemplateDesign/:idwftemplate',{
+            templateUrl:'WorkflowIndex/tmpl/WFTemplateDesigner.html'
+        }).
         when('/WFComponentList',{
             templateUrl:'WorkflowIndex/tmpl/WFComponentList.html'
         }).
