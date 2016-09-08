@@ -207,7 +207,7 @@ commonModule.factory('OpuserAuthen',function($resource,WFBackendAddr){//WSADDRES
 });
 
 commonModule.factory('WFTemplateWS',function($resource,WFBackendAddr){
-    return $resource(WFBackendAddr+'/wftemplates/:id',{},{
+    return $resource(WFBackendAddr+'/wftemplates/:action/:id',{},{
         create:{method:'POST'},
         update:{method:'PUT'},
         delme:{method:'DELETE'}        
