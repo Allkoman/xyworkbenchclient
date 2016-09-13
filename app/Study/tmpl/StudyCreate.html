@@ -1,0 +1,85 @@
+<div ng-controller="StudyCreateCtrl as scc">
+    <h1>Create Study</h1>
+    <form id="StudyCreateForm" name="StudyForm" class="form-horizontal" role="form"
+          ng-submit="scc.createStudy()">
+        <legend class="sm-col-12">Study Basic Information</legend>
+
+        <div class="form-group">
+            <label id="st_id" for="studyId" class="col-sm-4 control-label">ID</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyId" id="stid" placeholder=""
+                       ng-model="scc.Study.studyId">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_accession" for="studyAccession" class="col-sm-4 control-label">Accession</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyAccession" id="staccession" placeholder=""
+                       ng-model="scc.Study.studyAccession">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_title" for="studyTitle" class="col-sm-4 control-label">Title</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyTitle" id="sttitle" placeholder=""
+                       ng-model="scc.Study.studyTitle">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_type" for="studyType" class="col-sm-4 control-label">Type</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyType" id="sttype" placeholder=""
+                       ng-model="scc.Study.studyType">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_Abstract" for="studyAbstract" class="col-sm-4 control-label">Abstract</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyAbstract" id="stAbstract" placeholder=""
+                       ng-model="scc.Study.studyAbstract">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_description" for="studyDescription" class="col-sm-4 control-label">Description</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyDescription" id="stdescription" placeholder=""
+                       ng-model="scc.Study.studyDescription">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">Submission</label>
+
+            <div class="col-sm-8">
+                <input disabled type="text" class="form-control" name="submissionAccession" id="stsubmissionaccession" placeholder=""
+                       ng-model="scc.StudyRefsubmissionAccession">
+                <button type="button" class="btn btn-default pull-right" ng-click="scc.openSubmission('lg')">Choose Submission</button> 
+            </div>
+
+        </div> 
+
+        <pre>{{ scc.Study | json }}</pre>
+        <pre>{{ scc.StudyRefsubmissionAccession | json}}</pre>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8 text-right">
+                <a ng-href="#/StudyList" id="btn_cancel" class="btn btn-warning">Cancel</a>
+
+                <button type="submit" class="btn btn-success" id="btn_create">Create Study</button>
+            </div>
+        </div>
+
+
+    </form>    
+</div>

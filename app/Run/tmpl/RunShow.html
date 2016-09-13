@@ -1,0 +1,54 @@
+<div ng-controller="RunShowCtrl as rsc">
+    <div class="row">
+        <div class="col-lg-12 page-header">
+            <h2>
+                Run
+            </h2>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <table id="rsc_tbl" class="table table-striped">
+                <tbody ng-repeat="runshow in rsc.showrun" >
+                    <tr>
+                        <th>Id</th>
+                        <td>{{runshow.runId}}</td>
+                    </tr>
+                    <tr>
+                        <th>Accession</th>
+                        <td>{{runshow.runAccession}}</td>
+                    </tr>
+                    <tr>
+                        <th>Center</th>
+                        <td>{{runshow.runCenter}}</td>
+                    </tr>
+                    <tr>
+                        <th>Alias</th>
+                        <td>{{runshow.runAlias}}</td>
+                    </tr>
+                    <tr>
+                        <th>Experiment</th>
+                        <td>{{runshow.experimentAccession}}</td>
+                    </tr>
+                    <tr>
+                        <th>Attribute</th>
+                        <td>{{runshow.runAttribute}}</td>
+                    </tr>
+                    <tr>
+                        <th>Data</th>
+                        <td>{{runshow.runDate}}</td>
+                    </tr>
+                    <tr>
+                        <th>Updated</th>
+                        <td>{{runshow.sradbUpdated}}</td>
+                    </tr>
+                    <tr>
+                        <th>Submission</th>
+                        <td>{{runshow.submissionAccession}}</td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>
+    </div>  
+</div>

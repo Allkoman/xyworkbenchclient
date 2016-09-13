@@ -1,0 +1,54 @@
+<div ng-controller="ExperimentSampleShowCtrl as essc">
+    <div class="row">
+        <div class="col-lg-12 page-header">
+            <h2>
+                Samples
+            </h2>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <table id="essc_tbl" class="table table-striped">
+                <tbody ng-repeat="sampleshow in essc.showsample" >
+                    <tr >
+                        <th>Id</th>
+                        <td>{{sampleshow.sampleId}}</td>
+                    </tr>
+                    <tr>
+                        <th>Taxon Id</th>
+                        <td>{{sampleshow.taxonId}}</td>
+                    </tr>
+                    <tr>
+                        <th>Center</th>
+                        <td>{{sampleshow.centerName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Updated</th>
+                        <td>{{sampleshow.sradbUpdated}}</td>
+                    </tr>
+                    <tr>
+                        <th>Attribute</th>
+                        <td>{{sampleshow.sampleAttribute}}</td>
+                    </tr>
+                    <tr>
+                        <th>Accession</th>
+                        <td>{{sampleshow.sampleAccession}}</td>
+                    </tr>
+                    <tr>
+                        <th>Alias</th>
+                        <td>{{sampleshow.sampleAlias}}</td>
+                    </tr>
+                    <tr>
+                        <th>Scientific Name</th>
+                        <td>{{sampleshow.scientificName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Submission Accession</th>
+                        <td>{{sampleshow.submissionAccession}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

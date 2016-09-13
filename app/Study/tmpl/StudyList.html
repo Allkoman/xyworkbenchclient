@@ -1,0 +1,133 @@
+<div ng-controller="StudyListCtrl as slc">
+    <div class="row">
+        <div class="col-lg-12 page-header">
+            <h2>
+                Studies
+                <a ng-href="#/StudyCreate" class="btn btn-primary pull-right" id="btn_study_create">Add Studies</a>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <!--div class="col-lg-4">
+            <span class="label label-primary">Search</span>
+        </div-->
+        <div class="col-lg-12">            
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Oproles...">
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <table id="slc_tbl" class="table table-striped">
+                <tfoot>
+                    <tr>
+                        <td colspan="7" >
+                <uib-pagination total-items="slc.count" ng-model="slc.currentPage" 
+                                ng-change="slc.pageChanged()" boundary-links="true"
+                                boundary-link-numbers="true" max-size="5" items-per-page="slc.pageSize"
+                                >                                   
+                </uib-pagination>
+                </td>
+                <td colspan="1" style="text-align:center;vertical-align:middle;">
+
+                    Total :<span class="badge">{{slc.count}}</span>
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active">
+                        </li>
+                    </ul>
+                    <span class="label label-primary"></span>
+                </td> 
+                </tr>
+                </tfoot>   
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Accession</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Abstract</th>
+                        <th>Description</th>
+                        <th>Submission</th>
+                        <th>Operations</th>                      
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="strl_el in slc.curPageItems| filter:searchText">
+                        <td>
+                            {{strl_el.studyId}}
+                        </td>
+                        <td>
+                            {{ strl_el.studyAccession}}
+                        </td>
+                        <td>
+                            {{ strl_el.studyTitle}}
+                        </td>
+                        <td>
+                            {{ strl_el.studyType}}
+                        </td>
+                        <td>
+                            {{ strl_el.studyAbstract}}
+                        </td>
+                        <td>
+                            {{ strl_el.studyDescription}}
+                        </td>
+                        <td>
+                            {{ strl_el.submissionAccession}}
+                        </td>
+                        <td>
+                            <div class="row">
+                                <a ng-href="#/StudyUpdate/{{strl_el.studyId}}" class="btn btn-success " id="btn_study_update">Edit</a>		
+                                <button type="button" id="delStudy" class="btn btn-danger " ng-click="slc.delStudy(strl_el.studyId, $index)">Del</button>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-hide="slc.curPageItems.length">
+                        <td colspan="7">
+                            <p class="text-center">No Search Result Found</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <h3>Total: {{slc.count}}</h3> -->
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="slc.is_debug">
+            <!--
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Orders...">
+                <hr>
+            </div>
+            <pre>{{ slc.inputSearchTxt | json }}</pre>
+            <div class="form-group">
+                Input:<label ng-model="slc.inputSearchTxt"></label><input class="form-control" type="text" ng-model="slc.inputSearchTxt">
+                <hr>
+            </div>
+            -->
+
+            <h3>
+                Debug
+            </h3>
+            <hr>
+            <!--PL: TOFIX: Problem, it doesn't work.-->
+            <accordion>
+                <accordion-group is-open="status.open">
+                    <accordion-heading>
+                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+                    <pre>{{ slc.searchInputObj|json}}</pre>
+                    <pre>{{ slc.count|json}}</pre>
+                    <pre>{{ slc.curPageItems|json}}</pre>
+                </accordion-group>
+            </accordion>
+        </div>
+
+    </div>
+</div>

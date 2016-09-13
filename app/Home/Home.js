@@ -4,6 +4,6 @@
  * and open the template in the editor.
  */
 
-angular.module('XYWorkbench.Home',[]);
+angular.module('XYWorkbench.Home',['XYWorkbench.Common']);
 
 

@@ -4,5 +4,5 @@
  * and open the template in the editor.
  */
 
-angular.module('XYWorkbench.Index',[]);
+angular.module('XYWorkbench.Index',['XYWorkbench.Common']);
 

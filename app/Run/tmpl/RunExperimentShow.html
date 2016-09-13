@@ -1,0 +1,116 @@
+<div ng-controller="RunExperimentShowCtrl as resc">
+    <div class="row">
+        <div class="col-lg-12 page-header">
+            <h2>
+                Experiments
+            </h2>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <table id="resc_tbl" class="table table-striped">
+                <tbody ng-repeat="experimentshow in resc.showexperiment" >
+                    <tr>
+                        <th>Id</th>
+                        <td>{{experimentshow.experimentId}}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{experimentshow.title}}</td>
+                    </tr>
+                    <tr>
+                        <th>Center</th>
+                        <td>{{experimentshow.centerName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{experimentshow.designDescription}}</td>
+                    </tr>
+                    <tr>
+                        <th>Accession</th>
+                        <td>{{experimentshow.experimentAccession}}</td>
+                    </tr>
+                    <tr>
+                        <th>Alias</th>
+                        <td>{{experimentshow.experimentAlias}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Model</th>
+                        <td>{{experimentshow.instrumentModel}}</td>
+                    </tr>
+                    <tr>
+                        <th>Library Construction Protocol</th>
+                        <td>{{experimentshow.libraryConstructionProtocol}}</td>
+                    </tr>
+                    <tr>
+                        <th>Library Layout</th>
+                        <td>{{experimentshow.libraryLayout}}</td>
+                    </tr>
+                    <tr>
+                        <th>Library Name</th>
+                        <td>{{experimentshow.libraryName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Library Selection/th>
+                        <td>{{experimentshow.librarySelection}}</td>
+                    </tr>
+                    <tr>
+                        <th>Library Source</th>
+                        <td>{{experimentshow.librarySource}}</td>
+                    </tr>
+                    <tr>
+                        <th>Library Strategy</th>
+                        <td>{{experimentshow.libraryStrategy}}</td>
+                    </tr>
+                    <tr>
+                        <th>Platform</th>
+                        <td>{{experimentshow.platform}}</td>
+                    </tr>
+                    <tr>
+                        <th>Platform Parameters</th>
+                        <td>{{experimentshow.platformParameters}}</td>
+                    </tr>
+                    <tr>
+                        <th>Read Spec</th>
+                        <td>{{experimentshow.readSpec}}</td>
+                    </tr>
+
+
+
+
+                    <tr>
+                        <th>Sample Accession</th>
+                        <td>{{experimentshow.sampleAccession}}</td>
+                    </tr>
+                    <tr>
+                        <th>Sample Name</th>
+                        <td>{{experimentshow.sampleName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Spot Length</th>
+                        <td>{{experimentshow.spotLength}}</td>
+                    </tr>
+                    <tr>
+                        <th>Updated</th>
+                        <td>{{experimentshow.sradbUpdated}}</td>
+                    </tr>
+                    <tr>
+                        <th>Study Accession</th>
+                        <td>{{experimentshow.studyAccession}}</td>
+                    </tr>
+                    <tr>
+                        <th>Study Name</th>
+                        <td>{{experimentshow.studyName}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Submission Accession</th>
+                        <td>{{experimentshow.submissionAccession}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>  
+</div>

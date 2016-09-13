@@ -1,0 +1,55 @@
+<div ng-controller="SubmissionListPaginationCtrl as slpc">
+    <div>
+        <div class="modal-header">
+            <h3 class="modal-title">Please Choose Submission</h3>
+        </div>            
+        <div class="modal-body">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Accession</th>
+                        <th>SubmissionData</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="submission_it in slpc.curPageItems" ng-click="selectrow(submission_it)"
+                        ng-class="{rowselected:submission_it.submissionAccession == idselected.submissionAccession}">
+                        <td>
+                            {{ submission_it.submissionId}}
+                        </td>
+                        <td>
+                            {{ submission_it.submissionAccession}}
+                        </td>
+                        <td>
+                            {{submission_it.sradbUpdated}}
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>    
+                        <td colspan="2" >
+                <uib-pagination total-items="slpc.count" ng-model="slpc.currentPage" 
+                                ng-change="slpc.pageChanged()" boundary-links="true"
+                                boundary-link-numbers="true" max-size="5" 
+                                items-per-page="slpc.pageSize">                                   
+                </uib-pagination>
+                </td>
+                <td colspan="1" style="text-align:center;vertical-align:middle;">
+
+                    Total :<span class="badge">{{slpc.count}}</span>
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active">
+                        </li>
+                    </ul>
+                    <span class="label label-primary"></span>
+                </td> 
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>

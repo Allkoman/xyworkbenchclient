@@ -1,0 +1,57 @@
+<div>
+    <div class="modal-header">
+            <h3 class="modal-title">Please Choose Submitter</h3>
+    </div>            
+    <div class="modal-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    
+                    <th>ID/Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in submitterList"><!-- ng-click="selectrow(studytype_it)"-->
+                    <!-- ng-class="{rowselected:studytype_it.idstudytype == idselected.idstudytype}" -->
+                    <td>
+                        <input type="checkbox" checklist-model="SubmitterChoseList"
+                                       checklist-value="item" checklist-comparator=".submitterid"
+                                       ng-change="checkSubmitter(item,checked,item.submittername)"> [{{item.submitterid}}]{{ item.submittername }}
+                    </td>
+                    
+                </tr>
+            </tbody>
+            <tfoot>
+                    <tr>
+                        <td colspan="4" >
+                <uib-pagination total-items="submitterCount" ng-model="currentPage" 
+                                ng-change="pageChanged()" boundary-links="true"
+                                boundary-link-numbers="true" max-size="5" 
+                                items-per-page="pageSize"></uib-pagination>
+                </td>
+                <td colspan="1" style="text-align:center;vertical-align:middle;">
+
+                    Total:<span class="badge">{{submitterCount}}</span>
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active">
+                        </li>
+                    </ul>
+                    <span class="label label-primary"></span>
+                </td> 
+                </tr>
+        </table>
+        <!--<ul>
+            <li ng-repeat="item in items">
+                <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+        Selected: <b>{{ selected.item }}</b> -->
+        <div ng-if="is_debug">
+            <pre>{{SubmitterChoseList|json}}</pre>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="cancel()">Close</button>
+        <!--button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button-->
+    </div>
+</div>

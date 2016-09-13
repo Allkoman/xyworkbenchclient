@@ -5,19 +5,19 @@
  */
 'use strict';
 
-var entitySearchModule = angular.module('XYWorkbench.Search');
-entitySearchModule.controller('TaxonList4StudyChooser',
+var entitySearchStudyModule = angular.module('XYWorkbench.SearchStudy');
+entitySearchStudyModule.controller('InstrumentList4StudyChooser',
         function ($scope, $uibModalInstance, $log,
-                TaxonWS, //<--GetTaxonsByFilterForStudyWS
-                TaxonCountWS, //<--GetTaxonsCountByFilterForStudyWS
-                TaxonChoseList, TaxonLeftList,
+                InstrumentWS, //<--GetInstrumentsByFilterForStudyWS
+                InstrumentCountWS, //<--GetInstrumentsCountByFilterForStudyWS
+                InstrumentChoseList, InstrumentLeftList,
                 StudyWildcard,
                 ISDEBUG) {
             var ModalInstanceCtrl = this;
             $scope.is_debug = ISDEBUG;
-            $scope.TaxonChoseList = TaxonChoseList;
-            $scope.taxonsList = null;
-            $scope.taxonsCount = 0;                        
+            $scope.InstrumentChoseList = InstrumentChoseList;
+            $scope.instrumentList = null;
+            $scope.instrumentCount = 0;                        
             $scope.pageSize = 10;
             $scope.currentPage = 1;
             
@@ -28,7 +28,7 @@ entitySearchModule.controller('TaxonList4StudyChooser',
                 $log.log('selectrow:' + tarid);
             }
 
-            $scope.taxonsList = TaxonWS.gettaxons(
+            $scope.instrumentList = InstrumentWS.getinstrument(
                     {}, //SearchStudyCtrl.filterParams,
                     {
                         "wildcard": StudyWildcard,
@@ -36,24 +36,24 @@ entitySearchModule.controller('TaxonList4StudyChooser',
                         "pagesize": $scope.pageSize
                     },
                     function (responseObj) {
-                        $log.log('TaxonList4StudyChooser: onSearch receive taxons for study filter');
+                        $log.log('InstrumentList4StudyChooser: onSearch receive instrument for study filter');
                     }
-            );//end taxonsList
+            );//end instrumentList
 
             
-            TaxonCountWS.count({},
+            InstrumentCountWS.count({},
                 {
                     "wildcard": StudyWildcard
                 },
                 function (responseObj) {
-                    $scope.taxonsCount = responseObj.value;
-                    $log.log('receive response for taxonsCount:' + responseObj);
+                    $scope.instrumentCount = responseObj.value;
+                    $log.log('receive response for instrumentCount:' + responseObj);
                 }
-            );//end taxon
+            );//end instrument
 
 
             $scope.pageChanged = function(){
-                $scope.taxonsList = TaxonWS.gettaxons(
+                $scope.instrumentList = InstrumentWS.getinstrument(
                     {}, //SearchStudyCtrl.filterParams,
                     {
                         "wildcard": StudyWildcard,
@@ -61,21 +61,21 @@ entitySearchModule.controller('TaxonList4StudyChooser',
                         "pagesize": $scope.pageSize
                     },
                     function (responseObj) {
-                        $log.log('TaxonList4StudyChooser: onSearch receive taxons for study filter');
+                        $log.log('InstrumentList4StudyChooser: onSearch receive instrument for study filter');
                     }
-                );//end taxonsList
+                );//end instrumentList
             };//end pageChanged
             
-            $scope.checkTaxon=function(item,checked,name){
-                $log.log('checkTaxon');
-                $log.log("id:"+item.taxonid+" value:"+checked+ " name:"+name);
+            $scope.checkInstrument=function(item,checked,name){
+                $log.log('checkInstrument');
+                $log.log("id:"+item.instrumentname+" value:"+checked+ " name:"+name);
                 if(checked){
                     $log.log(item+' is set to be true');
-                    if(!(item.taxonid in TaxonLeftList)){
-                        $log.log(item.taxonid+'is NOT in TaxonLeftList');
-                        TaxonLeftList[item.taxonid] = item;//{taxonid:item.ta,taxonname:name};
+                    if(!(item.instrumentname in InstrumentLeftList)){
+                        $log.log(item.instrumentname+'is NOT in InstrumentLeftList');
+                        InstrumentLeftList[item.instrumentname] = item;//{instrumentname:item.ta,studyInstrument:name};
                     }else{
-                        $log.log(item.taxonid+'is in TaxonLeftList');
+                        $log.log(item.instrumentname+'is in InstrumentLeftList');
                     }
                 }
                 
@@ -83,7 +83,7 @@ entitySearchModule.controller('TaxonList4StudyChooser',
 
             $scope.ok = function () {
                 //$uibModalInstance.close($scope.selected.item);
-                $uibModalInstance.close($scope.TaxonChoseList);
+                $uibModalInstance.close($scope.InstrumentChoseList);
             };
 
             $scope.cancel = function () {
