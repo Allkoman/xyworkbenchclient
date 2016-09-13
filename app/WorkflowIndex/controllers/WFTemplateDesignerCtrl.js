@@ -7,8 +7,15 @@ workflowIndexModule.controller('WFTemplateDesignerCtrl',
        /*var getUserIdFromStore = function (store_tar){
            
        };*/
+       var nextNodeID = 0;
+
        var tarTmplId = $routeParams.idwftemplate;
-       WFTemplateDesignerCtrl.WFTemplate=WFTemplateWS.get({id:tarTmplId});
+       WFTemplateDesignerCtrl.WFTemplate=WFTemplateWS.get({id:tarTmplId},
+       function(tar_tmpl){
+           $log.log("current node number:"+tar_tmpl.nodeidmax);
+           nextNodeID = tar_tmpl.nodeidmax;
+       });
+       
        //WFTemplateDesignerCtrl.WFTemplate.opusersIdopusers = {};
        //WFTemplateDesignerCtrl.WFTemplate.opusersIdopusers.idopusers = getJWTuseridByStore();       
 
@@ -134,9 +141,12 @@ workflowIndexModule.controller('WFTemplateDesignerCtrl',
 	};
         
         
-        var nextNodeID = 1;
         
         $scope.addNewNode = function(){
+            if(nextNodeID === 0){
+                alert("Please Wait a Moment for update of nextNodeID;-)");
+                return;
+            }
             var nodeName = prompt("Enter a node name:", "New node");
             if (!nodeName) {
                     return;
@@ -178,7 +188,11 @@ workflowIndexModule.controller('WFTemplateDesignerCtrl',
         $scope.save = function(){
             $log.log('tar text:'+ JSON.stringify($scope.chartViewModel.data,null,4));
             WFTemplateWS.update({action:'editcontent',id:tarTmplId},
-            {tmplID:tarTmplId,dataModelStr:JSON.stringify($scope.chartViewModel.data,null,4)},
+            {                
+                tmplID:tarTmplId,
+                nodeIDMax:nextNodeID,
+                dataModelStr:JSON.stringify($scope.chartViewModel.data,null,4)
+            },
             function(){
                 $log.log('WFTemplateDesignerCtrl success');
                 $location.path('/WFTemplateList');
@@ -202,6 +216,59 @@ workflowIndexModule.controller('WFTemplateDesignerCtrl',
             },function(error){
                 $log.log();
             });
+        };
+        
+        $scope.deleteSelected = function () {
+
+		$scope.chartViewModel.deleteSelected();
+	};
+        
+        $scope.addTmplInputParam = function(){
+            var nodeName = prompt("Enter a Template Input Parameter name:", "New Template Input Parameter");
+            if (!nodeName) {
+                    return;
+            }
+
+            //
+            // Template for a new node.
+            //
+            var newNodeDataModel = {
+                    name: nodeName,
+                    id: nextNodeID++,
+                    x: 0,
+                    y: 0,                    
+                    outputConnectors: [ 
+                            {
+                                    name: "1"
+                            }
+                    ],
+            };
+
+            $scope.chartViewModel.addNode(newNodeDataModel);
+        };
+        
+        $scope.addTmplOutputParam = function(){
+            var nodeName = prompt("Enter a Template Output Parameter name:", "New Template Output Parameter");
+            if (!nodeName) {
+                    return;
+            }
+
+            //
+            // Template for a new node.
+            //
+            var newNodeDataModel = {
+                    name: nodeName,
+                    id: nextNodeID++,
+                    x: 0,
+                    y: 0,                    
+                    inputConnectors: [ 
+                            {
+                                    name: "1"
+                            }
+                    ],
+            };
+
+            $scope.chartViewModel.addNode(newNodeDataModel);
         };
         
         $scope.chartViewModel = new flowchart.ChartViewModel(chartDataModel);

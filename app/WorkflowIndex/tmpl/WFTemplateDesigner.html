@@ -23,11 +23,30 @@
         </div>     
         <div>
             <button class="btn btn-primary" ng-click="addNewNode()">Add Step</button>
+            
+            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                    Add Parameter <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                    <li role="menuitem"><a  ng-click="addTmplInputParam()">Input Parameter</a></li>
+                    <li role="menuitem"><a  ng-click="addTmplOutputParam()">Output Parameter</a></li>
+                    <!--li role="menuitem"><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem"><a href="#">Separated link</a></li-->
+                </ul>
+            </div>
+            
+            <!--button class="btn btn-primary" ng-click="addTmplInputParam()">Add Template Input Parameter</button>
+            <button class="btn btn-primary" ng-click="addTmplOutputParam()">Add Template Output Parameter</button-->
+            
+            <button class="btn btn-danger" ng-click="deleteSelected()">Delete Node</button>
+            
             <button class="btn btn-primary" ng-click="save()">Save</button>
         </div>
-        <div>
+        <div style="overflow-x: auto;overflow-y:auto; width: 100%; height: 100%;">
              <flow-chart
-                style="margin: 5px; width: 100%; height: 600px;"
+                style="margin: 5px; width: 1200px; height: 600px;"
                 chart="chartViewModel">
             </flow-chart>
         </div>
