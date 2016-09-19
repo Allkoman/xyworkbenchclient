@@ -1,0 +1,135 @@
+ <!--div ng-controller="WFComponentListCtrl as wftlc"-->
+ <div>
+        <!--div class="col-lg-12 page-header">
+                <h2>
+                Pipelines
+                </h2>
+        </div-->
+
+        <div>
+            <div class="form-group">
+                <h3>
+                    Components
+                    <span class="pull-right">
+                        <button class="btn btn-default" ng-class="{disabled:idselected==null}" ng-click="showParameters()">  Show Parameter</button>
+                        <button class="btn btn-success" ng-class="{disabled:idselected==null}" ng-click="chooseCmpnt()"> Choose</button>
+                        
+                    <!--a ng-href="#/WFComponentCreate" class="btn btn-primary" id="btn_component_create">Add Component</a>
+                    <a ng-href="#/WFComponentUpdate/{{idselected.idwfcomponent}}" ng-class="{disabled:idselected==null}"
+                       class="btn btn-success" id="btn_component_update">Edit</a>                    
+                    <button type="button" id="delData" class="btn btn-danger" ng-class="{disabled:idselected==null}"
+                            ng-click="wftlc.delComponent(idselected.idwfcomponent,idselected.index)">Del</button>
+                    <a ng-href="#/WFCmpntParamsList/{{idselected.idwfcomponent}}" ng-class="{disabled:idselected==null}"
+                       class="btn btn-success" id="btn_cmpntparam_update">Parameters</a>      
+                    </span-->
+                </h3>
+                	
+            </div>
+            
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Component...">
+                <hr>
+            </div>
+
+
+            <table id="Product_list" class="table table-hover"><!-- table-striped   -->
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Exec</th>
+                    <th>Workdir</th>                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="or_el in wftlc.allWFComponents | filter:searchText" 
+                    ng-click="selectrow(or_el,$index)"
+                    ng-class="{info: or_el.idwfcomponent == idselected.idwfcomponent}">
+                    <td>
+                        {{ or_el.idwfcomponent }}
+                    </td>
+                    <td>
+                        {{ or_el.exec }}
+                    </td>
+                    <td>
+                        {{ or_el.workdir }}
+                    </td>                    
+                    <!--td>
+                        <a ng-href="#/WFComponentUpdate/{{or_el.idwfcomponent}}" class="btn btn-success pull-right" id="btn_product_update">Edit</a>
+			<button type="button" id="delData" class="btn btn-success" ng-click="wftlc.delProduct(or_el.idwfcomponent,$index)">Del</button>			
+                    </td-->
+                </tr>
+                <tr ng-hide="wftlc.allWFComponents.length">
+                    <td colspan="3">
+                        <p class="text-center">No Component Found</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div>
+                <table id="param_list" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Direction</th>
+                            <th>Comment</th>
+                            <th>Type of Value</th>
+                            <th>Type of Parameter</th>
+                            <th>Prefix</th>
+                            <th>Position</th>
+                            <th>Default Value</th>
+                        </tr>                    
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="param_el in wftlc.paramswrt">
+                            <td>
+                                {{ param_el.idwfcmpntparams }}
+                            </td>
+                            <td>
+                                {{ param_el.paramname }}
+                            </td>
+                            <td>
+                                {{ mapDir(param_el.direction )}}({{ param_el.direction }})
+                            </td>
+                            <td>
+                                {{ param_el.comment}}
+                            </td>
+                            <td>
+                                {{ mapVType(param_el.valtype)}} ({{ param_el.valtype}})
+                            </td> 
+                            <td>
+                                {{ mapPType(param_el.paramtype)}} 
+                                ({{ param_el.paramtype}})
+                            </td> 
+                            <td>
+                                {{ param_el.prefix}}
+                            </td> 
+                            <td>
+                                {{ param_el.post}}
+                            </td> 
+                            <td>
+                                {{ param_el.defaultval}}
+                            </td> 
+
+                        </tr>    
+                    </tbody>
+
+                </table>
+            </div>
+            <h3>
+                Debug
+            </h3>
+            <hr>
+            <!--PL: TOFIX: Problem, it doesn't work.-->
+            <accordion>
+                <accordion-group is-open="status.open">
+                    <accordion-heading>
+                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+                    <pre>selected: {{idselected| json}}</pre>
+                    <pre>{{ wftlc.allWFComponents | json }}</pre>
+                </accordion-group>
+            </accordion>
+        </div>
+
+    </div>

@@ -2,7 +2,9 @@
 
 var workflowIndexModule = angular.module('workflowapp.WorkflowIndex');
 workflowIndexModule.controller('WFTemplateDesignerCtrl',
-   function($location,$log,WFTemplateWS,$routeParams,$scope){//,getJWTuseridByStore){
+   function($location,$log,WFTemplateWS,$routeParams,$scope,
+        WFCmpntParamWS,
+        $uibModal){//,getJWTuseridByStore){
        var WFTemplateDesignerCtrl = this;
        /*var getUserIdFromStore = function (store_tar){
            
@@ -143,47 +145,56 @@ workflowIndexModule.controller('WFTemplateDesignerCtrl',
         
         
         $scope.addNewNode = function(){
-            if(nextNodeID === 0){
-                alert("Please Wait a Moment for update of nextNodeID;-)");
-                return;
-            }
-            var nodeName = prompt("Enter a node name:", "New node");
-            if (!nodeName) {
-                    return;
-            }
-
-            //
-            // Template for a new node.
-            //
-            var newNodeDataModel = {
-                    name: nodeName,
-                    id: nextNodeID++,
-                    x: 0,
-                    y: 0,
-                    inputConnectors: [
-                            {
-                                    name: "X"
-                            },
-                            {
-                                    name: "Y"
-                            },
-                            {
-                                    name: "Z"
-                            }
-                    ],
-                    outputConnectors: [ 
-                            {
-                                    name: "1"
-                            },
-                            {
-                                    name: "2"
-                            }
-                    ],
-            };
-
-            $scope.chartViewModel.addNode(newNodeDataModel);
+            var addNodeModalInstance = $uibModal.open({
+                animation:    true,
+                templateUrl: 'WorkflowIndex/tmpl/WFComponentListChooser.html',
+                controller:  'WFComponentListChooserCtrl',
+                size:        'lg'
+            });
             
-        };//end addNewNode()
+            addNodeModalInstance.result.then(function (selectedItem) {
+                $log.log('After choose component:' + selectedItem);
+                //Load Param w.r.t selected component
+                $scope.tarparamswrt = WFCmpntParamWS.query(
+                        {action: 'bycmpnt', id: selectedItem.idwfcomponent},
+                        function (response) {
+                            $log.log("Response:" + response);
+                            $log.log("addNodeModalInstance:(Succ)" + response);//JSON.parse(
+                            var inputParams = [];
+                            var outputParams = []; 
+                            //for(var param_el in response){
+                            for(var i=0;i<response.length;i++){
+                                var param_el = response[i];
+                                $log.log("name:"+param_el.paramname);
+                                $log.log("dir:"+param_el.direction);                                
+                                $log.log("id:"+param_el.idwfcmpntparams);
+                                if(param_el.direction===0)
+                                    inputParams.push({name:param_el.paramname,paramid:param_el.idwfcmpntparams});
+                                else
+                                    outputParams.push({name:param_el.paramname,paramid:param_el.idwfcmpntparams});
+                            }
+                            
+                            //output the fields into node
+                            var newNodeDataModel = {
+                                name: selectedItem.exec,
+                                id: nextNodeID++,
+                                cmpntid:selectedItem.idwfcomponent,
+                                cmpntworkdri: selectedItem.workdir,
+                                x: 0,
+                                y: 0,
+                                outputConnectors: inputParams,
+                                inputConnectors: outputParams,
+                            };
+
+                            $scope.chartViewModel.addNode(newNodeDataModel);
+                        }, function (error) {
+                    $log.log("addNodeModalInstance:(Error)" + error);
+                });
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });//end addNodeModalInstance
+             
+       };//end addNewNode()
         
         $scope.save = function(){
             $log.log('tar text:'+ JSON.stringify($scope.chartViewModel.data,null,4));
