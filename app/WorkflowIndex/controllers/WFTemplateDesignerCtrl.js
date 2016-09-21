@@ -3,7 +3,7 @@
 var workflowIndexModule = angular.module('workflowapp.WorkflowIndex');
 workflowIndexModule.controller('WFTemplateDesignerCtrl',
    function($location,$log,WFTemplateWS,$routeParams,$scope,
-        WFCmpntParamWS,
+        WFCmpntParamWS,WFTemplateNode,
         $uibModal){//,getJWTuseridByStore){
        var WFTemplateDesignerCtrl = this;
        /*var getUserIdFromStore = function (store_tar){
@@ -175,16 +175,21 @@ workflowIndexModule.controller('WFTemplateDesignerCtrl',
                             }
                             
                             //output the fields into node
+                            /*
                             var newNodeDataModel = {
                                 name: selectedItem.exec,
                                 id: nextNodeID++,
                                 cmpntid:selectedItem.idwfcomponent,
                                 cmpntworkdri: selectedItem.workdir,
+                                nodetype: 0,
                                 x: 0,
                                 y: 0,
                                 outputConnectors: inputParams,
                                 inputConnectors: outputParams,
                             };
+                            */
+                            var newNodeDataModel = WFTemplateNode.addNormalNode(selectedItem.exec,nextNodeID++,
+                            selectedItem.idwfcomponent,selectedItem.workdir,inputParams,outputParams);
 
                             $scope.chartViewModel.addNode(newNodeDataModel);
                         }, function (error) {
@@ -243,17 +248,22 @@ workflowIndexModule.controller('WFTemplateDesignerCtrl',
             //
             // Template for a new node.
             //
+            /*
             var newNodeDataModel = {
                     name: nodeName,
                     id: nextNodeID++,
                     x: 0,
-                    y: 0,                    
+                    y: 0, 
+                    inputConnectors: null,                   
                     outputConnectors: [ 
                             {
                                     name: "1"
                             }
-                    ],
+                    ]
             };
+            */
+            var newNodeDataModel = WFTemplateNode.addInputNode(nodeName,nextNodeID++);
+
 
             $scope.chartViewModel.addNode(newNodeDataModel);
         };
@@ -267,6 +277,7 @@ workflowIndexModule.controller('WFTemplateDesignerCtrl',
             //
             // Template for a new node.
             //
+            /*
             var newNodeDataModel = {
                     name: nodeName,
                     id: nextNodeID++,
@@ -277,8 +288,10 @@ workflowIndexModule.controller('WFTemplateDesignerCtrl',
                                     name: "1"
                             }
                     ],
-            };
-
+            };*/
+            
+            var newNodeDataModel = WFTemplateNode.addOutputNode(nodeName,nextNodeID++);
+            
             $scope.chartViewModel.addNode(newNodeDataModel);
         };
         

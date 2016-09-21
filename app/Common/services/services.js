@@ -214,6 +214,54 @@ commonModule.factory('WFTemplateWS',function($resource,WFBackendAddr){
     });
 });
 
+/*
+ * For Workflow Editor 's chartViewModel.
+ * This factory provides with 3 funcs to add node in workflow diagram editor.
+ */
+commonModule.factory('WFTemplateNode',function($log){
+    var nodesfunc = {};
+    var addNode = function(name_in, id_in, nodetype_in,  cmpntid_in,
+                           cmpntworkdir_in,inputParams_in,outputParams_in){
+        var newnode = {};
+        
+        newnode.name = name_in;
+        newnode.id   = id_in;
+        newnode.x = 0;
+        newnode.y = 0;
+        // 0: input param for template 
+        // 1: output param for template
+        // 2: normal node.        
+        newnode.nodetype = nodetype_in;
+        newnode.cmpntid = cmpntid_in;
+        newnode.cmpntworkdir = cmpntworkdir_in;
+        newnode.inputConnectors  = inputParams_in;
+        newnode.outputConnectors = outputParams_in;
+        
+        return newnode;
+    };
+    
+    nodesfunc.addInputNode = function(name_in, id_in // nodetype_in, = 0
+            ){
+        return addNode(name_in, id_in, 0, // nodetype_in, = 0
+            null,null,null,[{"name":1}]);
+    };     
+    
+    nodesfunc.addOutputNode = function(name_in, id_in // nodetype_in, = 1
+          ){
+        //$log.log("addOutputNode:"+name_in);
+        return addNode(name_in, id_in, 1, // nodetype_in, = 0
+            null,null,[{"name":1}],null);
+    }; 
+    
+    nodesfunc.addNormalNode = function(name_in, id_in, // nodetype_in, = 2
+            cmpntid_in,cmpntworkdir_in,inputParams_in,outputParams_in){
+        return addNode(name_in, id_in, 2, // nodetype_in, = 0
+            cmpntid_in,cmpntworkdir_in,inputParams_in,outputParams_in);
+    }; 
+            
+    return nodesfunc;
+});//end WFTemplateNode
+
 commonModule.factory('WFComponentWS',function($resource,WFBackendAddr){
     return $resource(WFBackendAddr+'/wfcomponents/:id',{},{
         create:{method:'POST'},
