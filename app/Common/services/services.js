@@ -64,6 +64,30 @@ commonModule.factory('PTYPEMAPTABLE',function(PARAMTYPEOPTIONS,BuildHashTable){
     return BuildHashTable.getHashTable(PARAMTYPEOPTIONS);
 });
 
+/*-------Columns for Component Parameter--------------*/
+commonModule.value('CMPNTPARAMCOLUMNS',
+        [   {field: 'paramname', name: 'Name',enableCellEdit: true},
+            {field: 'direction', name: 'Direction'},
+            {field: 'comment', name: 'Comment'},
+            {field: 'valtype', name: 'Value Type'},
+            {field: 'paramtype', name: 'Parameter Type'},
+            {field: 'prefix', name: 'Prefix'},
+            {field: 'post', name: 'Position'},
+            {field: 'defaultval', name: 'Default Value'}]);
+        
+commonModule.factory('GridRowData',function(){
+    var gridRowFunc = {};
+    gridRowFunc.addNewRow = function(gridColumnIn){
+        var newRowData = {};
+        for(var i=0;i<gridColumnIn.length;i++){
+            newRowData[ gridColumnIn[i].field ] = "";
+        }
+        return newRowData;
+    };
+    
+    return gridRowFunc;
+});
+
 
 /*-------BackendAddr for XYHRDAServer ----------- */
 commonModule.factory('BackendAddr',function(ISDEBUG){

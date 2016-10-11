@@ -9,6 +9,9 @@ var workflowapp = angular.module('workflowapp', [
   'angular-jwt',  
   'workflowapp.WorkflowIndex',
   'flowChart',
+  'ui.grid',
+  'ui.grid.edit',
+  'ui.grid.selection',
   'XYWorkbench.Common',
   'XYWorkbench.Home',
   'myApp.version'

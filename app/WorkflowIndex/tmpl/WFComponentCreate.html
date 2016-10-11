@@ -20,9 +20,17 @@
                 <input type="text" class="form-control" name="workdir" id="workdir" placeholder=""
                        ng-model="wftcc.WFComponent.workdir">
             </div>
-        </div>        
+        </div>     
+        
+        <div>
+            <button type="button" class="btn btn-default" ng-click="addData()">Add</button>
+        </div>
+        <!-- class="cmpntparamgrid" -->
+        <div id="paramgrid" ui-grid="gridOpts" ui-grid-edit ui-grid-selection width="100%"></div>
+        
         
         <pre>{{ wftcc.WFComponent | json }}</pre>
+        <pre>{{ wftcc.tarRow.entity | json }}</pre>
 
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8 text-right">
