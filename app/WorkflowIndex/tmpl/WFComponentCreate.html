@@ -21,15 +21,24 @@
                        ng-model="wftcc.WFComponent.workdir">
             </div>
         </div>     
-        
+
         <div>
-            <button type="button" class="btn btn-default" ng-click="addData()">Add</button>
+            <button type="button" class="btn btn-default" ng-click="addInputData()">Add Inputparams</button>
         </div>
         <!-- class="cmpntparamgrid" -->
-        <div id="paramgrid" ui-grid="gridOpts" ui-grid-edit ui-grid-selection width="100%"></div>
-        
-        
+        <div id="paramgrid" ui-grid="InputgridOpts" class="grid"   ui-grid-edit ui-grid-selection width="100%"></div>
+
+        <div>
+            <button type="button" class="btn btn-default" ng-click="addOutputData()">Add Outputparams</button>
+        </div>
+        <!-- class="cmpntparamgrid" -->
+        <div id="paramgrid2" ui-grid="OutputgridOpts" class="grid"  ui-grid-edit ui-grid-selection width="100%"></div>
+
+
+
+
         <pre>{{ wftcc.WFComponent | json }}</pre>
+        <pre>{{ wftcc.WFComponent2 | json }}</pre>
         <pre>{{ wftcc.tarRow.entity | json }}</pre>
 
         <div class="form-group">

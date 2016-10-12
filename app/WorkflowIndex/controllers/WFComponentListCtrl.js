@@ -27,6 +27,8 @@ function($scope,WFComponentWS,$log,ISDEBUG){
     var LoadFirstPage = function(){
         $log.log("WFTemplateList:Load First Page")
         WFComponentListCtrl.allWFComponents = WFComponentWS.query(function(response){
+            //$log.log("this is a test ");
+            //$log.log(WFComponentListCtrl.allWFComponents);
             $log.log("Response:"+response);
             $log.log("WFComponentListCtrl:(Succ)"+response);//JSON.parse(
         },function(error){
