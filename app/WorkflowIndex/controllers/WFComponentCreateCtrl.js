@@ -41,12 +41,11 @@ workflowIndexModule.controller('WFComponentCreateCtrl',
             //WFComponentCreateCtrl.WFComponent.opusersIdopusers.idopusers = getJWTuseridByStore();       
 
             $log.log('WFComponentCreateCtrl');
-
             WFComponentCreateCtrl.createWFComponent = function () {
-                WFComponentCreateCtrl.WFComponent = {inputparams: JSON.stringify(data1,null,4), outputparams: JSON.stringify(data2,null,4)};
+                WFComponentCreateCtrl.WFComponent = {inputparams: JSON.stringify(data1, null, 4), outputparams: JSON.stringify(data2, null, 4),exec:WFComponentCreateCtrl.WFComponent.exec,workdir:WFComponentCreateCtrl.WFComponent.workdir};
+                $log.log(WFComponentCreateCtrl.WFComponent);
                 WFComponentWS.create(WFComponentCreateCtrl.WFComponent, function () {
                     $log.log('Success after ComponentCreate');
-                    $log.log(WFComponentCreateCtrl.WFComponent);
                     $location.path('/WFComponentList');
                 }, function (err) {
                     $log.log('err:' + err);
