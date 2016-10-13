@@ -8,7 +8,7 @@ workflowIndexModule.controller('WFComponentCreateCtrl',
             var seen = [];
 
 
-
+            $scope.idselected = null;
             //,getJWTuseridByStore){
             var WFComponentCreateCtrl = this;
             /*var getUserIdFromStore = function (store_tar){
@@ -42,7 +42,7 @@ workflowIndexModule.controller('WFComponentCreateCtrl',
 
             $log.log('WFComponentCreateCtrl');
             WFComponentCreateCtrl.createWFComponent = function () {
-                WFComponentCreateCtrl.WFComponent = {inputparams: JSON.stringify(data1, null, 4), outputparams: JSON.stringify(data2, null, 4),exec:WFComponentCreateCtrl.WFComponent.exec,workdir:WFComponentCreateCtrl.WFComponent.workdir};
+                WFComponentCreateCtrl.WFComponent = {inputparams: JSON.stringify(data1, null, 4), outputparams: JSON.stringify(data2, null, 4), exec: WFComponentCreateCtrl.WFComponent.exec, workdir: WFComponentCreateCtrl.WFComponent.workdir};
                 $log.log(WFComponentCreateCtrl.WFComponent);
                 WFComponentWS.create(WFComponentCreateCtrl.WFComponent, function () {
                     $log.log('Success after ComponentCreate');
@@ -51,9 +51,7 @@ workflowIndexModule.controller('WFComponentCreateCtrl',
                     $log.log('err:' + err);
                 });
                 $log.log('Success after post');
-                $log.log(WFComponentCreateCtrl.WFComponent);
             };
-
 
             /*
              * ui-grid for component grid.
@@ -96,7 +94,6 @@ workflowIndexModule.controller('WFComponentCreateCtrl',
                     var msg = 'row selected ' + row.isSelected + ' val:' + row.entity.paramname;
                     WFComponentCreateCtrl.tarRow = row;
                     $log.log(msg);
-
                     seen = [];
                     $log.log(JSON.stringify(row, function (key, val) {
                         if (val != null && typeof val === "object") {

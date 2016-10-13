@@ -24,13 +24,23 @@
 
         <div>
             <button type="button" class="btn btn-default" ng-click="addInputData()">Add Inputparams</button>
+            <!--
+            <button type="button" id="delData" class="btn btn-danger" ng-class="{disabled:idselected == null}"
+                    ng-click="wftcc.delComponent(idselected.id, idselected.index)">Del</button>
+            -->
         </div>
+
         <!-- class="cmpntparamgrid" -->
         <div id="paramgrid" ui-grid="InputgridOpts" class="grid"   ui-grid-edit ui-grid-selection width="100%"></div>
 
         <div>
             <button type="button" class="btn btn-default" ng-click="addOutputData()">Add Outputparams</button>
+            <!--
+                        <button type="button" id="delData" class="btn btn-danger" ng-class="{disabled:idselected == null}"
+                                ng-click="wftcc.delComponent(idselected.idwfcomponent, idselected.index)">Del</button>
+            -->
         </div>
+
         <!-- class="cmpntparamgrid" -->
         <div id="paramgrid2" ui-grid="OutputgridOpts" class="grid"  ui-grid-edit ui-grid-selection width="100%"></div>
 

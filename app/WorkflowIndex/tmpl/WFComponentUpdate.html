@@ -12,7 +12,7 @@
                        ng-model="wftcc.WFComponent.idwfcomponent">
             </div>
         </div>
-        
+
         <div class="form-group">
             <label id="la_exec" for="exec" class="col-sm-4 control-label">Component Command</label>
 
@@ -29,9 +29,25 @@
                 <input type="text" class="form-control" name="workdir" id="workdir" placeholder=""
                        ng-model="wftcc.WFComponent.workdir">
             </div>
-        </div>        
-        
-        <pre>{{ wftcc.WFComponent | json }}</pre>
+        </div>   
+
+
+        <div>
+            <button type="button" class="btn btn-default" ng-click="addInputData()">Add Inputparams</button>
+        </div>
+        <!-- class="cmpntparamgrid" -->
+        <div id="paramgrid" ui-grid="InputgridOpts" class="grid"   ui-grid-edit ui-grid-selection width="100%"></div>
+
+        <div>
+            <button type="button" class="btn btn-default" ng-click="addOutputData()">Add Outputparams</button>
+        </div>
+        <!-- class="cmpntparamgrid" -->
+        <div id="paramgrid2" ui-grid="OutputgridOpts" class="grid"  ui-grid-edit ui-grid-selection width="100%"></div>
+
+
+
+
+        <pre>{{ wftcc.pre | json }}</pre>
 
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8 text-right">
