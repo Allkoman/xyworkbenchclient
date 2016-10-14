@@ -73,8 +73,7 @@ commonModule.value('CMPNTPARAMCOLUMNS1',
             {field: 'paramtype', name: 'Parameter Type'},
             {field: 'prefix', name: 'Prefix'},
             {field: 'post', name: 'Position'},
-            {field: 'defaultval', name: 'Default Value'},
-            {field: 'delete', name: 'Delete', cellTemplate: '<button class="btn btn-danger" ng-click="grid.appScope.Delete(row)">Delete Me</button>'}]);
+            {field: 'defaultval', name: 'Default Value'}]);
 
 commonModule.value('CMPNTPARAMCOLUMNS2',
         [{field: 'paramname', name: 'Name', enableCellEdit: true},
@@ -84,8 +83,7 @@ commonModule.value('CMPNTPARAMCOLUMNS2',
             {field: 'paramtype', name: 'Parameter Type'},
             {field: 'prefix', name: 'Prefix'},
             {field: 'post', name: 'Position'},
-            {field: 'defaultval', name: 'Default Value'},
-            {field: 'delete', name: 'Delete', cellTemplate: '<button class="btn btn-danger" ng-click="grid.appScope.deleteRow(row)">Delete Me</button>'}]);
+            {field: 'defaultval', name: 'Default Value'}]);
 
 commonModule.factory('GridRowData', function () {
     var gridRowFunc = {};

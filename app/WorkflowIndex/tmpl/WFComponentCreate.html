@@ -24,10 +24,10 @@
 
         <div>
             <button type="button" class="btn btn-default" ng-click="addInputData()">Add Inputparams</button>
-            <!--
-            <button type="button" id="delData" class="btn btn-danger" ng-class="{disabled:idselected == null}"
-                    ng-click="wftcc.delComponent(idselected.id, idselected.index)">Del</button>
-            -->
+
+            <button type="button" id="delData1" class="btn btn-danger" ng-class="{disabled:wftcc.inidselected == null}" 
+                    ng-click="inputdeleteSelected(wftcc.inidselected)">Del</button>
+
         </div>
 
         <!-- class="cmpntparamgrid" -->
@@ -35,10 +35,10 @@
 
         <div>
             <button type="button" class="btn btn-default" ng-click="addOutputData()">Add Outputparams</button>
-            <!--
-                        <button type="button" id="delData" class="btn btn-danger" ng-class="{disabled:idselected == null}"
-                                ng-click="wftcc.delComponent(idselected.idwfcomponent, idselected.index)">Del</button>
-            -->
+
+            <button type="button" id="delData2" class="btn btn-danger" ng-class="{disabled:wftcc.outidselected == null}" 
+                    ng-click="outputdeleteSelected(wftcc.outidselected)">Del</button>
+
         </div>
 
         <!-- class="cmpntparamgrid" -->
@@ -48,7 +48,6 @@
 
 
         <pre>{{ wftcc.WFComponent | json }}</pre>
-        <pre>{{ wftcc.WFComponent2 | json }}</pre>
         <pre>{{ wftcc.tarRow.entity | json }}</pre>
 
         <div class="form-group">

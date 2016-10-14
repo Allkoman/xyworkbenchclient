@@ -5,31 +5,17 @@ workflowIndexModule.controller('WFComponentCreateCtrl',
         function ($location, $log, WFComponentWS, $scope,
                 CMPNTPARAMCOLUMNS1, CMPNTPARAMCOLUMNS2, GridRowData) {
 
-            var seen = [];
-
-
-            $scope.idselected = null;
             //,getJWTuseridByStore){
             var WFComponentCreateCtrl = this;
             /*var getUserIdFromStore = function (store_tar){
              
              };
              */
-
+            WFComponentCreateCtrl.inidselected = null;
+            WFComponentCreateCtrl.outidselected = null;
             var columnDefs1 = CMPNTPARAMCOLUMNS1;
             var columnDefs2 = CMPNTPARAMCOLUMNS2;
 
-            /*var data1 = [
-             {
-             "paramname":"",
-             "direction":"",
-             "comment":"",
-             "valtype":"",
-             "paramtype":"",
-             "prefix":"",            
-             "post":"",
-             "defaultval":"",}
-             ];*/
             var data1 = [GridRowData.addNewRow(CMPNTPARAMCOLUMNS1)];
             var data2 = [GridRowData.addNewRow(CMPNTPARAMCOLUMNS2)];
 
@@ -53,17 +39,7 @@ workflowIndexModule.controller('WFComponentCreateCtrl',
                 $log.log('Success after post');
             };
 
-            /*
-             * ui-grid for component grid.
-             */
-            /*var columnDefs1 = [
-             {name: 'firstName'},
-             {name: 'lastName'},
-             {name: 'company'},
-             {name: 'gender'}
-             ];*/
-
-//Input
+//Inputparams part
             $scope.InputgridOpts = {
                 enableRowSelection: true,
                 enableRowHeaderSelection: false,
@@ -77,47 +53,33 @@ workflowIndexModule.controller('WFComponentCreateCtrl',
                 var n = $scope.InputgridOpts.data.length + 1;
                 $scope.InputgridOpts.data.push(GridRowData.addNewRow(CMPNTPARAMCOLUMNS1));
             };
-            $scope.Delete = function (row) {
-                var index = $scope.InputgridOpts.data.indexOf(row.entity);
-                $scope.InputgridOpts.data.splice(index, 1);
-            };
 
-            // $scope.addOutputData = function () {
-            //var n = $scope.InputgridOpts.data.length + 1;
-            // $scope.InputgridOpts.data.push(GridRowData.addNewRow(CMPNTPARAMCOLUMNS1));
-            // };
+
 
             $scope.InputgridOpts.onRegisterApi = function (gridApi) {
-                //set gridApi on scope
-                $scope.gridApi = gridApi;
+                //set gridApi1 on scope
+                $scope.gridApi1 = gridApi;
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-                    var msg = 'row selected ' + row.isSelected + ' val:' + row.entity.paramname;
-                    WFComponentCreateCtrl.tarRow = row;
+                    var msg = 'input row selected ' + row.isSelected;
                     $log.log(msg);
-                    seen = [];
-                    $log.log(JSON.stringify(row, function (key, val) {
-                        if (val != null && typeof val === "object") {
-                            if (seen.indexOf(val) >= 0) {
-                                //$log.log('it has been seen before! key:' + key);
-                                return;
-                            }
-                            seen.push(val);
-                        }
-                        return val;
-                    }));
+                    WFComponentCreateCtrl.inidselected = row.isSelected;
 
                 });
-
-                /*
-                 gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
-                 var msg = 'rows changed ' + rows.length;
-                 $log.log(msg);
-                 });
-                 */
+                gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
+                    var msg = 'input rows changed ' + rows.length;
+                    $log.log(msg);
+                });
             };
 
-
-            //Output
+            $scope.inputdeleteSelected = function (inidselected) {
+                $log.log('inputparams delete');
+                $log.log(WFComponentCreateCtrl.inidselected);
+                angular.forEach($scope.gridApi1.selection.getSelectedRows(), function (data, index) {
+                    $scope.InputgridOpts.data.splice($scope.InputgridOpts.data.lastIndexOf(data), 1);
+                });
+                WFComponentCreateCtrl.inidselected = null;
+            };
+//Outputparams part
             $scope.OutputgridOpts = {
                 enableRowSelection: true,
                 enableRowHeaderSelection: false,
@@ -132,43 +94,30 @@ workflowIndexModule.controller('WFComponentCreateCtrl',
                 $scope.OutputgridOpts.data.push(GridRowData.addNewRow(CMPNTPARAMCOLUMNS2));
             };
 
-            $scope.deleteRow = function (row) {
-                var index = $scope.OutputgridOpts.data.indexOf(row.entity);
-                $scope.OutputgridOpts.data.splice(index, 1);
-            };
 
-            // $scope.addOutputData = function () {
-            //var n = $scope.OutputgridOpts.data.length + 1;
-            // $scope.OutputgridOpts.data.push(GridRowData.addNewRow(CMPNTPARAMCOLUMNS2));
-            // };
 
             $scope.OutputgridOpts.onRegisterApi = function (gridApi) {
                 //set gridApi on scope
-                $scope.gridApi = gridApi;
+                $scope.gridApi2 = gridApi;
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-                    var msg = 'row selected ' + row.isSelected + ' val:' + row.entity.paramname;
-                    WFComponentCreateCtrl.tarRow = row;
+                    var msg = 'output row selected ' + row.isSelected;
+                    WFComponentCreateCtrl.outidselected = row.isSelected;
                     $log.log(msg);
 
-                    seen = [];
-                    $log.log(JSON.stringify(row, function (key, val) {
-                        if (val != null && typeof val === "object") {
-                            if (seen.indexOf(val) >= 0) {
-                                //$log.log('it has been seen before! key:' + key);
-                                return;
-                            }
-                            seen.push(val);
-                        }
-                        return val;
-                    }));
-
                 });
-                /*
-                 gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
-                 var msg = 'rows changed ' + rows.length;
-                 $log.log(msg);
-                 });
-                 */
+
+                gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
+                    var msg = 'output rows changed ' + rows.length;
+                    $log.log(msg);
+                });
+            };
+            $scope.outputdeleteSelected = function () {
+                $log.log('outputparams delete');
+                $log.log(WFComponentCreateCtrl.outidselected);
+                angular.forEach($scope.gridApi2.selection.getSelectedRows(), function (data, index) {
+                    $scope.OutputgridOpts.data.splice($scope.OutputgridOpts.data.lastIndexOf(data), 1);
+                });
+                WFComponentCreateCtrl.outidselected = null;
             };
         });
 
