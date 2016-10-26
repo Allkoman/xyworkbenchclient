@@ -320,3 +320,9 @@ commonModule.factory('getJWTuseridByStore', function (store, jwtHelper) {
     };
 });
 
+commonModule.factory('Dynamics', function ($resource, WFBackendAddr) {
+    return $resource(WFBackendAddr + '/wftemplates/getdynamic', {}, {
+        getdy: {method: 'get'},
+    });
+});
+
