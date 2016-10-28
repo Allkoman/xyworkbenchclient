@@ -337,8 +337,8 @@ commonModule.factory('JobAdmin', function($websocket,$log){
     var methods = {
         collection: collection,
         get: function(tarObj){
-            $log.log('JobAdmin.get():'+JSON.stringify(tarObj));
-            dataStream.send(JSON.stringify(tarObj));//{action:'get'}));            
+            $log.log('JobAdmin.get():'+JSON.stringify(tarObj,null,4));
+            dataStream.send(JSON.stringify(tarObj,null,4));//{action:'get'}));            
         }        
     };
     

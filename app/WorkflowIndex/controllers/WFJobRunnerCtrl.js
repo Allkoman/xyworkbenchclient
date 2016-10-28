@@ -45,7 +45,7 @@ function(WFTemplateWS,$log,ISDEBUG,$scope,JobAdmin){
     $scope.allreceived = {};
     //LoadFirstPage();
     $scope.SendCmd = function(){
-        $scope.tarObj.program = $scope.cmdstr;
+        //$scope.tarObj.program = $scope.cmdstr;
         $log.log("SendCmd");
         JobAdmin.get($scope.tarObj);
         $scope.allreceived = JobAdmin.collection;
