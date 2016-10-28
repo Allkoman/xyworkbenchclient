@@ -1,0 +1,93 @@
+ <div ng-controller="WFJobRunnerCtrl as wfjrc">
+        <!--div class="col-lg-12 page-header">
+                <h2>
+                Pipelines
+                </h2>
+        </div-->
+
+        <div>
+            <div class="form-group">
+                <h3>
+                    Job Runner
+                    <span class="pull-right">
+                    <a ng-href="#/WFTemplateCreate" class="btn btn-primary " id="btn_product_create">Add Pipeline</a>
+                    <a ng-href="#/WFTemplateUpdate/{{idselected.idwftemplates}}" ng-class="{disabled:idselected==null}"
+                       class="btn btn-success" id="btn_component_update">Edit</a>                    
+                    <button type="button" id="delData" class="btn btn-danger" ng-class="{disabled:idselected==null}"
+                            ng-click="wfjrc.delTemplate(idselected.idwftemplates,idselected.index)">Del</button>
+                    <a ng-href="#/WFTemplateDesign/{{idselected.idwftemplates}}" ng-class="{disabled:idselected==null}"
+                       class="btn btn-success" id="btn_cmpntparam_update">Designer</a>
+                       <a ng-href="#/Progressbar" class="btn btn-primary" id="btn_cmpntparam_progressbar">Progressbar</a>
+                    </span>
+                </h3>
+                	
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Products...">
+                
+                <hr>
+                <input class="form-control" type="text" ng-model="cmdstr" placeholder="Command to send to server via websocket">
+                <button ng-click="SendCmd()">Send Command</button>
+            </div>
+
+
+            <table id="Product_list" class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>File</th>
+                    <th>Creator</th>
+                    <th>Create Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="or_el in wfjrc.allWFtemplates | filter:searchText"
+                    ng-click="selectrow(or_el,$index)"
+                    ng-class="{info: or_el.idwftemplates == idselected.idwftemplates}">
+                    <td>
+                        {{ or_el.idwftemplates }}
+                    </td>
+                    <td>
+                        {{ or_el.tmplname }}
+                    </td>
+                    <td>
+                        {{ or_el.description }}
+                    </td>
+                    <td>
+                        {{ or_el.xmlfile }}
+                    </td>
+                    <td>
+                        {{ or_el.opusersIdopusers.username}}
+                    </td>
+                    <td>
+                        {{ or_el.createtime}}
+                    </td>                    
+                </tr>
+                <tr ng-hide="wfjrc.allWFtemplates.length">
+                    <td colspan="6">
+                        <p class="text-center">No Pipeline Found</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h3>
+                Debug
+            </h3>
+            <hr>
+            <!--PL: TOFIX: Problem, it doesn't work.-->
+            <accordion>
+                <accordion-group is-open="status.open">
+                    <accordion-heading>
+                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+                    <pre>{{ wfjrc.allWFtemplates | json }}</pre>
+                    <pre>{{ allreceived | json }}</pre>
+                    <pre>{{ tarObj | json }}</pre>
+                </accordion-group>
+            </accordion>
+        </div>
+
+    </div>

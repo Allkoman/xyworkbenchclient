@@ -9,6 +9,7 @@ var workflowapp = angular.module('workflowapp', [
     'angular-jwt',
     'workflowapp.WorkflowIndex',
     'flowChart',
+    'ngWebSocket',
     'ui.grid',
     'ui.grid.edit',
     'ui.grid.selection',
@@ -69,6 +70,9 @@ workflowapp.config(['$routeProvider', function ($routeProvider) {
                 }).
                 when('/Progressbar', {
                     templateUrl: 'WorkflowIndex/tmpl/Progressbar.html'
+                }).
+                when('/JobRunner', {
+                    templateUrl: 'WorkflowIndex/tmpl/WFJobRunner.html'
                 }).
                 otherwise({redirectTo: '/Home'});
     }]);

@@ -326,3 +326,22 @@ commonModule.factory('Dynamics', function ($resource, WFBackendAddr) {
     });
 });
 
+commonModule.factory('JobAdmin', function($websocket,$log){
+    var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/jobadminendpoint');
+    var collection = [];
+    dataStream.onMessage(function(message){
+        $log.log("onMessage:"+message.data);
+       collection.push(JSON.parse(message.data)); 
+    });
+    
+    var methods = {
+        collection: collection,
+        get: function(tarObj){
+            $log.log('JobAdmin.get():'+JSON.stringify(tarObj));
+            dataStream.send(JSON.stringify(tarObj));//{action:'get'}));            
+        }        
+    };
+    
+    return methods;
+});//end JobAdmin factory
+
