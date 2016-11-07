@@ -117,9 +117,7 @@ entitySearchStudyModule.controller('SearchStudyCtrl',
 //get Organism and Submitter from service
                         }
                 );
-
-
-
+        
                 HRDACountWS.count(
                         {entity: 'study'}, {},
                         function (responseObj) {
@@ -236,6 +234,7 @@ entitySearchStudyModule.controller('SearchStudyCtrl',
                         });
             };
             LoadFirstPage();
+            
             SearchStudyCtrl.onSearch = function (searchVal) {
                 $log.log('onSearch:' + searchVal);
                 SearchStudyCtrl.searchInputObj = searchVal;

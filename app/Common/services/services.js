@@ -373,6 +373,14 @@ commonModule.factory('Runs', function ($resource, BackendAddr) {
     });
 });
 
+commonModule.factory('Local', function ($resource, BackendAddr) {
+    return $resource(BackendAddr + '/localsra/:id', {}, {
+        create: {method: 'POST'},
+        update: {method: 'PUT'},
+        delme: {method: 'DELETE'}
+    });
+});
+
 
 
 /*-------Talbe: Experiemnt Result: Study Filter: Taxon's id & Study's Wildcard---------*/
@@ -438,7 +446,7 @@ commonModule.factory('GETSampleTitleByacc', function ($resource, BackendAddr) {
     });
 });
 commonModule.factory('GETSampleStuidiesByacc', function ($resource, BackendAddr) {
-    return $resource(BackendAddr + '/sra/bysample/:sampleAccession', {}, {
+    return $resource(BackendAddr + '/study/bysample/:sampleAccession', {}, {
         list: {method: 'PUT', isArray: true}
     });
 });
