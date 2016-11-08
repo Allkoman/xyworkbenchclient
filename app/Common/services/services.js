@@ -556,3 +556,9 @@ commonModule.factory('SampleCountByFilterWS', function ($resource, BackendAddr) 
         count: {method: 'PUT'}
     });
 });
+
+commonModule.factory('GetmessageByfilter', function ($resource, BackendAddr) {
+    return $resource(BackendAddr + '/localsra/byfilter', {}, {
+        list: {method: 'PUT', isArray: true}
+    });
+});
