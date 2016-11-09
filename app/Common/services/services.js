@@ -328,7 +328,7 @@ commonModule.factory('Dynamics', function ($resource, WFBackendAddr) {
 
 commonModule.factory('JobAdmin', function($websocket,$log){
     var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/jobadminendpoint');
-    var collection = [];
+    var collection = [];           
     dataStream.onMessage(function(message){
         $log.log("onMessage:"+message.data);
        collection.push(JSON.parse(message.data)); 

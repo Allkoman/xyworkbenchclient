@@ -12,19 +12,19 @@ workflowIndexModule.controller('ProgressbarCtrl',
             $scope.max = 120;
             $scope.dynamic = 0;
             var i = 0;
-            //$scope.Progressbar = function () {
-              //  if (i < 120) {
-                //    i = i + 1;
-                  //  $log.log(i);
-                    //$scope.dynamic = i;
-                //}
-            //};
             $scope.Progressbar = function () {
+                if (i < 120) {
+                    i = i + 1;
+                    $log.log(i);
+                    $scope.dynamic = i;
+                }
+            };
+            /*$scope.Progressbar = function () {
                 $log.log(ProgressbarCtrl.WFComponent);
                 Dynamics.getdy(function () {
                     $log.log('Success after ComponentCreate');
                 });
-            };
+            };*/
 
 
         });
