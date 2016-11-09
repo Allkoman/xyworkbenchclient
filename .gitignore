@@ -8,6 +8,8 @@ target/
 nbactions.xml
 nb-configuration.xml
 !app/bower_components/bootstrap/dist/
+!app/bower_components/angular-websocket/dist/
+!app/bower_components/*/dist/
 
 # Class Files #
 *.class
