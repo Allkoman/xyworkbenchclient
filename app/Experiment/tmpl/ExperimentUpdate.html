@@ -1,0 +1,95 @@
+<div ng-controller="ExperimentUpdateCtrl as euc">
+    <h1>Update Experiment</h1>
+    <form id="ExperimentUpdateForm" name="ExperimentForm" class="form-horizontal" role="form"
+          ng-submit="euc.updateExperiment()">
+        <legend class="sm-col-12">Experiment Basic Information</legend>
+
+        <div class="form-group">
+            <label id="ep_id" for="experimentId" class="col-sm-4 control-label">ID</label>
+
+            <div class="col-sm-8">
+                <input disabled type="text" class="form-control" name="experimentId" id="epid" placeholder=""
+                       ng-model="euc.Experiment.experimentId">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="ep_accession" for="experimentAccession" class="col-sm-4 control-label">Accession</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="experimentAccession" id="epaccession" placeholder=""
+                       ng-model="euc.Experiment.experimentAccession">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="ep_title" for="title" class="col-sm-4 control-label">Title</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="title" id="eptitle" placeholder=""
+                       ng-model="euc.Experiment.title">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="dg_Description" for="designDescription" class="col-sm-4 control-label">Description</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="designDescription" id="dgDescription" placeholder=""
+                       ng-model="euc.Experiment.designDescription">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="is_Model" for="instrumentModel" class="col-sm-4 control-label">InstrumentModel</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="instrumentModel" id="isModel" placeholder=""
+                       ng-model="euc.Experiment.instrumentModel">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="sp_accession" for="sampleAccession" class="col-sm-4 control-label">Sample</label>
+
+            <div class="col-sm-8">
+                <input disabled type="text" class="form-control" name="sampleAccession" id="spaccession" placeholder=""
+                       ng-model="euc.ExperimentRefsampleAccession">
+                <button type="button" class="btn btn-default pull-right" ng-click="euc.openSample('lg')">Choose Sample</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_accession" for="studyAccession" class="col-sm-4 control-label">Study</label>
+
+            <div class="col-sm-8">
+                <input disabled type="text" class="form-control" name="studyAccession" id="dgDescription" placeholder=""
+                       ng-model="euc.ExperimentRefstudyAccession">
+                <button type="button" class="btn btn-default pull-right" ng-click="euc.openStudy('lg')">Choose Study</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="ep_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">Submission</label>
+
+            <div class="col-sm-8">
+                <input disabled type="text" class="form-control" name="submissionAccession" id="epsubmissionaccession" placeholder=""
+                       ng-model="euc.ExperimentRefsubmissionAccession">
+                <button type="button" class="btn btn-default pull-right" ng-click="euc.openSubmission('lg')">Choose Submission</button> 
+            </div>
+        </div> 
+
+        <pre>{{ euc.Experiment | json }}</pre>
+        <pre>{{ euc.ExperimentRefsubmissionAccession | json}}</pre>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8 text-right">
+                <a ng-href="#/ExperimentList" id="btn_cancel" class="btn btn-warning">Cancel</a>
+
+                <button type="submit" class="btn btn-success" id="btn_update">Update Experiment</button>
+            </div>
+        </div>
+
+
+    </form>    
+</div>

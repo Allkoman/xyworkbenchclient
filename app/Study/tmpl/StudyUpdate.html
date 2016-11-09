@@ -1,0 +1,84 @@
+<div ng-controller="StudyUpdateCtrl as suc">
+    <h1>Update Studies</h1>
+    <form id="StudyUpdateForm" name="StudyUpdateForm" class="form-horizontal" role="form"
+          ng-submit="suc.updateStudy()">
+        <legend class="sm-col-12">Study Basic Information</legend>
+
+        <div class="form-group">
+            <label id="st_id" for="studyId" class="col-sm-4 control-label">ID</label>
+
+            <div class="col-sm-8">
+                <input disabled="true" type="text" class="form-control" name="studyId" id="studyId" placeholder=""
+                       ng-model="suc.Study.studyId">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_accession" for="studyAccession" class="col-sm-4 control-label">Accession</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyAccession" id="staccession" placeholder=""
+                       ng-model="suc.Study.studyAccession">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_title" for="studyTitle" class="col-sm-4 control-label">Title</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyTitle" id="sttitle" placeholder=""
+                       ng-model="suc.Study.studyTitle">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_type" for="studyType" class="col-sm-4 control-label">Type</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyType" id="sttype" placeholder=""
+                       ng-model="suc.Study.studyType">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_Abstract" for="studyAbstract" class="col-sm-4 control-label">Abstract</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyAbstract" id="stAbstract" placeholder=""
+                       ng-model="suc.Study.studyAbstract">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="st_description" for="studyDescription" class="col-sm-4 control-label">Description</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="studyDescription" id="stdescription" placeholder=""
+                       ng-model="suc.Study.studyDescription">
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label id="st_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">Submission</label>
+
+            <div class="col-sm-8">
+                <input disabled type="text" class="form-control" name="submissionAccession" id="stsubmissionaccession" placeholder=""
+                       ng-model="suc.StudyRefsubmissionAccession">
+                <button type="button" class="btn btn-success pull-right" ng-click="suc.openSubmission('lg')">Choose Submission</button> 
+            </div>
+
+        </div> 
+
+        <pre>{{ suc.Study | json }}</pre>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8 text-right">
+                <a ng-href="#/StudyList" id="btn_cancel" class="btn btn-warning">Cancel</a>
+
+                <button type="submit" class="btn btn-success" id="btn_update">Update Study</button>
+            </div>
+        </div>
+    </form>    
+</div>

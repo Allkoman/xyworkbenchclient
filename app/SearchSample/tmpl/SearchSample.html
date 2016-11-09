@@ -1,0 +1,263 @@
+<div ng-controller="SearchSampleCtrl as ssampleCtrl">
+    <div class="row">
+        <div class="col-lg-12 page-header">
+            <h2>
+                Samples
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <!--div class="col-lg-4">
+            <span class="label label-primary">Search</span>
+        </div-->
+        <div class="col-lg-12">            
+            <!-- remote url:http://localhost:8080/XYHRDAServer/webresources/words/bywildcard/diabe -->
+            <div angucomplete-alt id="ex7" placeholder="Search Samples via title, description and so on"                  
+                 pause="100"  
+                 remote-url="{{ssampleCtrl.BackendAddr}}/words/bywildcard/"
+                 search-fields="wordscol" title-field="wordscol" description-field="idwords" minlength="1" 
+                 input-class="form-control form-control-small"
+                 selected-object="ssampleCtrl.onSearch"
+                 match-class="highlight">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        Filtered Results <span class="badge pull-right">{{ssampleCtrl.count}}</span>
+
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseOne">
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <!--b>Classification</b>
+                    
+                    <ul id="category" class="list-group">
+                      <li class="list-group-item">
+                        <span class="badge">{{srlCtrl.diseaseCount}}</span>
+                        Disease
+                      </li>
+                      <li class="list-group-item">
+                        <span class="badge">{{srlCtrl.pathwayCount}}</span>
+                        Pathway
+                      </li>
+                      <li class="list-group-item">
+                        <span class="badge">{{srlCtrl.geneCount}}</span>
+                        Gene
+                      </li>
+                      <li class="list-group-item">
+                        <span class="badge">{{srlCtrl.snpCount}}</span>
+                        SNP
+                      </li>
+                    </ul>
+                   
+                    <b>Filter Criterion</b-->
+
+                    <uib-accordion>
+                        <div uib-accordion-group class="panel-default" is-open="ssampleCtrl.isOrgOpen">
+                            <uib-accordion-heading>
+                                Organism 
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': ssampleCtrl.isOrgOpen, 'glyphicon-chevron-right': !ssampleCtrl.isOrgOpen}"></i>
+                                <span class="badge pull-right">{{ssampleCtrl.taxonsCount}}</span>
+                            </uib-accordion-heading>
+                            <ul class="list-group" >
+                                <!-- li class="list-group-item" ng-repeat="item in ssampleCtrl.taxonsList"-->
+                                <li class="list-group-item" ng-repeat="(key,item) in ssampleCtrl.taxonLeftList">
+                                    <input type="checkbox" checklist-model="ssampleCtrl.taxonsChose"
+                                           checklist-value="item" checklist-comparator=".taxonid">{{item.taxonname}}
+                                </li>  
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="ssampleCtrl.openTaxonChooser()">See All</button> </li>
+                            </ul>                           
+                        </div>
+                    </uib-accordion>
+
+                    <uib-accordion>
+                        <div uib-accordion-group class="panel-default" is-open="ssampleCtrl.isTyOpen">
+                            <uib-accordion-heading>
+                                Type 
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': ssampleCtrl.isTyOpen, 'glyphicon-chevron-right': !ssampleCtrl.isTyOpen}"></i>
+                                <span class="badge pull-right">{{ssampleCtrl.typeCount}}</span>
+                            </uib-accordion-heading>
+                            <ul class="list-group" >
+                                <!-- li class="list-group-item" ng-repeat="item in ssampleCtrl.taxonsList"-->
+                                <li class="list-group-item" ng-repeat="(key,item) in ssampleCtrl.typeLeftList">
+                                    <input type="checkbox" checklist-model="ssampleCtrl.typeChose"
+                                           checklist-value="item" checklist-comparator=".typename">{{item.typename}}
+                                </li>  
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="ssampleCtrl.openTypeChooser()">See All</button> </li>
+                            </ul>                           
+                        </div>
+                    </uib-accordion>
+
+                    <uib-accordion>
+                        <div uib-accordion-group class="panel-default" is-open="ssampleCtrl.isSbOpen">
+                            <uib-accordion-heading>
+                                Submitter 
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': ssampleCtrl.isSbOpen, 'glyphicon-chevron-right': !ssampleCtrl.isSbOpen}"></i>
+                                <span class="badge pull-right">{{ssampleCtrl.submitterCount}}</span>
+                            </uib-accordion-heading>
+                            <ul class="list-group" >
+                                <!-- li class="list-group-item" ng-repeat="item in ssampleCtrl.taxonsList"-->
+                                <li class="list-group-item" ng-repeat="(key,item) in ssampleCtrl.submitterLeftList">
+                                    <input type="checkbox" checklist-model="ssampleCtrl.submitterChose"
+                                           checklist-value="item" checklist-comparator=".submittername">{{item.submittername}}
+                                </li>  
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="ssampleCtrl.openSubmitterChooser()">See All</button> </li>
+                            </ul>                           
+                        </div>
+                    </uib-accordion>
+
+                    <uib-accordion>
+                        <div uib-accordion-group class="panel-default" is-open="ssampleCtrl.isInOpen">
+                            <uib-accordion-heading>
+                                Instrument 
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': ssampleCtrl.isInOpen, 'glyphicon-chevron-right': !ssampleCtrl.isInOpen}"></i>
+                                <span class="badge pull-right">{{ssampleCtrl.instrumentCount}}</span>
+                            </uib-accordion-heading>
+                            <ul class="list-group" >
+                                <!-- li class="list-group-item" ng-repeat="item in ssampleCtrl.taxonsList"-->
+                                <li class="list-group-item" ng-repeat="(key,item) in ssampleCtrl.instrumentLeftList">
+                                    <input type="checkbox" checklist-model="ssampleCtrl.instrumentChose"
+                                           checklist-value="item" checklist-comparator=".instrumentname">{{item.instrumentname}}
+                                </li>  
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="ssampleCtrl.openInstrumentChooser()">See All</button> </li>
+                            </ul>                           
+                        </div>
+                    </uib-accordion>
+
+                    <div>
+                        <center>
+                            <button class="btn btn-default" ng-click="ssampleCtrl.onFilter()">Filter</button>
+                        </center>
+                    </div>
+                    <div ng-if="ssampleCtrl.is_debug">
+                        <pre>{{ ssampleCtrl.taxonChoseIds | json}}</pre>
+                        <pre>{{ ssampleCtrl.taxonsChose | json}}</pre>
+                        <pre>{{ ssampleCtrl.taxonLeftList | json}}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>        
+
+        <div class="col-lg-8 col-md-8">
+            <table id="ssampleCtrl_tbl" class="table table-striped">
+                <tfoot>
+                    <tr>
+                        <td colspan="7" >
+                <uib-pagination total-items="ssampleCtrl.count" ng-model="ssampleCtrl.currentPage" 
+                                ng-change="ssampleCtrl.pageChanged()" boundary-links="true"
+                                boundary-link-numbers="true" max-size="5" items-per-page="ssampleCtrl.pageSize"
+                                >                                   
+                </uib-pagination>
+                </td>
+                <td colspan="1" style="text-align:center;vertical-align:middle;">
+
+                    Total :<span class="badge">{{ssampleCtrl.count}}</span>
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active">
+                        </li>
+                    </ul>
+                    <span class="label label-primary"></span>
+                </td> 
+                </tr>
+                </tfoot>   
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Accession</th>
+                        <th>Title</th>
+                        <th>Scientific Name</th>
+                        <th>Organism</th>
+                        <th>Studies</th>
+                        <th>Submitter</th>
+                        <th>Submission</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="sprl_el in ssampleCtrl.curPageItems| filter:searchText">
+                        <td>
+                            {{sprl_el.sampleId}}
+                        </td>
+                        <td>
+                            <a href="#/ExperimentSampleShow/{{sprl_el.sampleAccession}}">{{sprl_el.sampleAccession}}</a>
+                        </td>
+                        <td>  
+                            <span ng-repeat="sprl_tl in GetTitle($index)| filter:searchText ">
+                                {{sprl_tl.title}}
+                            </span>
+                        </td>
+                        <td>
+                            {{sprl_el.scientificName}}
+                        </td>
+                        <td>  
+                            <span ng-repeat="sprl_al in GetTaxonname($index)| filter:searchText ">
+                                {{sprl_al.taxonname}}
+                            </span>
+                        </td>
+                        <td>  
+                            <span ng-repeat="sprl_ls in GetStudies($index)| filter:searchText ">
+                                 <a href="#/ExperimentStudyShow/{{sprl_ls.studyAccession}}">{{sprl_ls.studyAccession}}</a>
+                            </span>
+                        </td>
+                        <td>
+                            <span ng-repeat="sprl_sl in GetSubmittername($index)| filter:searchText ">
+                                {{sprl_sl.submittername}}
+                            </span>
+                        </td>
+                        <td>
+                            {{sprl_el.submissionAccession}}
+                        </td>
+                    </tr>
+                    <tr ng-hide="ssampleCtrl.curPageItems.length">
+                        <td colspan="7">
+                            <p class="text-center">No Search Result Found</p>
+                        </td>
+
+                    </tr>
+                </tbody>    
+            </table>
+            <!-- <h3>Total: {{ssampleCtrl.count}}</h3> -->
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="ssampleCtrl.is_debug">
+            <!--
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Orders...">
+                <hr>
+            </div>
+            <pre>{{ ssampleCtrl.inputSearchTxt | json }}</pre>
+            <div class="form-group">
+                Input:<label ng-model="ssampleCtrl.inputSearchTxt"></label><input class="form-control" type="text" ng-model="ssampleCtrl.inputSearchTxt">
+                <hr>
+            </div>
+            -->
+
+            <h3>
+                Debug
+            </h3>
+            <hr>
+            <!--PL: TOFIX: Problem, it doesn't work.-->
+            <accordion>
+                <accordion-group is-open="status.open">
+                    <accordion-heading>
+                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+                    <pre>{{ ssampleCtrl.curPageItems | json }}</pre>
+                    <pre>{{ ssampleCtrl.count| json }}</pre>
+                    <pre>{{ ssampleCtrl.searchInputObj|json}}</pre>
+
+                </accordion-group>
+            </accordion>
+        </div>
+
+    </div>
+</div>

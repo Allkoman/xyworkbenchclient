@@ -29,10 +29,10 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         Filtered Results <span class="badge pull-right">{{sstudyCtrl.count}}</span>
-                      
-                      <a data-toggle="collapse" data-parent="#accordion"
-                        href="#collapseOne">
-                      </a>
+
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseOne">
+                        </a>
                     </h4>
                 </div>
                 <div class="panel-body">
@@ -58,11 +58,11 @@
                     </ul>
                    
                     <b>Filter Criterion</b-->
-                    
+
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="sstudyCtrl.isOrgOpen">
                             <uib-accordion-heading>
-                               Organism 
+                                Organism 
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': sstudyCtrl.isOrgOpen, 'glyphicon-chevron-right': !sstudyCtrl.isOrgOpen}"></i>
                                 <span class="badge pull-right">{{sstudyCtrl.taxonsCount}}</span>
                             </uib-accordion-heading>
@@ -70,13 +70,13 @@
                                 <!-- li class="list-group-item" ng-repeat="item in sstudyCtrl.taxonsList"-->
                                 <li class="list-group-item" ng-repeat="(key,item) in sstudyCtrl.taxonLeftList">
                                     <input type="checkbox" checklist-model="sstudyCtrl.taxonsChose"
-                                       checklist-value="item" checklist-comparator=".taxonid">{{item.taxonname}}
+                                           checklist-value="item" checklist-comparator=".taxonid">{{item.taxonname}}
                                 </li>  
                                 <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openTaxonChooser()">See All</button> </li>
                             </ul>                           
                         </div>
                     </uib-accordion>
-                    
+
                     <div>
                         <center>
                             <button class="btn btn-default" ng-click="sstudyCtrl.onFilter()">Filter</button>
@@ -84,26 +84,27 @@
                     </div>
                     <div ng-if="sstudyCtrl.is_debug">
                         <pre>{{ sstudyCtrl.taxonChoseIds | json}}</pre>
-                        <pre>{{ sstudyCtrl.taxonsChose   | json}}</pre>
+                        <pre>{{ sstudyCtrl.taxonsChose | json}}</pre>
                         <pre>{{ sstudyCtrl.taxonLeftList | json}}</pre>
                     </div>
                 </div>
             </div>
         </div>        
-    
+
         <div class="col-lg-8 col-md-8">
             <table id="sstudyCtrl_tbl" class="table table-striped">
                 <tfoot>
                     <tr>
-                        <td colspan="4" >
+                        <td colspan="7" >
                 <uib-pagination total-items="sstudyCtrl.count" ng-model="sstudyCtrl.currentPage" 
                                 ng-change="sstudyCtrl.pageChanged()" boundary-links="true"
-                                boundary-link-numbers="true" max-size="5" 
-                                items-per-page="sstudyCtrl.pageSize"></uib-pagination>
+                                boundary-link-numbers="true" max-size="5" items-per-page="sstudyCtrl.pageSize"
+                                >                                   
+                </uib-pagination>
                 </td>
                 <td colspan="1" style="text-align:center;vertical-align:middle;">
 
-                    Total:<span class="badge">{{sstudyCtrl.count}}</span>
+                    Total :<span class="badge">{{sstudyCtrl.count}}</span>
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active">
                         </li>
@@ -111,30 +112,24 @@
                     <span class="label label-primary"></span>
                 </td> 
                 </tr>
-                <!--
-                <div class="col-sm-10">                        
-                        
-                </div>
-                <div class="col-sm-2">
-                    <div class="vertical-align:middle">
-                        
-                    </div>
-                </div>
-                -->
-                </tfoot>
+                </tfoot>   
 
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Accession</th>
                         <th>Title</th>
                         <th>Type</th>
                         <th>Description</th>
-                        <th>Submission</th>                    
+                        <th>Submission</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr ng-repeat="strl_el in sstudyCtrl.curPageItems| filter:searchText">
+                        <td>
+                            {{strl_el.studyId}}
+                        </td>
                         <td>
                             {{ strl_el.studyAccession}}
                         </td>
@@ -152,7 +147,7 @@
                         </td>
                     </tr>
                     <tr ng-hide="sstudyCtrl.curPageItems.length">
-                        <td colspan="5">
+                        <td colspan="7">
                             <p class="text-center">No Search Result Found</p>
                         </td>
                     </tr>

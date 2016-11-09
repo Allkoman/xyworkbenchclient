@@ -1,0 +1,67 @@
+<div ng-controller="ExperimentStudyShowCtrl as essc">
+    <div class="row">
+        <div class="col-lg-12 page-header">
+            <h2>
+                Studies
+            </h2>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <table id="essc_tbl" class="table table-striped">
+                <tbody ng-repeat="studyshow in essc.showstudy" >
+                    <tr >
+                        <th>Id</th>
+                        <td>{{studyshow.studyId}}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{studyshow.studyTitle}}</td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td>{{studyshow.studyType}}</td>
+                    </tr>
+                    <tr>
+                        <th>Center</th>
+                        <td>{{studyshow.centerName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Project Name</th>
+                        <td>{{studyshow.centerProjectName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Updated</th>
+                        <td>{{studyshow.sradbUpdated}}</td>
+                    </tr>
+                    <tr>
+                        <th>Abstract</th>
+                        <td>{{studyshow.studyAbstract}}</td>
+                    </tr>
+                    <tr>
+                        <th>Accession</th>
+                        <td>{{studyshow.studyAccession}}</td>
+                    </tr>
+                    <tr>
+                        <th>Alias</th>
+                        <td>{{studyshow.studyAlias}}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{studyshow.studyDescription}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Url Link</th>
+                        <td>{{studyshow.studyUrlLink}}</td>
+                    </tr>
+                    <tr>
+                        <th>Submission Accession</th>
+                        <td>{{studyshow.submissionAccession}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

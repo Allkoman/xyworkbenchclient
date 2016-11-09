@@ -1,0 +1,122 @@
+<div ng-controller="ExperimentListCtrl as elc">
+    <div class="row">
+        <div class="col-lg-12 page-header">
+            <h2>
+                Experiments
+                <a ng-href="#/ExperimentCreate" class="btn btn-primary pull-right" id="btn_experiment_create">Add Experiments</a>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <!--div class="col-lg-4">
+            <span class="label label-primary">Search</span>
+        </div-->
+        <div class="col-lg-12">            
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Oproles...">
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <table id="elc_tbl" class="table table-striped">
+                <tfoot>
+                    <tr>
+                        <td colspan="8" >
+                <uib-pagination total-items="elc.count" ng-model="elc.currentPage" 
+                                ng-change="elc.pageChanged()" boundary-links="true"
+                                boundary-link-numbers="true" max-size="5" items-per-page="elc.pageSize"
+                                >                                   
+                </uib-pagination>
+                </td>
+                <td colspan="1" style="text-align:center;vertical-align:middle;">
+
+                    Total :<span class="badge">{{elc.count}}</span>
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active">
+                        </li>
+                    </ul>
+                    <span class="label label-primary"></span>
+                </td> 
+                </tr>
+                </tfoot>   
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Accession</th>
+                        <th>Title</th>
+                        <th>Design Description</th>
+                        <th>Instrument</th>
+                        <th>Sample</th>
+                        <th>Study</th>
+                        <th>Submission</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="experiment_el in elc.curPageItems| filter:searchText">
+                        <td>
+                            {{experiment_el.experimentId}}
+                        </td>
+                        <td>
+                            {{experiment_el.experimentAccession}}
+                        </td>
+                        <td>
+                            {{experiment_el.title}}
+                        </td>
+                        <td>
+                            {{experiment_el.designDescription}}
+                        </td>
+                        <td>
+                            {{experiment_el.instrumentModel}}
+                        </td>
+                        <td>                     
+                            <a href="#/ExperimentSampleShow/{{experiment_el.sampleAccession}}">{{experiment_el.sampleAccession}}</a>
+                        </td>
+                        <td>
+                            <a href="#/ExperimentStudyShow/{{experiment_el.studyAccession}}">{{experiment_el.studyAccession}}</a>
+                        </td>
+                        <td>
+                            {{experiment_el.submissionAccession}}
+                        </td>
+                        <td>
+                            <div class="row">
+                                <a ng-href="#/ExperimentUpdate/{{experiment_el.experimentId}}" class="btn btn-success " id="btn_experiment_update">Edit</a>		
+                                <button type="button" id="delExperiment" class="btn btn-danger " ng-click="elc.delExperiment(experiment_el.experimentId, $index)">Del</button>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-hide="elc.curPageItems.length">
+                        <td colspan="8">
+                            <p class="text-center">No Search Result Found</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="elc.is_debug">
+            <h3>
+                Debug
+            </h3>
+            <hr>
+            <!--PL: TOFIX: Problem, it doesn't work.-->
+            <accordion>
+                <accordion-group is-open="status.open">
+                    <accordion-heading>
+                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+                    <pre>{{ elc.count|json}}</pre>
+                    <pre>{{ elc.curPageItems|json}}</pre>
+                </accordion-group>
+            </accordion>
+        </div>
+
+    </div>
+</div>

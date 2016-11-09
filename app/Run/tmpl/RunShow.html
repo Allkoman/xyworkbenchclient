@@ -1,0 +1,75 @@
+<div ng-controller="RunShowCtrl as rsc">
+    <div class="row">
+        <div class="col-lg-12 page-header">
+            <h2>
+                Run
+                <button type="button" class="btn btn-success pull-right btn-block" ng-click="rsc.downloadSra()">Remote Server Download</button>
+                <a type="button" href ={{rsc.str3}} download="Nebulagene" class="btn btn-info pull-right btn-block" ng-class ="{disabled:rsc.flag == null}" >Nebulagene Server Download</a>
+
+                <!-- <div class="btn-group pull-right" uib-dropdown>
+                    <button id="split-button" type="button" class="btn btn-primary" ng-click="rsc.downloadSra()">Download</button>
+                    <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button!</span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                        <li role="menuitem"><a href="#">Accession:{{rsc.tar_runAccession}}</a></li>
+                        <li class="divider"></li>
+                        <li role="menuitem"><a href="#">Save to: /home/zhangchao/nicb/public/sra</a></li>
+                    </ul>
+                </div> -->
+
+
+            </h2>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <table id="rsc_tbl" class="table table-striped">
+                <tbody ng-repeat="runshow in rsc.showrun" >
+                    <tr>
+                        <th>Id</th>
+                        <td>{{runshow.runId}}</td>
+                    </tr>
+                    <tr>
+                        <th>Accession</th>
+                        <td>{{runshow.runAccession}}</td>
+                    </tr>
+                    <tr>
+                        <th>Center</th>
+                        <td>{{runshow.runCenter}}</td>
+                    </tr>
+                    <tr>
+                        <th>Alias</th>
+                        <td>{{runshow.runAlias}}</td>
+                    </tr>
+                    <tr>
+                        <th>Experiment</th>
+                        <td>{{runshow.experimentAccession}}</td>
+                    </tr>
+                    <tr>
+                        <th>Attribute</th>
+                        <td>{{runshow.runAttribute}}</td>
+                    </tr>
+                    <tr>
+                        <th>Data</th>
+                        <td>{{runshow.runDate}}</td>
+                    </tr>
+                    <tr>
+                        <th>Updated</th>
+                        <td>{{runshow.sradbUpdated}}</td>
+                    </tr>
+                    <tr>
+                        <th>Submission</th>
+                        <td>{{runshow.submissionAccession}}</td>
+                    </tr>                    
+                </tbody>
+            </table>
+            <hr>
+            <pre>{{ rsc.showmessage | json }}</pre>
+            <pre>{{ rsc.message | json }}</pre>
+
+        </div>
+    </div>  
+</div>
