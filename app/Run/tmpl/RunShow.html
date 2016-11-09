@@ -4,8 +4,7 @@
             <h2>
                 Run
                 <button type="button" class="btn btn-success pull-right btn-block" ng-click="rsc.downloadSra()">Remote Server Download</button>
-                <button type="button" class="btn btn-info pull-right btn-block" ng-class ="{disabled:rsc.flag==null}" ng-click="rsc.downloadSra()">Nebulagene Server Download</button>
-
+                <a type="button" href ={{rsc.str3}} download="Nebulagene" class="btn btn-info pull-right btn-block" ng-class ="{disabled:rsc.flag == null}" >Nebulagene Server Download</a>
 
                 <!-- <div class="btn-group pull-right" uib-dropdown>
                     <button id="split-button" type="button" class="btn btn-primary" ng-click="rsc.downloadSra()">Download</button>
@@ -67,7 +66,7 @@
                     </tr>                    
                 </tbody>
             </table>
-
+            <hr>
             <pre>{{ rsc.showmessage | json }}</pre>
             <pre>{{ rsc.message | json }}</pre>
 

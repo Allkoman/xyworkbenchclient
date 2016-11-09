@@ -377,9 +377,16 @@ commonModule.factory('Local', function ($resource, BackendAddr) {
     return $resource(BackendAddr + '/localsra/:id', {}, {
         create: {method: 'POST'},
         update: {method: 'PUT'},
-        delme: {method: 'DELETE'}
+        delme: {method: 'DELETE'},
+        get: {method: 'GET'}
     });
 });
+
+commonModule.factory('Localshell', function ($resource, BackendAddr) {
+    return $resource(BackendAddr + '/localsra/execshell', {}, {
+        get: {method: 'GET'}
+    });
+});//Call Shell
 
 
 
