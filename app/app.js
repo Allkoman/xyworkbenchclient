@@ -22,6 +22,7 @@ angular.module('XYWorkbench', [
     'XYWorkbench.Sample',
     'myApp.view1',
     'myApp.view2',
+    'ngWebSocket',
     'myApp.version'
 ]).
         config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {

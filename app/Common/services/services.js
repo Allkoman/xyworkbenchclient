@@ -477,10 +477,10 @@ commonModule.factory('SubCountWS', function ($resource, BackendAddr) {
 
 //:entity = {study,experiment,sample,run,submission,fastq ??sra}
 /* <<<<<<< HEAD
-commonModule.factory('GetHRDADataByPageWS', function ($resource, BackendAddr) {
-    return $resource(BackendAddr + '/:entity/bypage/:pagenum/:pagesize', {}, {
-=======
-*/
+ commonModule.factory('GetHRDADataByPageWS', function ($resource, BackendAddr) {
+ return $resource(BackendAddr + '/:entity/bypage/:pagenum/:pagesize', {}, {
+ =======
+ */
 commonModule.factory('GetRunDataByPageWS', function ($resource, BackendAddr) {
     return $resource(BackendAddr + '/run/bypage/:pagenum/:pagesize', {}, {
         list: {method: 'GET', isArray: true}
@@ -516,7 +516,7 @@ commonModule.factory('RunCountWS', function ($resource, BackendAddr) {
 /*-------Talbe: Study Result: Study Filter:Wildcard in Fulltext(FT)---------*/
 commonModule.factory('GetHRDADataByFilterWS', function ($resource, BackendAddr) {
     return $resource(BackendAddr + '/:entity/byfilter', {}, {
-               list: {method: 'PUT', isArray: true}
+        list: {method: 'PUT', isArray: true}
     });
 });
 
@@ -573,13 +573,13 @@ commonModule.factory('GETScientificByacc', function ($resource, BackendAddr) {
 });
 commonModule.factory('GETSubmissionByacc', function ($resource, BackendAddr) {
     return $resource(BackendAddr + '/submitter/byacc/:studyAccession', {}, {
-               list: {method: 'PUT', isArray: true}
+        list: {method: 'PUT', isArray: true}
     });
 });
 
 commonModule.factory('HRDACountByFilterWS', function ($resource, BackendAddr) {
     return $resource(BackendAddr + '/:entity/countbyfilter', {}, {
-                count: {method: 'PUT'}
+        count: {method: 'PUT'}
     });
 });
 
@@ -800,24 +800,45 @@ commonModule.factory('Dynamics', function ($resource, WFBackendAddr) {
     });
 });
 
-commonModule.factory('JobAdmin', function($websocket,$log){
+commonModule.factory('JobAdmin', function ($websocket, $log) {
     var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/jobadminendpoint');
-    var collection = [];           
-    dataStream.onMessage(function(message){
-        $log.log("onMessage:"+message.data);
-       collection.push(JSON.parse(message.data)); 
+    var collection = [];
+    dataStream.onMessage(function (message) {
+        $log.log("onMessage:" + message.data);
+        collection.push(JSON.parse(message.data));
     });
-    
+
     var methods = {
         collection: collection,
-        get: function(tarObj){
-            $log.log('JobAdmin.get():'+JSON.stringify(tarObj,null,4));
-            dataStream.send(JSON.stringify(tarObj,null,4));//{action:'get'}));            
-        }        
+        get: function (tarObj) {
+            $log.log('JobAdmin.get():' + JSON.stringify(tarObj, null, 4));
+            dataStream.send(JSON.stringify(tarObj, null, 4));//{action:'get'}));            
+        }
     };
-    
+
     return methods;
 });//end JobAdmin factory
+
+
+
+commonModule.factory('ExecShell', function ($websocket, $log) {
+    var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/execshells');
+    var collection = [];
+    dataStream.onMessage(function (message) {
+        $log.log("onMessage:" + message.data);
+        collection.push(JSON.parse(message.data));
+    });
+
+    var methods = {
+        collection: collection,
+        get: function (tarObj) {
+            $log.log('ExecShell.get():' + JSON.stringify(tarObj, null, 4));
+            dataStream.send(JSON.stringify(tarObj, null, 4));//{action:'get'}));            
+        }
+    };
+
+    return methods;
+});//end ExecShell factory
 
 
 /*-------Talbe: Sample Result: Study Filter: Taxon's id & Study's Wildcard---------*/

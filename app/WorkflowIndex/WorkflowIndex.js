@@ -4,6 +4,5 @@
  * and open the template in the editor.
  */
 angular.module('workflowapp.WorkflowIndex',['XYWorkbench.Common']);
-//angular.module('ngWebSocket',['XYWorkbench.Common']);
 
 
