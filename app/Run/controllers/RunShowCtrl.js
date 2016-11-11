@@ -42,9 +42,7 @@ entityRunModule.controller('RunShowCtrl',
                 }
             });//judge if there is a record in Mysql related to run_accession
             $scope.tarObj = {
-                userid: "tester",
-                program: "ls",
-                command: "monitor"
+                command: ""
             };
             $scope.allreceived = {};
             //LoadFirstPage();
@@ -69,10 +67,9 @@ entityRunModule.controller('RunShowCtrl',
 
 
             RunShowCtrl.downloadSra = function () {
-                if (RunShowCtrl.flag == null)
+               // if (RunShowCtrl.flag == null)
                     Local.create(RunShowCtrl.Run, function () {
 //                    RunShowCtrl.CallShell = Localshell.get(function (responseObj) {
-//                        $log.log('Sucess after callshell' + responseObj);
 //                        $log.log(responseObj);
 //                    });
                         //$scope.tarObj.program = $scope.cmdstr;
@@ -82,12 +79,5 @@ entityRunModule.controller('RunShowCtrl',
                         $log.log('Success after downloadSra');
                         //$scope.reloadPage();
                     });
-                else {
-                    $log.log("SendCmd");
-                    ExecShell.get($scope.tarObj);
-                    $scope.allreceived = ExecShell.collection;
-                    $log.log('Success after downloadSra');
-                }
-
             };//write records to Mysql and Call Shell to run ./sh
         });
