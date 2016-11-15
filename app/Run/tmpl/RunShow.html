@@ -65,9 +65,15 @@
                         <td>{{runshow.submissionAccession}}</td>
                     </tr>                    
                 </tbody>
-            </table>
+            </table>          
+            <hr />
+            <h3>Progressbar</h3>
+            <uib-progressbar max="max" value="dynamic"><span style="color:whitesmoke; white-space:nowrap;">{{dynamic}}/{{max}}</span></uib-progressbar>
+
+
+
             <hr>
-            <pre>{{ rsc.allreceived |json}}</pre>
+            <pre>{{ dynamic |json}}</pre>
             <pre>{{ rsc.showmessage | json }}</pre>
             <pre>{{ rsc.message | json }}</pre>
 

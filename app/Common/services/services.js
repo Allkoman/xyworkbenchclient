@@ -824,11 +824,19 @@ commonModule.factory('JobAdmin', function ($websocket, $log) {
 commonModule.factory('ExecShell', function ($websocket, $log) {
     var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/execshells');
     var collection = [];
-    dataStream.onMessage(function (message) {
-        $log.log("onMessage:" + message.data);
-        collection.push(JSON.parse(message.data));
-    });
+    var count = 0;
 
+    dataStream.onMessage(function (message) {
+        //$log.log(message.data);
+        var jsObj = JSON.parse(message.data);
+        var jsArr = jsObj.command.slice(62, 65);
+        var jsNum = Number(jsArr);
+        count++;
+        if (count > 12) {
+            collection.push(jsNum);
+        }
+    });
+    
     var methods = {
         collection: collection,
         get: function (tarObj) {

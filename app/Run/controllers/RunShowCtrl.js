@@ -41,28 +41,30 @@ entityRunModule.controller('RunShowCtrl',
                     RunShowCtrl.showmessage = "Found Srafile In Nebulagene Server, Click Download From Nebulagene Server to Save PC,Or Download From Remote Server :" + RunShowCtrl.str3;
                 }
             });//judge if there is a record in Mysql related to run_accession
+
             $scope.tarObj = {
                 str1: str1,
                 str2: str2,
                 str3: str,
                 command: ""
             };
-            RunShowCtrl.allreceived = {};
+            $scope.allreceived = {};
             //LoadFirstPage();
-
-            $scope.reloadPage = function () {
-                $window.location.reload();
-            }//ReloadPage
-
+            $scope.max = 100;
+//            $scope.reloadPage = function () {1
+//                $window.location.reload();
+//            }//ReloadPage
             RunShowCtrl.downloadSra = function () {
-                if (RunShowCtrl.flag == null)
-                    Local.create(RunShowCtrl.Run, function () {
-                        $log.log("SendCmd");
-                        //$scope.reloadPage();
-                        ExecShell.get($scope.tarObj);
-                        RunShowCtrl.allreceived = ExecShell.collection;
-                        $log.log('Success after downloadSra');
-                    });
+                //if (RunShowCtrl.flag == null)
+                Local.create(RunShowCtrl.Run, function () {
+                    $log.log("SendCmd");
+                    //$scope.reloadPage();
+                    ExecShell.get($scope.tarObj);
+                    $scope.allreceived = ExecShell.collection;                  
+                    $scope.dynamic = $scope.allreceived;
+                    $log.log('Success after downloadSra');
+                    $log.log($scope.dynamic);
+                });
             };//write records to Mysql and Call Shell to run ./sh
 
         });
