@@ -115,7 +115,7 @@ commonModule.factory('BackendAddr', function (ISDEBUG) {
     var backend_config_production = {
         backend_host: 'store.test.nebulagene.com',
         backend_name: 'XYGeneStoreServer',
-        backend_port: '18080'
+        backend_port: '8080'
     };
 
     if (ISDEBUG)
