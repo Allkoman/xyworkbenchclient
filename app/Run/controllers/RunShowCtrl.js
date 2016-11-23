@@ -6,6 +6,8 @@ entityRunModule.controller('RunShowCtrl',
         function ($log, runaccession, $routeParams, Local, GetmessageByfilter, $scope, ExecShell, $window) {
             $log.log('into');
             var RunShowCtrl = this;
+            $scope.dynamic = 0;
+            $scope.max = 100;
             RunShowCtrl.Run = {};
             RunShowCtrl.flag = null;
             RunShowCtrl.showmessage;
@@ -59,11 +61,15 @@ entityRunModule.controller('RunShowCtrl',
                 Local.create(RunShowCtrl.Run, function () {
                     $log.log("SendCmd");
                     //$scope.reloadPage();
-                    ExecShell.get($scope.tarObj);
+                    ExecShell.get($scope.tarObj,function(messagein){
+                        $log.log("On Message:"+messagein+" |");
+                        if(messagein)
+                            $scope.dynamic = messagein;
+                    });
                     $scope.allreceived = ExecShell.collection;                  
-                    $scope.dynamic = $scope.allreceived;
-                    $log.log('Success after downloadSra');
-                    $log.log($scope.dynamic);
+                    //$scope.dynamic = $scope.allreceived;
+                    //$log.log('Success after downloadSra');
+                    //$log.log($scope.dynamic);
                 });
             };//write records to Mysql and Call Shell to run ./sh
 

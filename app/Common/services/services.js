@@ -825,6 +825,7 @@ commonModule.factory('ExecShell', function ($websocket, $log) {
     var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/execshells');
     var collection = [];
     var count = 0;
+    var userdefinedmessagefunc;
 
     dataStream.onMessage(function (message) {
         //$log.log(message.data);
@@ -835,12 +836,15 @@ commonModule.factory('ExecShell', function ($websocket, $log) {
         if (count > 12) {
             collection.push(jsNum);
         }
+        if(userdefinedmessagefunc)
+            userdefinedmessagefunc(jsNum);
     });
     
     var methods = {
         collection: collection,
-        get: function (tarObj) {
+        get: function (tarObj,onmessagefunc) {
             $log.log('ExecShell.get():' + JSON.stringify(tarObj, null, 4));
+            userdefinedmessagefunc = onmessagefunc;
             dataStream.send(JSON.stringify(tarObj, null, 4));//{action:'get'}));            
         }
     };
