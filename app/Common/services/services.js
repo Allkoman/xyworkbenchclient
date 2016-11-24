@@ -830,7 +830,7 @@ commonModule.factory('ExecShell', function ($websocket, $log) {
     dataStream.onMessage(function (message) {
         //$log.log(message.data);
         var jsObj = JSON.parse(message.data);
-        var jsArr = jsObj.command.slice(62, 65);
+        var jsArr = jsObj.returned.slice(62, 65);
         var jsNum = Number(jsArr);
         count++;
         if (count > 12) {
