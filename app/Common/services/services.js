@@ -800,6 +800,8 @@ commonModule.factory('Dynamics', function ($resource, WFBackendAddr) {
     });
 });
 
+
+
 commonModule.factory('JobAdmin', function ($websocket, $log) {
     var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/jobadminendpoint');
     var collection = [];
@@ -851,6 +853,26 @@ commonModule.factory('ExecShell', function ($websocket, $log) {
 
     return methods;
 });//end ExecShell factory
+
+
+commonModule.factory('ExecShellKill', function ($websocket, $log) {
+    var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/execshellkill');
+    var collection = [];
+    dataStream.onMessage(function (message) {
+        $log.log("onMessage:" + message.data);
+        collection.push(JSON.parse(message.data));
+    });
+
+    var methods = {
+        collection: collection,
+        get: function (tarObj) {
+            $log.log('ExecShellKill.get():' + JSON.stringify(tarObj, null, 4));
+            dataStream.send(JSON.stringify(tarObj, null, 4));//{action:'get'}));            
+        }
+    };
+
+    return methods;
+});//end ExecShellKill factory
 
 
 /*-------Talbe: Sample Result: Study Filter: Taxon's id & Study's Wildcard---------*/

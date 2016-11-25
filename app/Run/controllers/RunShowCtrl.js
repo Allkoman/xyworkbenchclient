@@ -3,7 +3,7 @@
 
 var entityRunModule = angular.module('XYWorkbench.Run');
 entityRunModule.controller('RunShowCtrl',
-        function ($log, runaccession, $routeParams, Local, GetmessageByfilter, $scope, ExecShell, $window) {
+        function ($log, runaccession, $routeParams, Local, GetmessageByfilter, $scope, ExecShell,ExecShellKill, $window) {
             $log.log('into');
             var RunShowCtrl = this;
             $scope.dynamic = 0;
@@ -49,7 +49,7 @@ entityRunModule.controller('RunShowCtrl',
                 str2: str2,
                 str3: str,
                 returned: "",
-                command: ""              
+                command: " "
             };
             $scope.allreceived = {};
             //LoadFirstPage();
@@ -62,16 +62,24 @@ entityRunModule.controller('RunShowCtrl',
                 Local.create(RunShowCtrl.Run, function () {
                     $log.log("SendCmd");
                     //$scope.reloadPage();
-                    ExecShell.get($scope.tarObj,function(messagein){
-                        $log.log("On Message:"+messagein+" |");
-                        if(messagein)
-                            $scope.dynamic = messagein;
+                    ExecShell.get($scope.tarObj, function (messagein) {
+                        $log.log("On Message:" + messagein + " |");
+                        if (messagein)
+                        {
+                            if (messagein <= 100)
+                                $scope.dynamic = messagein;
+                        }
                     });
-                    $scope.allreceived = ExecShell.collection;                  
+                    $scope.allreceived = ExecShell.collection;
                     //$scope.dynamic = $scope.allreceived;
                     //$log.log('Success after downloadSra');
                     //$log.log($scope.dynamic);
                 });
             };//write records to Mysql and Call Shell to run ./sh
 
+
+            RunShowCtrl.StopSra = function () {
+                $scope.tarObj.command = "kill" ;
+                    ExecShellKill.get($scope.tarObj) 
+            }
         });
