@@ -824,7 +824,7 @@ commonModule.factory('JobAdmin', function ($websocket, $log) {
 
 
 commonModule.factory('ExecShell', function ($websocket, $log) {
-    var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/execshells');
+    var dataStream = $websocket('ws://localhost:8080/XYHRDAServer/execshells');
     var collection = [];
     var count = 0;
     var userdefinedmessagefunc;
@@ -832,19 +832,38 @@ commonModule.factory('ExecShell', function ($websocket, $log) {
     dataStream.onMessage(function (message) {
         //$log.log(message.data);
         var jsObj = JSON.parse(message.data);
-        var jsArr = jsObj.returned.slice(62, 65);
-        var jsNum = Number(jsArr);
-        count++;
-        if (count > 12) {
-            collection.push(jsNum);
+        var jsArray = new Array();
+        jsArray = jsObj.returned.split(" ");
+        $log.log("Obj :" + jsObj);
+        for (var i = 0; i < jsArray.length; i++) {
+            if (jsArray[i].indexOf("%") > 0) {
+                var jsNum = Number(jsArray[i].slice(0, jsArray[i].length - 1));
+                var jsFlag1 = jsArray[i + 2];
+                var jsFlag2 = jsArray[i + 3];
+                var jsTime;
+                if (jsFlag1.indexOf("s") > 0) {
+                    jsTime = jsFlag1;
+                }
+                if (jsFlag2.indexOf("s") > 0) {
+                    jsTime = jsFlag2;
+                }
+                $log.log("jsArry :" + jsArray[i]);
+                $log.log("num :" + jsNum);
+                $log.log("Flag1 :" + jsFlag1);
+                $log.log("Flag2 :" + jsFlag2);
+                $log.log("Time :" + jsTime);
+                collection.push(jsNum);
+            }
         }
-        if(userdefinedmessagefunc)
-            userdefinedmessagefunc(jsNum);
+
+
+        if (userdefinedmessagefunc)
+            userdefinedmessagefunc(jsNum, jsTime);
     });
-    
+
     var methods = {
         collection: collection,
-        get: function (tarObj,onmessagefunc) {
+        get: function (tarObj, onmessagefunc) {
             $log.log('ExecShell.get():' + JSON.stringify(tarObj, null, 4));
             userdefinedmessagefunc = onmessagefunc;
             dataStream.send(JSON.stringify(tarObj, null, 4));//{action:'get'}));            
@@ -856,7 +875,7 @@ commonModule.factory('ExecShell', function ($websocket, $log) {
 
 
 commonModule.factory('ExecShellKill', function ($websocket, $log) {
-    var dataStream = $websocket('ws://localhost:8080/XYWorkflowServer/execshellkill');
+    var dataStream = $websocket('ws://localhost:8080/XYHRDAServer/execshellkill');
     var collection = [];
     dataStream.onMessage(function (message) {
         $log.log("onMessage:" + message.data);

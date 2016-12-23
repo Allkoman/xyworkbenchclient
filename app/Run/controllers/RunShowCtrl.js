@@ -3,7 +3,7 @@
 
 var entityRunModule = angular.module('XYWorkbench.Run');
 entityRunModule.controller('RunShowCtrl',
-        function ($log, runaccession, $routeParams, Local, GetmessageByfilter, $scope, ExecShell,ExecShellKill, $window) {
+        function ($log, runaccession, $routeParams, Local, GetmessageByfilter, $scope, ExecShell, ExecShellKill, $window) {
             $log.log('into');
             var RunShowCtrl = this;
             $scope.dynamic = 0;
@@ -62,12 +62,14 @@ entityRunModule.controller('RunShowCtrl',
                 Local.create(RunShowCtrl.Run, function () {
                     $log.log("SendCmd");
                     //$scope.reloadPage();
-                    ExecShell.get($scope.tarObj, function (messagein) {
-                        $log.log("On Message:" + messagein + " |");
-                        if (messagein)
+                    ExecShell.get($scope.tarObj, function (messagein, messagetime) {
+                        //$log.log("On Message:" + messagein + " |");
+                        //$log.log("On Message:" + messagetime + " |");
+                        if (messagein, messagetime)
                         {
-                            if (messagein <= 100)
-                                $scope.dynamic = messagein;
+                            $scope.dynamic = messagein;
+                            $log.log("dynamic :" + $scope.dynamic);
+                            $scope.time = messagetime;
                         }
                     });
                     $scope.allreceived = ExecShell.collection;
@@ -79,7 +81,7 @@ entityRunModule.controller('RunShowCtrl',
 
 
             RunShowCtrl.StopSra = function () {
-                $scope.tarObj.command = "kill" ;
-                    ExecShellKill.get($scope.tarObj) 
+                $scope.tarObj.command = "kill";
+                ExecShellKill.get($scope.tarObj)
             }
         });
