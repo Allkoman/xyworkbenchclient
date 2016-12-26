@@ -838,20 +838,20 @@ commonModule.factory('ExecShell', function ($websocket, $log) {
         for (var i = 0; i < jsArray.length; i++) {
             if (jsArray[i].indexOf("%") > 0) {
                 var jsNum = Number(jsArray[i].slice(0, jsArray[i].length - 1));
-                var jsFlag1 = jsArray[i + 2];
-                var jsFlag2 = jsArray[i + 3];
+                var jsFlag1 = jsArray[i + 1];
+                var jsFlag2 = jsArray[i + 2];
+                var jsFlag3 = jsArray[i + 3];
                 var jsTime;
-                if (jsFlag1.indexOf("s") > 0) {
-                    jsTime = jsFlag1;
-                }
                 if (jsFlag2.indexOf("s") > 0) {
                     jsTime = jsFlag2;
                 }
-                $log.log("jsArry :" + jsArray[i]);
-                $log.log("num :" + jsNum);
-                $log.log("Flag1 :" + jsFlag1);
-                $log.log("Flag2 :" + jsFlag2);
-                $log.log("Time :" + jsTime);
+                if (jsFlag3.indexOf("s") > 0) {
+                    jsTime = jsFlag3;
+                }
+
+
+//                $log.log("num :" + jsNum);
+//                $log.log("Time :" + jsTime);
                 collection.push(jsNum);
             }
         }

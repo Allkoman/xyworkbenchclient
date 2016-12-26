@@ -70,6 +70,11 @@ entityRunModule.controller('RunShowCtrl',
                             $scope.dynamic = messagein;
                             $log.log("dynamic :" + $scope.dynamic);
                             $scope.time = messagetime;
+                            if (messagein==99 && messagetime=='0s'){
+                                $scope.dynamic = 100;
+                                $scope.time = "Download Sucessful";
+                            }
+
                         }
                     });
                     $scope.allreceived = ExecShell.collection;
