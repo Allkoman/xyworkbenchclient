@@ -941,3 +941,16 @@ commonModule.factory('GetmessageByfilter', function ($resource, BackendAddr) {
     });
 });
 
+
+
+commonModule.factory('GetClusterFileDataByPageWS', function ($resource, WFBackendAddr) {
+    return $resource(WFBackendAddr + '/objfile/bypage/:pagenum/:pagesize', {}, {
+        list: {method: 'GET', isArray: true}
+    });
+});
+
+commonModule.factory('ClusterFileCountWS', function ($resource, WFBackendAddr) {
+    return $resource(WFBackendAddr + '/objfile/count', {}, {
+        count: {method: 'GET'}
+    });
+});

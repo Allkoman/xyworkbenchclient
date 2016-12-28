@@ -1,0 +1,111 @@
+<div ng-controller="ClusterFileListCtrl as rlc">
+    <div class="row">
+        <div class="col-lg-12 page-header">
+            <h2>
+                ClusterFiles
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <!--div class="col-lg-4">
+            <span class="label label-primary">Search</span>
+        </div-->
+        <div class="col-lg-12">            
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Oproles...">
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <table id="rlc_tbl" class="table table-striped">
+                <tfoot>
+                    <tr>
+                        <td colspan="6" >
+                <uib-pagination total-items="rlc.count" ng-model="rlc.currentPage" 
+                                ng-change="rlc.pageChanged()" boundary-links="true"
+                                boundary-link-numbers="true" max-size="5" items-per-page="rlc.pageSize"
+                                >                                   
+                </uib-pagination>
+                </td>
+                <td colspan="1" style="text-align:center;vertical-align:middle;">
+
+                    Total :<span class="badge">{{rlc.count}}</span>
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active">
+                        </li>
+                    </ul>
+                    <span class="label label-primary"></span>
+                </td> 
+                </tr>
+                </tfoot>   
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Filename</th>
+                        <th>Type</th>
+                        <th>Extension Type</th>
+                        <th>Path</th> 
+                        <th>Node Name</th>
+                        <th>Ip</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="clusterfile_el in rlc.curPageItems| filter:searchText">
+                        <td>
+                            {{clusterfile_el.idobjfiles}}
+                        </td>
+                        <td>
+                            {{clusterfile_el.ofilename}}                   
+                        </td>
+                        <td>
+                            {{clusterfile_el.objfiletyperef.ofiletypedescription}}
+                        </td>
+                        <td>
+                            {{clusterfile_el.ofilexttype}}
+                        </td>
+                        <td>
+                            {{clusterfile_el.objfilepath}}
+                        </td>
+                        <td>
+                            {{clusterfile_el.serverNodesidServerNodes.snodename}}
+                        </td>
+                        <td>
+                            {{clusterfile_el.serverNodesidServerNodes.snodeip1}}
+                        </td>
+
+                    </tr>
+                    <tr ng-hide="rlc.curPageItems.length">
+                        <td colspan="7">
+                            <p class="text-center">No Search Result Found</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="rlc.is_debug">
+            <h3>
+                Debug
+            </h3>
+            <hr>
+            <!--PL: TOFIX: Problem, it doesn't work.-->
+            <accordion>
+                <accordion-group is-open="status.open">
+                    <accordion-heading>
+                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+                    <pre>{{ rlc.count|json}}</pre>
+                    <pre>{{ rlc.curPageItems|json}}</pre>
+                </accordion-group>
+            </accordion>
+        </div>
+
+    </div>
+</div>

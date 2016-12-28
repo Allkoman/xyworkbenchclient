@@ -20,6 +20,7 @@ angular.module('XYWorkbench', [
     'XYWorkbench.Run',
     'XYWorkbench.Experiment',
     'XYWorkbench.Sample',
+    'XYWorkbench.ClusterFile',
     'myApp.view1',
     'myApp.view2',
     'ngWebSocket',
@@ -91,6 +92,9 @@ angular.module('XYWorkbench', [
                         }).
                         when('/SampleUpdate/:sampleId', {
                             templateUrl: 'Sample/tmpl/SampleUpdate.html'
+                        }).
+                        when('/ClusterFile', {
+                            templateUrl: 'ClusterFile/tmpl/ClusterFileList.html'
                         })
                         .otherwise({redirectTo: '/Home'});
             }]);
