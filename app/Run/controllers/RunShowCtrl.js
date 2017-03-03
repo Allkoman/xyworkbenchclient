@@ -23,7 +23,7 @@ entityRunModule.controller('RunShowCtrl',
             var str2 = str.substring(0, 6);
             RunShowCtrl.str3 = " ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/" + str1 + "/" + str2 + "/" + RunShowCtrl.tar_runAccession + "/" + RunShowCtrl.tar_runAccession + ".sra";
 
-            RunShowCtrl.Run.localsrapath = "/home/zhangchao/nicb/public/sra";
+            RunShowCtrl.Run.localsrapath = "/home/test/nicb/public/sra";
             $log.log('Loaded Controller: RunShow id:' + RunShowCtrl.tar_runAccession);
 
             RunShowCtrl.showrun = runaccession.findAll({runAccession: RunShowCtrl.tar_runAccession}, function () {
