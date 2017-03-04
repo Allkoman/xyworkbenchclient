@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 page-header">
             <h2>
-                ClusterFiles
+                存储管理
             </h2>
         </div>
     </div>
@@ -12,7 +12,7 @@
         </div-->
         <div class="col-lg-12">            
             <div class="form-group">
-                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Oproles...">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="在这里输入进行检索...">
                 <hr>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 </td>
                 <td colspan="1" style="text-align:center;vertical-align:middle;">
 
-                    Total :<span class="badge">{{rlc.count}}</span>
+                    共计 :<span class="badge">{{rlc.count}}</span>
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active">
                         </li>
@@ -46,12 +46,12 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Filename</th>
-                        <th>Type</th>
-                        <th>Extension Type</th>
-                        <th>Path</th> 
-                        <th>Node Name</th>
-                        <th>Ip</th>
+                        <th>文件名</th>
+                        <th>类型</th>
+                        <th>文件类型</th>
+                        <th>路径</th> 
+                        <th>节点名</th>
+                        <th>IP地址</th>
                     </tr>
                 </thead>
 
@@ -89,13 +89,12 @@
             </table>
         </div>
     </div>
-    <div class="row">
+   <!--  <div class="row">
         <div ng-if="rlc.is_debug">
             <h3>
                 Debug
             </h3>
             <hr>
-            <!--PL: TOFIX: Problem, it doesn't work.-->
             <accordion>
                 <accordion-group is-open="status.open">
                     <accordion-heading>
@@ -105,7 +104,7 @@
                     <pre>{{ rlc.curPageItems|json}}</pre>
                 </accordion-group>
             </accordion>
-        </div>
+        </div> -->
 
     </div>
 </div>

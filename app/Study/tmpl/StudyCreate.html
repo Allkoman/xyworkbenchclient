@@ -1,8 +1,8 @@
 <div ng-controller="StudyCreateCtrl as scc">
-    <h1>Create Study</h1>
+    <h1>创建 研究</h1>
     <form id="StudyCreateForm" name="StudyForm" class="form-horizontal" role="form"
           ng-submit="scc.createStudy()">
-        <legend class="sm-col-12">Study Basic Information</legend>
+        <legend class="sm-col-12">研究 基本 信息</legend>
 
         <div class="form-group">
             <label id="st_id" for="studyId" class="col-sm-4 control-label">ID</label>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="form-group">
-            <label id="st_accession" for="studyAccession" class="col-sm-4 control-label">Accession</label>
+            <label id="st_accession" for="studyAccession" class="col-sm-4 control-label">增加编号</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="studyAccession" id="staccession" placeholder=""
@@ -23,7 +23,7 @@
         </div>
 
         <div class="form-group">
-            <label id="st_title" for="studyTitle" class="col-sm-4 control-label">Title</label>
+            <label id="st_title" for="studyTitle" class="col-sm-4 control-label">标题</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="studyTitle" id="sttitle" placeholder=""
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label id="st_type" for="studyType" class="col-sm-4 control-label">Type</label>
+            <label id="st_type" for="studyType" class="col-sm-4 control-label">类型</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="studyType" id="sttype" placeholder=""
@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            <label id="st_Abstract" for="studyAbstract" class="col-sm-4 control-label">Abstract</label>
+            <label id="st_Abstract" for="studyAbstract" class="col-sm-4 control-label">摘要</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="studyAbstract" id="stAbstract" placeholder=""
@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            <label id="st_description" for="studyDescription" class="col-sm-4 control-label">Description</label>
+            <label id="st_description" for="studyDescription" class="col-sm-4 control-label">描述</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="studyDescription" id="stdescription" placeholder=""
@@ -59,24 +59,24 @@
         </div>
 
         <div class="form-group">
-            <label id="st_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">Submission</label>
+            <label id="st_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">提交</label>
 
             <div class="col-sm-8">
                 <input disabled type="text" class="form-control" name="submissionAccession" id="stsubmissionaccession" placeholder=""
                        ng-model="scc.StudyRefsubmissionAccession">
-                <button type="button" class="btn btn-default pull-right" ng-click="scc.openSubmission('lg')">Choose Submission</button> 
+                <button type="button" class="btn btn-default pull-right" ng-click="scc.openSubmission('lg')">选择 提交</button> 
             </div>
 
         </div> 
 
-        <pre>{{ scc.Study | json }}</pre>
-        <pre>{{ scc.StudyRefsubmissionAccession | json}}</pre>
+<!--         <pre>{{ scc.Study | json }}</pre>
+        <pre>{{ scc.StudyRefsubmissionAccession | json}}</pre> -->
 
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8 text-right">
-                <a ng-href="#/StudyList" id="btn_cancel" class="btn btn-warning">Cancel</a>
+                <a ng-href="#/StudyList" id="btn_cancel" class="btn btn-warning">取消</a>
 
-                <button type="submit" class="btn btn-success" id="btn_create">Create Study</button>
+                <button type="submit" class="btn btn-success" id="btn_create">创建 研究</button>
             </div>
         </div>
 

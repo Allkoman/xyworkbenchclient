@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 page-header">
             <h2>
-                Studies
+                研究
             </h2>
         </div>
     </div>
@@ -12,7 +12,7 @@
         </div-->
         <div class="col-lg-12">            
             <!-- remote url:http://localhost:8080/XYHRDAServer/webresources/words/bywildcard/diabe -->
-            <div angucomplete-alt id="ex7" placeholder="Search Studies via title, description and so on"                  
+            <div angucomplete-alt id="ex7" placeholder="通过研究的标题、描述等进行检索..."                  
                  pause="100"  
                  remote-url="{{sstudyCtrl.BackendAddr}}/words/bywildcard/"
                  search-fields="wordscol" title-field="wordscol" description-field="idwords" minlength="1" 
@@ -28,7 +28,7 @@
             <div class="panel panel-default ">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        Filtered Results <span class="badge pull-right">{{sstudyCtrl.count}}</span>
+                        检索条件 <span class="badge pull-right">{{sstudyCtrl.count}}</span>
 
                         <a data-toggle="collapse" data-parent="#accordion"
                            href="#collapseOne">
@@ -62,7 +62,7 @@
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="sstudyCtrl.isOrgOpen">
                             <uib-accordion-heading>
-                                Organism 
+                                生物 
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': sstudyCtrl.isOrgOpen, 'glyphicon-chevron-right': !sstudyCtrl.isOrgOpen}"></i>
                                 <span class="badge pull-right">{{sstudyCtrl.taxonsCount}}</span>
                             </uib-accordion-heading>
@@ -72,7 +72,7 @@
                                     <input type="checkbox" checklist-model="sstudyCtrl.taxonsChose"
                                            checklist-value="item" checklist-comparator=".taxonid">{{item.taxonname}}
                                 </li>  
-                                <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openTaxonChooser()">See All</button> </li>
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openTaxonChooser()">查看全部</button> </li>
                             </ul>                           
                         </div>
                     </uib-accordion>
@@ -80,7 +80,7 @@
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="sstudyCtrl.isTyOpen">
                             <uib-accordion-heading>
-                                Type 
+                                类型 
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': sstudyCtrl.isTyOpen, 'glyphicon-chevron-right': !sstudyCtrl.isTyOpen}"></i>
                                 <span class="badge pull-right">{{sstudyCtrl.typeCount}}</span>
                             </uib-accordion-heading>
@@ -90,7 +90,7 @@
                                     <input type="checkbox" checklist-model="sstudyCtrl.typeChose"
                                            checklist-value="item" checklist-comparator=".typename">{{item.typename}}
                                 </li>  
-                                <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openTypeChooser()">See All</button> </li>
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openTypeChooser()">查看全部</button> </li>
                             </ul>                           
                         </div>
                     </uib-accordion>
@@ -98,7 +98,7 @@
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="sstudyCtrl.isSbOpen">
                             <uib-accordion-heading>
-                                Submitter 
+                                提交者 
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': sstudyCtrl.isSbOpen, 'glyphicon-chevron-right': !sstudyCtrl.isSbOpen}"></i>
                                 <span class="badge pull-right">{{sstudyCtrl.submitterCount}}</span>
                             </uib-accordion-heading>
@@ -108,7 +108,7 @@
                                     <input type="checkbox" checklist-model="sstudyCtrl.submitterChose"
                                            checklist-value="item" checklist-comparator=".submittername">{{item.submittername}}
                                 </li>  
-                                <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openSubmitterChooser()">See All</button> </li>
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openSubmitterChooser()">查看全部</button> </li>
                             </ul>                           
                         </div>
                     </uib-accordion>
@@ -116,7 +116,7 @@
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="sstudyCtrl.isInOpen">
                             <uib-accordion-heading>
-                                Instrument 
+                                仪器 
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': sstudyCtrl.isInOpen, 'glyphicon-chevron-right': !sstudyCtrl.isInOpen}"></i>
                                 <span class="badge pull-right">{{sstudyCtrl.instrumentCount}}</span>
                             </uib-accordion-heading>
@@ -126,21 +126,21 @@
                                     <input type="checkbox" checklist-model="sstudyCtrl.instrumentChose"
                                            checklist-value="item" checklist-comparator=".instrumentname">{{item.instrumentname}}
                                 </li>  
-                                <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openInstrumentChooser()">See All</button> </li>
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="sstudyCtrl.openInstrumentChooser()">查看全部</button> </li>
                             </ul>                           
                         </div>
                     </uib-accordion>
 
                     <div>
                         <center>
-                            <button class="btn btn-default" ng-click="sstudyCtrl.onFilter()">Filter</button>
+                            <button class="btn btn-default" ng-click="sstudyCtrl.onFilter()">检索</button>
                         </center>
                     </div>
-                    <div ng-if="sstudyCtrl.is_debug">
+<!--                     <div ng-if="sstudyCtrl.is_debug">
                         <pre>{{ sstudyCtrl.taxonChoseIds | json}}</pre>
                         <pre>{{ sstudyCtrl.taxonsChose | json}}</pre>
                         <pre>{{ sstudyCtrl.typeLeftList | json}}</pre>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>        
@@ -158,7 +158,7 @@
                 </td>
                 <td colspan="1" style="text-align:center;vertical-align:middle;">
 
-                    Total :<span class="badge">{{sstudyCtrl.count}}</span>
+                    共计 :<span class="badge">{{sstudyCtrl.count}}</span>
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active">
                         </li>
@@ -170,13 +170,13 @@
 
                 <thead>
                     <tr>
-                        <th>Accession</th>
-                        <th>Title</th>
-                        <th>Organism</th>
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>Submitter</th>
-                        <th>Submission</th>
+                        <th>增加编号</th>
+                        <th>标题</th>
+                        <th>生物</th>
+                        <th>类型</th>
+                        <th>描述</th>
+                        <th>提交者</th>
+                        <th>提交</th>
                     </tr>
                 </thead>
 
@@ -210,7 +210,7 @@
                     </tr>
                     <tr ng-hide="sstudyCtrl.curPageItems.length">
                         <td colspan="6">
-                            <p class="text-center">No Search Result Found</p>
+                            <p class="text-center">没有检索结果</p>
                         </td>
                     </tr>
                 </tbody>
@@ -218,25 +218,14 @@
             <!-- <h3>Total: {{sstudyCtrl.count}}</h3> -->
         </div>
     </div>
-    <div class="row">
+<!--     <div class="row">
         <div ng-if="sstudyCtrl.is_debug">
-            <!--
-            <div class="form-group">
-                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Orders...">
-                <hr>
-            </div>
-            <pre>{{ sstudyCtrl.inputSearchTxt | json }}</pre>
-            <div class="form-group">
-                Input:<label ng-model="sstudyCtrl.inputSearchTxt"></label><input class="form-control" type="text" ng-model="sstudyCtrl.inputSearchTxt">
-                <hr>
-            </div>
-            -->
+
 
             <h3>
                 Debug
             </h3>
             <hr>
-            <!--PL: TOFIX: Problem, it doesn't work.-->
             <accordion>
                 <accordion-group is-open="status.open">
                     <accordion-heading>
@@ -252,4 +241,4 @@
         </div>
 
     </div>
-</div>
+ --></div>

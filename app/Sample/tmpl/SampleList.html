@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-lg-12 page-header">
             <h2>
-                Samples
-                <a ng-href="#/SampleCreate" class="btn btn-primary pull-right" id="btn_sample_create">Add Samples</a>
+                样例
+                <a ng-href="#/SampleCreate" class="btn btn-primary pull-right" id="btn_sample_create">添加样例</a>
             </h2>
         </div>
     </div>
@@ -13,7 +13,7 @@
         </div-->
         <div class="col-lg-12">            
             <div class="form-group">
-                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Oproles...">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="在这里输入进行检索...">
                 <hr>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 </td>
                 <td colspan="1" style="text-align:center;vertical-align:middle;">
 
-                    Total :<span class="badge">{{splc.count}}</span>
+                    共计 :<span class="badge">{{splc.count}}</span>
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active">
                         </li>
@@ -47,14 +47,14 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Accession</th>
-                        <th>Center</th>
-                        <th>Scientific Name</th>
-                        <th>Sample Attribute</th>
-                        <th>Sample Alias</th>
-                        <th>Updated</th>
-                        <th>Submission</th>
-                        <th>Operations</th>
+                        <th>增加编号</th>
+                        <th>中心</th>
+                        <th>科学命名</th>
+                        <th>样例特征</th>
+                        <th>样例别名</th>
+                        <th>更新</th>
+                        <th>提交</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
 
@@ -86,28 +86,28 @@
                         </td>
                         <td>
                             <div class="row">
-                                <a ng-href="#/SampleUpdate/{{sample_el.sampleId}}" class="btn btn-success " id="btn_sample_update">Edit</a>		
-                                <button type="button" id="delSample" class="btn btn-danger " ng-click="splc.delSample(sample_el.sampleId, $index)">Del</button>
+                                <a ng-href="#/SampleUpdate/{{sample_el.sampleId}}" class="btn btn-success " id="btn_sample_update">编辑</a>		
+                                <button type="button" id="delSample" class="btn btn-danger " ng-click="splc.delSample(sample_el.sampleId, $index)">删除</button>
                                 <span></span>
                             </div>
                         </td>
                     </tr>
                     <tr ng-hide="splc.curPageItems.length">
                         <td colspan="7">
-                            <p class="text-center">No Search Result Found</p>
+                            <p class="text-center">没有检索结果</p>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="row">
+<!--     <div class="row">
         <div ng-if="splc.is_debug">
             <h3>
                 Debug
             </h3>
             <hr>
-            <!--PL: TOFIX: Problem, it doesn't work.-->
+
             <accordion>
                 <accordion-group is-open="status.open">
                     <accordion-heading>
@@ -119,5 +119,5 @@
             </accordion>
         </div>
 
-    </div>
+    </div> -->
 </div>

@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-lg-12 page-header">
             <h2>
-                Studies
-                <a ng-href="#/StudyCreate" class="btn btn-primary pull-right" id="btn_study_create">Add Studies</a>
+                研究
+                <a ng-href="#/StudyCreate" class="btn btn-primary pull-right" id="btn_study_create">添加研究</a>
             </h2>
         </div>
     </div>
@@ -13,7 +13,7 @@
         </div-->
         <div class="col-lg-12">            
             <div class="form-group">
-                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Oproles...">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="在这里输入进行检索...">
                 <hr>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 </td>
                 <td colspan="1" style="text-align:center;vertical-align:middle;">
 
-                    Total :<span class="badge">{{slc.count}}</span>
+                    共计 :<span class="badge">{{slc.count}}</span>
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active">
                         </li>
@@ -47,13 +47,13 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Accession</th>
-                        <th>Title</th>
-                        <th>Type</th>
-                        <th>Abstract</th>
-                        <th>Description</th>
-                        <th>Submission</th>
-                        <th>Operations</th>                      
+                        <th>增加编号</th>
+                        <th>标题</th>
+                        <th>类型</th>
+                        <th>摘要</th>
+                        <th>描述</th>
+                        <th>提交</th>
+                        <th>操作</th>                      
                     </tr>
                 </thead>
 
@@ -82,15 +82,15 @@
                         </td>
                         <td>
                             <div class="row">
-                                <a ng-href="#/StudyUpdate/{{strl_el.studyId}}" class="btn btn-success " id="btn_study_update">Edit</a>		
-                                <button type="button" id="delStudy" class="btn btn-danger " ng-click="slc.delStudy(strl_el.studyId, $index)">Del</button>
+                                <a ng-href="#/StudyUpdate/{{strl_el.studyId}}" class="btn btn-success " id="btn_study_update">更新</a>		
+                                <button type="button" id="delStudy" class="btn btn-danger " ng-click="slc.delStudy(strl_el.studyId, $index)">删除</button>
                                 <span></span>
                             </div>
                         </td>
                     </tr>
                     <tr ng-hide="slc.curPageItems.length">
                         <td colspan="7">
-                            <p class="text-center">No Search Result Found</p>
+                            <p class="text-center">没有检索结果</p>
                         </td>
                     </tr>
                 </tbody>
@@ -98,25 +98,13 @@
             <!-- <h3>Total: {{slc.count}}</h3> -->
         </div>
     </div>
-    <div class="row">
+    
+<!--     <div class="row">
         <div ng-if="slc.is_debug">
-            <!--
-            <div class="form-group">
-                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Orders...">
-                <hr>
-            </div>
-            <pre>{{ slc.inputSearchTxt | json }}</pre>
-            <div class="form-group">
-                Input:<label ng-model="slc.inputSearchTxt"></label><input class="form-control" type="text" ng-model="slc.inputSearchTxt">
-                <hr>
-            </div>
-            -->
-
             <h3>
                 Debug
             </h3>
             <hr>
-            <!--PL: TOFIX: Problem, it doesn't work.-->
             <accordion>
                 <accordion-group is-open="status.open">
                     <accordion-heading>
@@ -127,7 +115,7 @@
                     <pre>{{ slc.curPageItems|json}}</pre>
                 </accordion-group>
             </accordion>
-        </div>
+        </div> -->
 
     </div>
 </div>

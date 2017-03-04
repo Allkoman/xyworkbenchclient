@@ -1,8 +1,8 @@
 <div ng-controller="ExperimentCreateCtrl as ecc">
-    <h1>Create Experiment</h1>
+    <h1>创建 实验</h1>
     <form id="ExperimentCreateForm" name="ExperimentForm" class="form-horizontal" role="form"
           ng-submit="ecc.createExperiment()">
-        <legend class="sm-col-12">Experiment Basic Information</legend>
+        <legend class="sm-col-12">实验基本信息</legend>
 
         <div class="form-group">
             <label id="ep_id" for="experimentId" class="col-sm-4 control-label">ID</label>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="form-group">
-            <label id="ep_accession" for="experimentAccession" class="col-sm-4 control-label">Accession</label>
+            <label id="ep_accession" for="experimentAccession" class="col-sm-4 control-label">增加编号</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="experimentAccession" id="epaccession" placeholder=""
@@ -23,7 +23,7 @@
         </div>
 
         <div class="form-group">
-            <label id="ep_title" for="title" class="col-sm-4 control-label">Title</label>
+            <label id="ep_title" for="title" class="col-sm-4 control-label">标题</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="title" id="eptitle" placeholder=""
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label id="dg_Description" for="designDescription" class="col-sm-4 control-label">Description</label>
+            <label id="dg_Description" for="designDescription" class="col-sm-4 control-label">描述</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="designDescription" id="dgDescription" placeholder=""
@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            <label id="is_Model" for="instrumentModel" class="col-sm-4 control-label">Instrument</label>
+            <label id="is_Model" for="instrumentModel" class="col-sm-4 control-label">设备</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="instrumentModel" id="isModel" placeholder=""
@@ -50,43 +50,43 @@
         </div>
 
         <div class="form-group">
-            <label id="sp_accession" for="sampleAccession" class="col-sm-4 control-label">Sample</label>
+            <label id="sp_accession" for="sampleAccession" class="col-sm-4 control-label">样例</label>
 
             <div class="col-sm-8">
                 <input disabled type="text" class="form-control" name="sampleAccession" id="spaccession" placeholder=""
                        ng-model="ecc.ExperimentRefsampleAccession">
-                <button type="button" class="btn btn-default pull-right" ng-click="ecc.openSample('lg')">Choose Sample</button>
+                <button type="button" class="btn btn-default pull-right" ng-click="ecc.openSample('lg')">选择 样例</button>
             </div>
         </div>
 
         <div class="form-group">
-            <label id="st_accession" for="studyAccession" class="col-sm-4 control-label">Study</label>
+            <label id="st_accession" for="studyAccession" class="col-sm-4 control-label">研究</label>
 
             <div class="col-sm-8">
                 <input disabled type="text" class="form-control" name="studyAccession" id="staccession" placeholder=""
                        ng-model="ecc.ExperimentRefstudyAccession">
-                <button type="button" class="btn btn-default pull-right" ng-click="ecc.openStudy('lg')">Choose Study</button>
+                <button type="button" class="btn btn-default pull-right" ng-click="ecc.openStudy('lg')">选择 研究</button>
             </div>
         </div>
 
         <div class="form-group">
-            <label id="ep_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">Submission</label>
+            <label id="ep_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">提交</label>
 
             <div class="col-sm-8">
                 <input disabled type="text" class="form-control" name="submissionAccession" id="epsubmissionaccession" placeholder=""
                        ng-model="ecc.ExperimentRefsubmissionAccession">
-                <button type="button" class="btn btn-default pull-right" ng-click="ecc.openSubmission('lg')">Choose Submission</button> 
+                <button type="button" class="btn btn-default pull-right" ng-click="ecc.openSubmission('lg')">选择 提交</button> 
             </div>
         </div> 
 
-        <pre>{{ ecc.Experiment | json }}</pre>
+<!--         <pre>{{ ecc.Experiment | json }}</pre>
         <pre>{{ ecc.ExperimentRefsubmissionAccession | json}}</pre>
-
+ -->
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8 text-right">
-                <a ng-href="#/ExperimentList" id="btn_cancel" class="btn btn-warning">Cancel</a>
+                <a ng-href="#/ExperimentList" id="btn_cancel" class="btn btn-warning">取消</a>
 
-                <button type="submit" class="btn btn-success" id="btn_create">Create Experiment</button>
+                <button type="submit" class="btn btn-success" id="btn_create">创建 实验</button>
             </div>
         </div>
 

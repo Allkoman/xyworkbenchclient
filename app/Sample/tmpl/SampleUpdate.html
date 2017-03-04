@@ -1,8 +1,8 @@
 <div ng-controller="SampleUpdateCtrl as spuc">
-    <h1>Update Sample</h1>
+    <h1>更新 样例</h1>
     <form id="SampleUpdateForm" name="SampleForm" class="form-horizontal" role="form"
           ng-submit="spuc.updateSample()">
-        <legend class="sm-col-12">Sample Basic Information</legend>
+        <legend class="sm-col-12">样例基本信息</legend>
 
         <div class="form-group">
             <label id="sp_id" for="sampleId" class="col-sm-4 control-label">ID</label>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="form-group">
-            <label id="sp_accession" for="sampleAccession" class="col-sm-4 control-label">Accession</label>
+            <label id="sp_accession" for="sampleAccession" class="col-sm-4 control-label">增加编号</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="sampleAccession" id="spaccession" placeholder=""
@@ -23,7 +23,7 @@
         </div>
 
         <div class="form-group">
-            <label id="ct_name" for="centerName" class="col-sm-4 control-label">Center</label>
+            <label id="ct_name" for="centerName" class="col-sm-4 control-label">中心</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="centerName" id="ctname" placeholder=""
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label id="sc_name" for="scientificName" class="col-sm-4 control-label">Scientific Name</label>
+            <label id="sc_name" for="scientificName" class="col-sm-4 control-label">科学命名</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="scientificName" id="scname" placeholder=""
@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            <label id="sp_Attribute" for="sampleAttribute" class="col-sm-4 control-label">Attribute</label>
+            <label id="sp_Attribute" for="sampleAttribute" class="col-sm-4 control-label">摘要</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="sampleAttribute" id="spAttribute" placeholder=""
@@ -50,23 +50,23 @@
         </div>
 
         <div class="form-group">
-            <label id="st_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">Submission</label>
+            <label id="st_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">提交</label>
 
             <div class="col-sm-8">
                 <input disabled type="text" class="form-control" name="submissionAccession" id="stsubmissionaccession" placeholder=""
                        ng-model="spuc.SampleRefsubmissionAccession">
-                <button type="button" class="btn btn-default pull-right" ng-click="spuc.openSubmission('lg')">Choose Submission</button> 
+                <button type="button" class="btn btn-default pull-right" ng-click="spuc.openSubmission('lg')">选择 提交</button> 
             </div>
 
         </div> 
-        <pre>{{ spuc.Sample | json }}</pre>
-        <pre>{{ spuc.SampleRefsubmissionAccession | json}}</pre>
+<!--         <pre>{{ spuc.Sample | json }}</pre>
+        <pre>{{ spuc.SampleRefsubmissionAccession | json}}</pre> -->
 
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8 text-right">
-                <a ng-href="#/SampleList" id="btn_cancel" class="btn btn-warning">Cancel</a>
+                <a ng-href="#/SampleList" id="btn_cancel" class="btn btn-warning">取消</a>
 
-                <button type="submit" class="btn btn-success" id="btn_update">Update Sample</button>
+                <button type="submit" class="btn btn-success" id="btn_update">更新 样例</button>
             </div>
         </div>
 

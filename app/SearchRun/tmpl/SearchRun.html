@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 page-header">
             <h2>
-                Runs
+                运行
             </h2>
         </div>
     </div>
@@ -12,7 +12,7 @@
         </div-->
         <div class="col-lg-12">            
             <!-- remote url:http://localhost:8080/XYHRDAServer/webresources/words/bywildcard/diabe -->
-            <div angucomplete-alt id="ex7" placeholder="Search Runs via title, description and so on"                  
+            <div angucomplete-alt id="ex7" placeholder="通过运行的标题、描述等进行检索"                  
                  pause="100"  
                  remote-url="{{srunCtrl.BackendAddr}}/words/bywildcard/"
                  search-fields="wordscol" title-field="wordscol" description-field="idwords" minlength="1" 
@@ -28,7 +28,7 @@
             <div class="panel panel-default ">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        Filtered Results <span class="badge pull-right">{{srunCtrl.count}}</span>
+                        检索条件 <span class="badge pull-right">{{srunCtrl.count}}</span>
 
                         <a data-toggle="collapse" data-parent="#accordion"
                            href="#collapseOne">
@@ -62,7 +62,7 @@
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="srunCtrl.isOrgOpen">
                             <uib-accordion-heading>
-                                Organism 
+                                生物 
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': srunCtrl.isOrgOpen, 'glyphicon-chevron-right': !srunCtrl.isOrgOpen}"></i>
                                 <span class="badge pull-right">{{srunCtrl.taxonsCount}}</span>
                             </uib-accordion-heading>
@@ -72,7 +72,7 @@
                                     <input type="checkbox" checklist-model="srunCtrl.taxonsChose"
                                            checklist-value="item" checklist-comparator=".taxonid">{{item.taxonname}}
                                 </li>  
-                                <li class="list-group-item" > <button class="btn btn-default" ng-click="srunCtrl.openTaxonChooser()">See All</button> </li>
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="srunCtrl.openTaxonChooser()">查看全部</button> </li>
                             </ul>                           
                         </div>
                     </uib-accordion>
@@ -80,7 +80,7 @@
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="srunCtrl.isSbOpen">
                             <uib-accordion-heading>
-                                Submitter 
+                                提交者 
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': srunCtrl.isSbOpen, 'glyphicon-chevron-right': !srunCtrl.isSbOpen}"></i>
                                 <span class="badge pull-right">{{srunCtrl.submitterCount}}</span>
                             </uib-accordion-heading>
@@ -90,7 +90,7 @@
                                     <input type="checkbox" checklist-model="srunCtrl.submitterChose"
                                            checklist-value="item" checklist-comparator=".submittername">{{item.submittername}}
                                 </li>  
-                                <li class="list-group-item" > <button class="btn btn-default" ng-click="srunCtrl.openSubmitterChooser()">See All</button> </li>
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="srunCtrl.openSubmitterChooser()">查看全部</button> </li>
                             </ul>                           
                         </div>
                     </uib-accordion>
@@ -98,7 +98,7 @@
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="srunCtrl.isInOpen">
                             <uib-accordion-heading>
-                                Instrument 
+                                设备 
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': srunCtrl.isInOpen, 'glyphicon-chevron-right': !srunCtrl.isInOpen}"></i>
                                 <span class="badge pull-right">{{srunCtrl.instrumentCount}}</span>
                             </uib-accordion-heading>
@@ -108,21 +108,21 @@
                                     <input type="checkbox" checklist-model="srunCtrl.instrumentChose"
                                            checklist-value="item" checklist-comparator=".instrumentname">{{item.instrumentname}}
                                 </li>  
-                                <li class="list-group-item" > <button class="btn btn-default" ng-click="srunCtrl.openInstrumentChooser()">See All</button> </li>
+                                <li class="list-group-item" > <button class="btn btn-default" ng-click="srunCtrl.openInstrumentChooser()">查看全部</button> </li>
                             </ul>                           
                         </div>
                     </uib-accordion>
 
                     <div>
                         <center>
-                            <button class="btn btn-default" ng-click="srunCtrl.onFilter()">Filter</button>
+                            <button class="btn btn-default" ng-click="srunCtrl.onFilter()">检索</button>
                         </center>
                     </div>
-                    <div ng-if="srunCtrl.is_debug">
+ <!--                    <div ng-if="srunCtrl.is_debug">
                         <pre>{{ srunCtrl.taxonChoseIds | json}}</pre>
                         <pre>{{ srunCtrl.taxonsChose | json}}</pre>
                         <pre>{{ srunCtrl.taxonLeftList | json}}</pre>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>        
@@ -140,7 +140,7 @@
                 </td>
                 <td colspan="1" style="text-align:center;vertical-align:middle;">
 
-                    Total :<span class="badge">{{srunCtrl.count}}</span>
+                    共计 :<span class="badge">{{srunCtrl.count}}</span>
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active">
                         </li>
@@ -153,13 +153,13 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Accession</th>
-                        <th>Center</th>
-                        <th>Experiment</th>
-                        <th>Experiment Alias</th>
-                        <th>Organism</th>
-                        <th>Study</th>
-                        <th>Submission</th>
+                        <th>增加编号</th>
+                        <th>中心</th>
+                        <th>实验</th>
+                        <th>实验别名</th>
+                        <th>生物</th>
+                        <th>研究</th>
+                        <th>提交</th>
                     </tr>
                 </thead>
 
@@ -198,7 +198,7 @@
                     </tr>
                     <tr ng-hide="srunCtrl.curPageItems.length">
                         <td colspan="7">
-                            <p class="text-center">No Search Result Found</p>
+                            <p class="text-center">没有检索结果</p>
                         </td>
 
                     </tr>
@@ -207,25 +207,14 @@
             <!-- <h3>Total: {{srunCtrl.count}}</h3> -->
         </div>
     </div>
-    <div class="row">
+<!--     <div class="row">
         <div ng-if="srunCtrl.is_debug">
-            <!--
-            <div class="form-group">
-                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Orders...">
-                <hr>
-            </div>
-            <pre>{{ srunCtrl.inputSearchTxt | json }}</pre>
-            <div class="form-group">
-                Input:<label ng-model="srunCtrl.inputSearchTxt"></label><input class="form-control" type="text" ng-model="srunCtrl.inputSearchTxt">
-                <hr>
-            </div>
-            -->
 
             <h3>
                 Debug
             </h3>
             <hr>
-            <!--PL: TOFIX: Problem, it doesn't work.-->
+
             <accordion>
                 <accordion-group is-open="status.open">
                     <accordion-heading>
@@ -239,5 +228,5 @@
             </accordion>
         </div>
 
-    </div>
+    </div> -->
 </div>

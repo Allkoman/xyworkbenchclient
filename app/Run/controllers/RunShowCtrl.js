@@ -49,7 +49,7 @@ entityRunModule.controller('RunShowCtrl',
                 str2: str2,
                 str3: str,
                 returned: "",
-                command: " "
+                command: ""
             };
             $scope.allreceived = {};
             //LoadFirstPage();

@@ -1,8 +1,8 @@
 <div ng-controller="RunCreateCtrl as rcc">
-    <h1>Create Run</h1>
+    <h1>创建 运行</h1>
     <form id="RunCreateForm" name="RunForm" class="form-horizontal" role="form"
           ng-submit="rcc.createRun()">
-        <legend class="sm-col-12">Run Basic Information</legend>
+        <legend class="sm-col-12">运行基本信息</legend>
 
         <div class="form-group">
             <label id="rn_id" for="runId" class="col-sm-4 control-label">ID</label>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="form-group">
-            <label id="rn_accession" for="runAccession" class="col-sm-4 control-label">Accession</label>
+            <label id="rn_accession" for="runAccession" class="col-sm-4 control-label">增加编号</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="runAccession" id="rnaccession" placeholder=""
@@ -23,7 +23,7 @@
         </div>
 
         <div class="form-group">
-            <label id="rn_center" for="runCenter" class="col-sm-4 control-label">Center</label>
+            <label id="rn_center" for="runCenter" class="col-sm-4 control-label">中心</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="runCenter" id="rncenter" placeholder=""
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label id="rn_Alias" for="runAlias" class="col-sm-4 control-label">Alias</label>
+            <label id="rn_Alias" for="runAlias" class="col-sm-4 control-label">别名</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="runAlias" id="rnAlias" placeholder=""
@@ -41,17 +41,17 @@
         </div>
 
         <div class="form-group">
-            <label id="ep_Accession" for="experimentAccession" class="col-sm-4 control-label">Experiment</label>
+            <label id="ep_Accession" for="experimentAccession" class="col-sm-4 control-label">实验</label>
 
             <div class="col-sm-8">
                 <input disabled type="text" class="form-control" name="experimentAccession" id="epAccession" placeholder=""
                        ng-model="rcc.RunRefexperimentAccession">
-                <button type="button" class="btn btn-default pull-right" ng-click="rcc.openExperiment('lg')">Choose Experiment</button>
+                <button type="button" class="btn btn-default pull-right" ng-click="rcc.openExperiment('lg')">选择 实验</button>
             </div>
         </div>
 
         <div class="form-group">
-            <label id="rn_attribute" for="runAttribute" class="col-sm-4 control-label">Attribute</label>
+            <label id="rn_attribute" for="runAttribute" class="col-sm-4 control-label">摘要</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="runAttribute" id="rn  attribute" placeholder=""
@@ -60,7 +60,7 @@
         </div>
         
         <div class="form-group">
-            <label id="rn_Date" for="runDate" class="col-sm-4 control-label">Data</label>
+            <label id="rn_Date" for="runDate" class="col-sm-4 control-label">数据</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="runDate" id="rnDate" placeholder=""
@@ -69,7 +69,7 @@
         </div>
         
         <div class="form-group">
-            <label id="sra_Updated" for="sradbUpdated" class="col-sm-4 control-label">Updated</label>
+            <label id="sra_Updated" for="sradbUpdated" class="col-sm-4 control-label">更新</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="sradbUpdated" id="sraUpdated" placeholder=""
@@ -78,24 +78,24 @@
         </div>
 
         <div class="form-group">
-            <label id="rn_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">Submission</label>
+            <label id="rn_submissionaccession" for="submissionAccession" class="col-sm-4 control-label">提交</label>
 
             <div class="col-sm-8">
                 <input disabled type="text" class="form-control" name="submissionAccession" id="rnsubmissionaccession" placeholder=""
                        ng-model="rcc.RunRefsubmissionAccession">
-                <button type="button" class="btn btn-default pull-right" ng-click="rcc.openSubmission('lg')">Choose Submission</button> 
+                <button type="button" class="btn btn-default pull-right" ng-click="rcc.openSubmission('lg')">选择 提交</button> 
             </div>
 
         </div> 
 
-        <pre>{{ rcc.Run | json }}</pre>
+<!--         <pre>{{ rcc.Run | json }}</pre>
         <pre>{{ rcc.RunRefsubmissionAccession | json}}</pre>
-
+ -->
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8 text-right">
-                <a ng-href="#/RunList" id="btn_cancel" class="btn btn-warning">Cancel</a>
+                <a ng-href="#/RunList" id="btn_cancel" class="btn btn-warning">取消</a>
 
-                <button type="submit" class="btn btn-success" id="btn_create">Create Run</button>
+                <button type="submit" class="btn btn-success" id="btn_create">创建 运行</button>
             </div>
         </div>
 
